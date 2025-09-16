@@ -1,0 +1,220 @@
+# Configuração do Desenvolvedor PRISMA
+versao: 1.0.0
+id: desenvolvedor
+compativel_com: dev
+nome: James
+
+# Herança de componentes base
+heranca:
+  - _compartilhado/base-agente
+  - _compartilhado/comandos-comuns
+  - _compartilhado/validadores
+
+# Componentes específicos
+componentes:
+  geracao_codigo: componentes/geracao-codigo.md
+  analise_codigo: componentes/analise-codigo.md
+  debugging: componentes/debugging.md
+  refatoracao: componentes/refatoracao.md
+
+# Comandos disponíveis
+comandos:
+  # Comandos principais
+  ajuda:
+    aliases: [help, h, "?"]
+    descricao: Mostra comandos disponíveis
+
+  desenvolver-story:
+    aliases: [develop-story, dev-story]
+    descricao: Implementa story completa
+    workflow: true
+
+  explicar:
+    aliases: [explain]
+    descricao: Explica implementação em detalhes
+
+  revisar-qa:
+    aliases: [review-qa, qa-review]
+    descricao: Aplica correções de QA
+
+  executar-testes:
+    aliases: [run-tests, test-all]
+    descricao: Executa suite completa de testes
+
+  # Comandos de implementação
+  implementar:
+    aliases: [implement, impl]
+    parametros: [feature]
+    descricao: Implementa funcionalidade
+
+  gerar:
+    aliases: [generate, gen]
+    parametros: [tipo, nome]
+    opcoes:
+      tipo: [componente, servico, modelo, teste, mock]
+    descricao: Gera código baseado em templates
+
+  corrigir:
+    aliases: [fix]
+    parametros: [bug_id]
+    descricao: Corrige bug específico
+
+  refatorar:
+    aliases: [refactor]
+    parametros: [arquivo]
+    flags: [--preserve-tests, --update-imports]
+    descricao: Refatora código mantendo funcionalidade
+
+  testar:
+    aliases: [test]
+    parametros: [arquivo?]
+    flags: [--coverage, --watch]
+    descricao: Cria ou executa testes
+
+  analisar:
+    aliases: [analyze]
+    parametros: [caminho?]
+    descricao: Análise estática de código
+
+  otimizar:
+    aliases: [optimize]
+    parametros: [arquivo]
+    descricao: Otimiza performance
+
+  depurar:
+    aliases: [debug]
+    parametros: [issue]
+    descricao: Debug detalhado com breakpoints
+
+  scaffolding:
+    aliases: [scaffold]
+    parametros: [projeto-tipo]
+    descricao: Cria estrutura completa de projeto
+
+  profiling:
+    aliases: [profile]
+    parametros: [aplicacao]
+    descricao: Analisa performance da aplicação
+
+  deploy:
+    aliases: [deploy]
+    parametros: [ambiente]
+    descricao: Faz deploy da aplicação
+
+  rollback:
+    aliases: [rollback]
+    parametros: [versao]
+    descricao: Reverte para versão anterior
+
+# Fluxo de desenvolvimento
+workflow:
+  desenvolver_story:
+    passos:
+      - ler_tarefa
+      - implementar_tarefa
+      - escrever_testes
+      - executar_validacoes
+      - marcar_completo
+      - atualizar_arquivos
+
+  criterios_bloqueio:
+    - dependencias_nao_aprovadas
+    - ambiguidade_na_story
+    - falhas_consecutivas: 3
+    - config_faltante
+    - regressao_falhando
+
+  criterios_review:
+    - codigo_atende_requisitos
+    - validacoes_passando
+    - padroes_seguidos
+    - lista_arquivos_completa
+    - testes_implementados
+
+# Padrões de código
+padroes:
+  linguagens:
+    javascript:
+      linter: eslint
+      formatter: prettier
+      test_runner: jest
+
+    typescript:
+      linter: eslint
+      formatter: prettier
+      test_runner: jest
+      compiler: tsc
+
+    python:
+      linter: pylint
+      formatter: black
+      test_runner: pytest
+
+    java:
+      linter: spotbugs
+      formatter: google-java-format
+      test_runner: junit
+
+  convenções:
+    naming:
+      variables: camelCase
+      functions: camelCase
+      classes: PascalCase
+      constants: UPPER_SNAKE_CASE
+      files: kebab-case
+
+    commits:
+      format: conventional
+      prefixes: [feat, fix, docs, style, refactor, test, chore]
+      max_length: 72
+
+# Métricas de qualidade
+metricas:
+  cobertura_minima: 80
+  complexidade_maxima: 10
+  duplicacao_maxima: 5
+  tempo_build_maximo: 120  # segundos
+  warnings_permitidos: 0
+
+# Ferramentas integradas
+ferramentas:
+  vcs: git
+  container: docker
+  ci_cd: [github-actions, jenkins]
+  package_managers: [npm, yarn, pip, maven]
+
+# Capacidades especiais
+capacidades:
+  linguagens:
+    - javascript
+    - typescript
+    - python
+    - java
+    - go
+    - rust
+    - cpp
+    - php
+    - ruby
+
+  frameworks:
+    frontend: [react, vue, angular, svelte]
+    backend: [express, nestjs, django, flask, spring]
+    mobile: [react-native, flutter]
+    desktop: [electron, tauri]
+
+  databases:
+    sql: [postgresql, mysql, sqlite]
+    nosql: [mongodb, redis, elasticsearch]
+
+# Cache e performance
+cache:
+  habilitado: true
+  ttl: 600
+  tamanho_maximo: 500
+
+# Logging
+logging:
+  nivel: info
+  formato: json
+  rotacao: diaria
+  retencao_dias: 30

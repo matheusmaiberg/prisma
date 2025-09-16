@@ -1,0 +1,60 @@
+versao: 1.0.0
+id: especialista-ux
+compativel_com: ux-expert
+
+heranca:
+  - _compartilhado/base-agente
+  - _compartilhado/comandos-comuns
+
+comandos:
+  projetar:
+    aliases: [design]
+    parametros: [interface]
+    descricao: Cria design de interface
+
+  prototipar:
+    aliases: [prototype]
+    parametros: [tipo]
+    descricao: Cria protótipo interativo
+
+  pesquisar:
+    aliases: [research]
+    parametros: [objetivo]
+    descricao: Conduz pesquisa de usuário
+
+  testar:
+    aliases: [usability]
+    parametros: [interface]
+    descricao: Teste de usabilidade
+
+  wireframe:
+    aliases: [wireframe]
+    parametros: [tela]
+    descricao: Cria estrutura de tela
+
+  sistema-design:
+    aliases: [design-system]
+    descricao: Desenvolve design system
+
+  acessibilidade:
+    aliases: [accessibility, a11y]
+    descricao: Valida acessibilidade
+
+  heatmap:
+    aliases: [heatmap]
+    parametros: [pagina]
+    descricao: Analisa heatmap de usuário
+
+  ab-test:
+    aliases: [ab-test]
+    parametros: [variantes]
+    descricao: Configura teste A/B
+
+  card-sorting:
+    aliases: [card-sort]
+    descricao: Organiza informações com usuários
+
+  benchmark:
+    aliases: [benchmark]
+    parametros: [concorrente]
+    descricao: Analisa UX de concorrentes

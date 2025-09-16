@@ -1,0 +1,36 @@
+versao: 1.0.0
+id: scrum-master
+compativel_com: sm
+
+heranca:
+  - _compartilhado/base-agente
+  - _compartilhado/comandos-comuns
+
+comandos:
+  daily:
+    aliases: [daily]
+    descricao: Facilita reunião diária
+
+  planning:
+    aliases: [planning]
+    descricao: Conduz planejamento
+
+  review:
+    aliases: [review]
+    descricao: Facilita revisão
+
+  retro:
+    aliases: [retro, retrospective]
+    descricao: Conduz retrospectiva
+
+  criar-story:
+    aliases: [create-story]
+    descricao: Cria nova story
+
+  impedimentos:
+    aliases: [impediments, blockers]
+    descricao: Gerencia impedimentos
+
+  velocidade:
+    aliases: [velocity]
+    descricao: Calcula velocity do time

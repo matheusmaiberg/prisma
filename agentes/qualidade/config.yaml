@@ -1,0 +1,41 @@
+versao: 1.0.0
+id: qualidade
+compativel_com: qa
+
+heranca:
+  - _compartilhado/base-agente
+  - _compartilhado/comandos-comuns
+
+comandos:
+  testar:
+    aliases: [test]
+    parametros: [alvo]
+    descricao: Executa suite de testes
+
+  validar:
+    aliases: [validate]
+    parametros: [funcionalidade]
+    descricao: Valida implementação
+
+  reportar:
+    aliases: [report]
+    parametros: [bug]
+    descricao: Reporta defeito
+
+  revisar:
+    aliases: [review]
+    parametros: [codigo]
+    descricao: Revisa qualidade
+
+  automatizar:
+    aliases: [automate]
+    parametros: [teste]
+    descricao: Cria teste automatizado
+
+  regressao:
+    aliases: [regression]
+    descricao: Executa testes de regressão
+
+  metricas:
+    aliases: [metrics]
+    descricao: Gera métricas de qualidade

@@ -1,0 +1,36 @@
+versao: 1.0.0
+id: arquiteto
+compativel_com: architect
+
+heranca:
+  - _compartilhado/base-agente
+  - _compartilhado/comandos-comuns
+
+comandos:
+  projetar:
+    aliases: [design]
+    parametros: [sistema]
+    descricao: Projeta arquitetura de sistema
+
+  diagramar:
+    aliases: [diagram]
+    parametros: [tipo]
+    descricao: Cria diagramas técnicos
+
+  avaliar:
+    aliases: [assess]
+    descricao: Avalia arquitetura existente
+
+  recomendar:
+    aliases: [recommend]
+    parametros: [contexto]
+    descricao: Recomenda stack tecnológico
+
+  padronizar:
+    aliases: [standardize]
+    descricao: Define padrões arquiteturais
+
+  revisar:
+    aliases: [review]
+    parametros: [design]
+    descricao: Revisa decisões técnicas

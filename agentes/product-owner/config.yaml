@@ -1,0 +1,39 @@
+versao: 1.0.0
+id: product-owner
+compativel_com: po
+
+heranca:
+  - _compartilhado/base-agente
+  - _compartilhado/comandos-comuns
+
+comandos:
+  visao:
+    aliases: [vision]
+    descricao: Define visão do produto
+
+  priorizar:
+    aliases: [prioritize]
+    descricao: Prioriza backlog por valor
+
+  validar:
+    aliases: [validate]
+    parametros: [entrega]
+    descricao: Valida entregas
+
+  aceitar:
+    aliases: [accept]
+    parametros: [story]
+    descricao: Aprova story completa
+
+  fragmentar:
+    aliases: [shard]
+    parametros: [documento]
+    descricao: Divide épicos em stories
+
+  metricas:
+    aliases: [metrics]
+    descricao: Define KPIs do produto
+
+  roadmap:
+    aliases: [roadmap]
+    descricao: Cria roadmap estratégico
