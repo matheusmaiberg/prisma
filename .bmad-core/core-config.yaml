@@ -1,0 +1,44 @@
+markdownExploder: true
+qa:
+  qaLocation: docs/qa
+prd:
+  prdFile: docs/prd.md
+  prdVersion: v4
+  prdSharded: true
+  prdShardedLocation: docs/prd
+  epicFilePattern: epic-{n}*.md
+architecture:
+  architectureFile: docs/architecture.md
+  architectureVersion: v4
+  architectureSharded: true
+  architectureShardedLocation: docs/architecture
+customTechnicalDocuments: null
+devLoadAlwaysFiles:
+  - docs/architecture/coding-standards.md
+  - docs/architecture/tech-stack.md
+  - docs/architecture/source-tree.md
+  - docs/architecture/implementation/README.md
+  - docs/architecture/implementation/setup-guide.md
+devDebugLog: .ai/debug-log.md
+devStoryLocation: docs/stories
+slashPrefix: BMad
+# Configurações padrão do ambiente
+locale: pt-BR
+environment:
+  ide: vscode
+  os: windows
+  packageManager: pnpm
+  debugger: edge
+  mode: ultrathink
+development:
+  autoReload: true
+  sourceMapSupport: true
+  errorBoundaries: true
+  devTools: true
+  verboseLogging: true
+  performanceMonitoring: true
+vscode:
+  settingsPath: .vscode/settings.json
+  tasksPath: .vscode/tasks.json
+  launchPath: .vscode/launch.json
+  extensionsPath: .vscode/extensions.json

@@ -1,0 +1,119 @@
+# Registro Central de Eventos PRISMA
+# Armazena todos os eventos do sistema de forma imutável
+
+versao: 1.0.0
+tipo: event-store
+criado: 2025-01-16
+
+# Configuração do Event Store
+configuracao:
+  # Estratégia de armazenamento
+  armazenamento:
+    tipo: append-only  # Somente adição, nunca modifica eventos existentes
+    formato: yaml
+    compressao: false  # Ativar quando necessário
+
+  # Estratégia de snapshot
+  snapshots:
+    intervalo: 50  # Criar snapshot a cada 50 eventos
+    retenção: 10   # Manter últimos 10 snapshots
+    automático: true
+
+  # Segurança e integridade
+  integridade:
+    hash: sha256
+    assinatura: true
+    validacao_cadeia: true  # Valida toda a cadeia de eventos
+
+# Tipos de eventos suportados
+tipos_eventos:
+  # Eventos de sessão
+  sessao:
+    - sessao_iniciada
+    - sessao_pausada
+    - sessao_retomada
+    - sessao_finalizada
+
+  # Eventos de decisão (Audit Trail)
+  decisao:
+    - decisao_tomada
+    - decisao_revertida
+    - decisao_validada
+    - conflito_detectado
+
+  # Eventos de checkpoint
+  checkpoint:
+    - checkpoint_criado
+    - checkpoint_validado
+    - checkpoint_falhou
+    - rollback_executado
+
+  # Eventos de contexto
+  contexto:
+    - contexto_descoberto
+    - padrao_detectado
+    - convencao_aprendida
+    - tecnologia_identificada
+
+  # Eventos de tarefa
+  tarefa:
+    - tarefa_criada
+    - tarefa_iniciada
+    - tarefa_completada
+    - tarefa_bloqueada
+
+# Schema dos eventos
+schema_evento:
+  id: string  # UUID único
+  timestamp: datetime
+  tipo: string
+  sessao_id: string
+  agente: string
+  dados: object
+  hash_anterior: string  # Para criar cadeia imutável
+  hash_atual: string
+  metadados:
+    usuario: string
+    projeto: string
+    versao_prisma: string
+
+# Processadores de eventos
+processadores:
+  # Projeções (views materializadas)
+  projecoes:
+    - estado_atual  # Estado atual do sistema
+    - historico_decisoes  # Todas as decisões tomadas
+    - metricas_projeto  # Métricas calculadas
+    - linha_tempo  # Timeline visual dos eventos
+
+  # Validadores
+  validadores:
+    - integridade_cadeia  # Valida hashes
+    - schema_evento  # Valida estrutura
+    - regras_negocio  # Valida lógica
+
+# Estratégias de replay
+replay:
+  # Replay completo
+  completo:
+    desde_inicio: true
+    aplicar_snapshots: false
+
+  # Replay a partir de snapshot
+  snapshot:
+    usar_ultimo: true
+    validar_integridade: true
+
+  # Replay seletivo
+  seletivo:
+    filtrar_por: [tipo, sessao, agente]
+    periodo: opcional
+
+# Métricas do Event Store
+metricas:
+  - total_eventos
+  - eventos_por_tipo
+  - taxa_crescimento
+  - tempo_replay
+  - tamanho_store
+  - integridade_status

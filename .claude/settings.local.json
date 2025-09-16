@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.youtube.com)",
+      "WebSearch",
+      "Read(//c/Users/**)",
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

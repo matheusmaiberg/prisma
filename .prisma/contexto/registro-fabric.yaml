@@ -1,0 +1,128 @@
+# Registro Central Fabric Pattern - PRISMA
+# Single Source of Truth para todos os componentes compartilhados
+
+versao: 1.0.0
+tipo: fabric-registry
+atualizado: 2025-01-16
+
+# Conceito Fabric Pattern no PRISMA
+conceito: |
+  O Fabric Pattern elimina duplicação através de herança inteligente.
+  Como um tecido onde todos os fios se entrelaçam, componentes
+  compartilham comportamentos base sem duplicar código.
+
+# Registro de Componentes Base
+componentes_base:
+  # Comportamentos fundamentais herdados por TODOS os agentes
+  comportamentos_core:
+    localizacao: .prisma/contexto/heranca/comportamentos-base.md
+    tipo: fundamental
+    herdam_todos: true
+    inclui:
+      - validacao_entrada
+      - formatacao_saida
+      - gestao_erros
+      - logging_eventos
+
+  # Workflows compartilhados
+  workflows_comuns:
+    localizacao: .prisma/contexto/heranca/workflows-compartilhados.md
+    tipo: workflow
+    reutilizavel: true
+    inclui:
+      - analise_inicial
+      - validacao_checkpoint
+      - geracao_relatorio
+
+  # Padrões de validação
+  validacoes:
+    localizacao: .prisma/contexto/heranca/padroes-validacao.md
+    tipo: validacao
+    aplicacao: universal
+    inclui:
+      - validacao_codigo
+      - validacao_documentacao
+      - validacao_testes
+
+# Mapa de Herança (quem herda o quê)
+heranca:
+  # Agente PM herda
+  agente_pm:
+    herda_de:
+      - comportamentos_core
+      - workflows_comuns
+    adiciona:
+      - priorizacao_backlog
+      - gestao_requisitos
+
+  # Agente Dev herda
+  agente_dev:
+    herda_de:
+      - comportamentos_core
+      - validacoes
+    adiciona:
+      - implementacao_codigo
+      - refatoracao
+
+  # Agente QA herda
+  agente_qa:
+    herda_de:
+      - comportamentos_core
+      - validacoes
+      - workflows_comuns
+    adiciona:
+      - criacao_testes
+      - analise_cobertura
+
+# Cache de Contexto Descoberto
+contexto_cache:
+  # Descobertas técnicas
+  tecnico:
+    framework: []  # Preenchido dinamicamente
+    linguagens: []
+    bibliotecas: []
+    ferramentas: []
+    padroes_codigo: []
+
+  # Descobertas de negócio
+  negocio:
+    dominio: []
+    regras: []
+    entidades: []
+    fluxos: []
+
+  # Padrões detectados
+  padroes:
+    arquitetura: []
+    nomenclatura: []
+    estrutura_pastas: []
+    convencoes: []
+
+# Sistema de Resolução
+resolucao:
+  # Ordem de prioridade na herança
+  prioridade:
+    1: componente_especifico
+    2: heranca_direta
+    3: comportamentos_core
+    4: defaults_sistema
+
+  # Estratégia de merge
+  merge:
+    tipo: deep_merge
+    conflitos: componente_vence
+    validacao: obrigatoria
+
+# Métricas do Fabric
+metricas:
+  componentes_registrados: 0
+  taxa_reutilizacao: 0
+  reducao_duplicacao: 0
+  tempo_resolucao: 0
+
+# Comandos de Gestão
+comandos:
+  listar: "/prisma fabric listar"
+  validar: "/prisma fabric validar"
+  otimizar: "/prisma fabric otimizar"
+  metricas: "/prisma fabric metricas"

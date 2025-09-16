@@ -1,0 +1,86 @@
+# Stream de Eventos - Sessão Exemplo
+# Demonstra como os eventos são armazenados em uma sessão
+
+sessao_id: sessao-2025-01-16-001
+projeto: zion-prompt-lab
+usuario: developer
+
+# Eventos da sessão (append-only, nunca modificados)
+eventos:
+  - id: evt-001
+    timestamp: 2025-01-16T10:00:00Z
+    tipo: sessao_iniciada
+    agente: prisma-core
+    dados:
+      comando: "/prisma iniciar"
+      workflow: nascente
+      contexto_detectado:
+        - tipo_projeto: next.js
+        - linguagem: typescript
+        - tem_testes: true
+    hash_anterior: genesis
+    hash_atual: a1b2c3d4e5f6
+
+  - id: evt-002
+    timestamp: 2025-01-16T10:00:15Z
+    tipo: contexto_descoberto
+    agente: analisador
+    dados:
+      descoberta: "Projeto usa Tailwind CSS"
+      confianca: 0.95
+      arquivos_analisados:
+        - tailwind.config.js
+        - globals.css
+    hash_anterior: a1b2c3d4e5f6
+    hash_atual: b2c3d4e5f6a7
+
+  - id: evt-003
+    timestamp: 2025-01-16T10:00:30Z
+    tipo: decisao_tomada
+    agente: pm
+    dados:
+      decisao: "Usar componentes Shadcn/UI"
+      justificativa: "Projeto já usa Tailwind, Shadcn acelera desenvolvimento"
+      alternativas_consideradas:
+        - "Material UI"
+        - "Chakra UI"
+        - "Componentes customizados"
+      impacto: medio
+      reversivel: true
+    hash_anterior: b2c3d4e5f6a7
+    hash_atual: c3d4e5f6a7b8
+
+  - id: evt-004
+    timestamp: 2025-01-16T10:01:00Z
+    tipo: tarefa_criada
+    agente: pm
+    dados:
+      titulo: "Implementar landing page"
+      prioridade: alta
+      estimativa: "4h"
+      dependencias: []
+    hash_anterior: c3d4e5f6a7b8
+    hash_atual: d4e5f6a7b8c9
+
+  - id: evt-005
+    timestamp: 2025-01-16T10:05:00Z
+    tipo: checkpoint_criado
+    agente: prisma-core
+    dados:
+      nome: "Landing Page - Design Aprovado"
+      validacoes:
+        - responsividade: passed
+        - acessibilidade: passed
+        - performance: passed
+      snapshot_id: snap-001
+    hash_anterior: d4e5f6a7b8c9
+    hash_atual: e5f6a7b8c9d0
+
+# Metadados da sessão
+metadados:
+  total_eventos: 5
+  duracao: "5 minutos"
+  checkpoints_criados: 1
+  decisoes_tomadas: 1
+  reversoes: 0
+  estado_final: "checkpoint_validado"

@@ -1,0 +1,66 @@
+# PRISMA Agent Registry
+# Registro centralizado de todos os agentes disponíveis
+
+agents:
+  meta-agente:
+    file: "meta-agente.md"
+    type: "meta"
+    status: "active"
+    description: "Gera novos agentes a partir de descrições"
+    tools: ["Write", "WebFetch", "MultiEdit"]
+    created: "2024-09-16"
+
+  # PRIME AGENT
+  prisma-prime:
+    file: "prisma-prime.md"
+    type: "prime"
+    status: "active"
+    description: "Meta-orquestrador PRISMA para workflows complexos"
+    tools: ["Read", "Write", "Bash", "TodoWrite"]
+    priority: 0
+
+  # CORE AGENTS
+  state-manager:
+    file: "state-manager.md"
+    type: "core"
+    status: "active"
+    description: "Gerencia estado e persistência"
+    tools: ["Read", "Write", "Bash"]
+    priority: 1
+
+  event-logger:
+    file: "event-logger.md"
+    type: "core"
+    status: "active"
+    description: "Event sourcing e logging"
+    tools: ["Write", "Read", "Bash"]
+    priority: 2
+
+  context-analyzer:
+    file: "context-analyzer.md"
+    type: "core"
+    status: "active"
+    description: "Análise e cache de contexto"
+    tools: ["Read", "Grep", "Glob", "Write"]
+    priority: 3
+
+  progress-tracker:
+    file: "progress-tracker.md"
+    type: "core"
+    status: "active"
+    description: "Tracking de progresso e visualização"
+    tools: ["Read", "Write", "TodoWrite"]
+    priority: 4
+
+workflows:
+  bootstrap:
+    agents: ["state-manager", "event-logger"]
+    description: "Setup inicial do sistema"
+
+  analysis:
+    agents: ["context-analyzer", "progress-tracker"]
+    description: "Análise e tracking de tarefas"
+
+  full-chain:
+    agents: ["state-manager", "event-logger", "context-analyzer", "progress-tracker"]
+    description: "Workflow completo PRISMA"
