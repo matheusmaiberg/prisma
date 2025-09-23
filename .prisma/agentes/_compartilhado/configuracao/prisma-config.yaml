@@ -1,0 +1,155 @@
+# PRISMA - Configuração Central do Sistema
+# Sistema de Subagents Especializados para Claude Code
+
+system:
+  name: "PRISMA"
+  version: "1.0.0"
+  description: "Sistema de Subagents especializados com continuous activation"
+  methodology: "Risk-based development with quality gates"
+
+# CONFIGURAÇÃO DE SUBAGENTS
+subagents:
+  continuous_activation: true
+  isolated_contexts: true
+  automatic_handoffs: true
+  max_concurrent: 5  # Todos os 5 subagents ativos simultaneamente
+  default_model: "inherit"  # Herda modelo do Claude Code
+  timeout: 600  # 10 minutos para tasks complexas
+  retry_attempts: 2
+
+# ESTRUTURA DE AGENTES
+agents_structure:
+  subagents_path: ".prisma/agentes/"
+  shared_path: ".prisma/agentes/_compartilhado/"
+  registry_file: "_compartilhado/configuracao/agent-registry.yaml"
+  hierarchy_file: "_compartilhado/hierarquia.md"
+
+# ALAN (DIRETOR - ORQUESTRADOR)
+orchestrator:
+  name: "Alan"
+  path: "alan-diretor/"
+  loads_hierarchy: true
+  delegates_only: true  # Nunca executa tarefas diretas
+  intelligence: "context-based delegation"
+
+# SUBAGENTS ESPECIALIZADOS
+specialized_subagents:
+  bob:
+    name: "Bob"
+    role: "Scrum Master"
+    subagent_id: "prisma-sm"
+    path: "bob-scrum-master/"
+    specialization: "Story creation & Epic breakdown"
+
+  sarah:
+    name: "Sarah"
+    role: "Product Owner"
+    subagent_id: "prisma-po"
+    path: "sarah-product-owner/"
+    specialization: "Business value & Requirements validation"
+
+  james:
+    name: "James"
+    role: "Developer"
+    subagent_id: "prisma-dev"
+    path: "james-developer/"
+    specialization: "Sequential implementation & Task execution"
+
+  quinn:
+    name: "Quinn"
+    role: "Test Architect"
+    subagent_id: "prisma-qa"
+    path: "quinn-test-architect/"
+    specialization: "Risk analysis & Quality gates"
+
+  winston:
+    name: "Winston"
+    role: "Architect"
+    subagent_id: "prisma-arch"
+    path: "winston-architect/"
+    specialization: "System design & Technical decisions"
+
+# WORKFLOWS DE DESENVOLVIMENTO
+workflows:
+  story_development_cycle:
+    description: "Ciclo completo de desenvolvimento de história"
+    phases:
+      planning: ["bob", "sarah", "winston?"]
+      development: ["james"]
+      quality: ["quinn"]
+      review: ["quinn", "james?"]
+
+  quality_assurance_cycle:
+    description: "Ciclo de qualidade Quinn"
+    commands: ["*risk", "*design", "*trace", "*nfr", "*review", "*gate"]
+
+  continuous_integration:
+    description: "Integração contínua entre subagents"
+    handoffs: "automatic"
+    memory: "persistent via markdown"
+
+# DOCUMENTAÇÃO ESTRUTURADA
+documentation:
+  stories_path: "docs/stories/"
+  qa_assessments_path: "docs/qa/assessments/"
+  qa_gates_path: "docs/qa/gates/"
+  architecture_path: "docs/architecture/"
+
+  templates_path: ".prisma/templates/"
+
+  naming_conventions:
+    stories: "{epic}.{story}-{title}.md"
+    qa_assessments: "{epic}.{story}-{type}-{YYYYMMDD}.md"
+    qa_gates: "{epic}.{story}-{slug}.yml"
+
+# DELEGAÇÃO INTELIGENTE
+delegation:
+  auto_detection: true
+  keyword_mapping: true
+  context_analysis: true
+
+  triggers:
+    story_creation: "bob"
+    business_validation: "sarah"
+    implementation: "james"
+    quality_assurance: "quinn"
+    architecture: "winston"
+
+# QUALITY GATES CONFIGURATION
+quality_gates:
+  enabled: true
+  decisions: ["PASS", "CONCERNS", "FAIL", "WAIVED"]
+
+  risk_matrix:
+    categories: ["técnico", "segurança", "performance", "dados", "negócio", "operacional"]
+    scoring: "probabilidade × impacto"
+    thresholds:
+      fail: "≥9"
+      concerns: "≥6"
+      pass: "<6"
+
+  nfr_validation:
+    core_categories: ["segurança", "performance", "confiabilidade", "manutenibilidade"]
+    evidence_required: true
+
+# LOGGING E MONITORAMENTO
+logging:
+  level: "info"
+  path: ".prisma/logs/"
+  event_sourcing: true
+
+  track_metrics:
+    - subagent_activation_frequency
+    - handoff_success_rate
+    - quality_gate_decisions
+    - workflow_completion_times
+
+# CARACTERÍSTICAS PRISMA
+prisma_features:
+  documentation_as_code: true
+  portuguese_native: true
+  zero_installation: true
+  markdown_first: true
+  continuous_activation: true
+  risk_based_testing: true
+  intelligent_delegation: true

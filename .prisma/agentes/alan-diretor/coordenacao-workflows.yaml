@@ -1,0 +1,350 @@
+# Coordenação de Workflows - Diretor PRISMA
+# Sistema completo de orquestração de workflows
+
+versao: 1.0.0
+tipo: coordenacao-workflows
+agente: diretor
+
+# Workflows Principais
+workflows:
+  # Workflow Nascente - Projeto do Zero
+  nascente:
+    descricao: "Para projetos novos sem código legado"
+    duracao_estimada: "2-4 semanas"
+
+    fases:
+      1_descoberta:
+        duracao: "2-3 dias"
+        agentes: [diretor, pm, analista]
+        atividades:
+          - analisar_dominio
+          - definir_escopo
+          - identificar_stakeholders
+          - criar_visao_produto
+        entregaveis:
+          - visao_produto.md
+          - stakeholders.md
+          - escopo_inicial.md
+        checkpoint: "Visão do Produto Aprovada"
+
+      2_arquitetura:
+        duracao: "3-5 dias"
+        agentes: [arquiteto, dev-senior]
+        pre_requisitos: [visao_produto.md]
+        atividades:
+          - desenhar_arquitetura
+          - definir_stack_tecnologica
+          - planejar_estrutura
+          - criar_poc_tecnico
+        entregaveis:
+          - arquitetura.md
+          - decisoes_tecnicas.md
+          - poc/
+        checkpoint: "Arquitetura Validada"
+
+      3_planejamento:
+        duracao: "2-3 dias"
+        agentes: [pm, dev, qa]
+        pre_requisitos: [arquitetura.md]
+        atividades:
+          - criar_backlog
+          - definir_sprints
+          - estimar_esforcos
+          - planejar_releases
+        entregaveis:
+          - backlog.md
+          - roadmap.md
+          - sprints/sprint-1.md
+        checkpoint: "Planejamento Aprovado"
+
+      4_implementacao_mvp:
+        duracao: "5-10 dias"
+        agentes: [dev, qa]
+        pre_requisitos: [backlog.md]
+        atividades:
+          - setup_projeto
+          - implementar_core
+          - criar_testes_basicos
+          - configurar_ci_cd
+        entregaveis:
+          - codigo_mvp/
+          - testes/
+          - .github/workflows/
+        checkpoint: "MVP Funcional"
+
+      5_validacao:
+        duracao: "2-3 dias"
+        agentes: [qa, pm]
+        pre_requisitos: [codigo_mvp]
+        atividades:
+          - executar_testes
+          - validar_requisitos
+          - coletar_feedback
+          - aprovar_entrega
+        entregaveis:
+          - relatorio_testes.md
+          - feedback.md
+          - aprovacao.md
+        checkpoint: "MVP Validado"
+
+  # Workflow Existente - Evolução de Sistema Legado
+  existente:
+    descricao: "Para evolução de sistemas em produção"
+    duracao_estimada: "1-2 semanas por feature"
+
+    fases:
+      1_analise_impacto:
+        duracao: "1-2 dias"
+        agentes: [analista, arquiteto]
+        atividades:
+          - mapear_sistema_atual
+          - identificar_dependencias
+          - avaliar_riscos
+          - planejar_migracao
+        entregaveis:
+          - analise_impacto.md
+          - mapa_dependencias.md
+          - plano_migracao.md
+        checkpoint: "Impacto Compreendido"
+
+      2_refatoracao_segura:
+        duracao: "3-5 dias"
+        agentes: [dev-senior, qa]
+        atividades:
+          - criar_testes_regressao
+          - refatorar_incrementalmente
+          - validar_compatibilidade
+          - documentar_mudancas
+        entregaveis:
+          - testes_regressao/
+          - codigo_refatorado/
+          - changelog.md
+        checkpoint: "Refatoração Estável"
+
+      3_integracao:
+        duracao: "2-3 dias"
+        agentes: [dev, qa, devops]
+        atividades:
+          - integrar_mudancas
+          - executar_testes_integracao
+          - validar_performance
+          - preparar_deploy
+        entregaveis:
+          - relatorio_integracao.md
+          - metricas_performance.md
+          - deploy_plan.md
+        checkpoint: "Pronto para Deploy"
+
+  # Workflow Híbrido - Migração Gradual
+  hibrido:
+    descricao: "Migração gradual com coexistência"
+    duracao_estimada: "4-8 semanas"
+
+    fases:
+      1_estrategia:
+        duracao: "3-5 dias"
+        agentes: [arquiteto, pm]
+        atividades:
+          - definir_estrategia_migracao
+          - identificar_componentes_prioritarios
+          - planejar_fases
+          - estabelecer_metricas
+        entregaveis:
+          - estrategia_migracao.md
+          - roadmap_migracao.md
+          - metricas_sucesso.md
+        checkpoint: "Estratégia Aprovada"
+
+      2_ponte:
+        duracao: "5-7 dias"
+        agentes: [dev-senior, arquiteto]
+        atividades:
+          - criar_camada_abstracao
+          - implementar_adapters
+          - configurar_roteamento
+          - testar_comunicacao
+        entregaveis:
+          - camada_ponte/
+          - adapters/
+          - testes_integracao/
+        checkpoint: "Ponte Funcional"
+
+      3_migracao_incremental:
+        duracao: "iterativo"
+        agentes: [dev, qa]
+        atividades:
+          - migrar_componente
+          - validar_funcionamento
+          - medir_impacto
+          - ajustar_se_necessario
+        entregaveis:
+          - componentes_migrados/
+          - relatorios_validacao/
+          - metricas_impacto.md
+        checkpoint: "Componente Migrado"
+
+# Sistema de Coordenação
+coordenacao:
+  # Mecanismos de sincronização
+  sincronizacao:
+    checkpoints:
+      validacao: obrigatoria
+      aprovacao: pm_ou_diretor
+      rollback: automatico_se_falha
+
+    comunicacao:
+      canais:
+        - status_updates: real_time
+        - reports: por_fase
+        - alertas: imediato
+
+    handoff:
+      protocolo:
+        - salvar_contexto
+        - documentar_estado
+        - passar_artefatos
+        - confirmar_recebimento
+
+  # Gestão de dependências
+  dependencias:
+    tipos:
+      sequencial: aguarda_conclusao
+      paralela: executa_simultaneo
+      condicional: baseado_em_resultado
+
+    resolucao_conflitos:
+      - prioridade_negocio
+      - criticidade_tecnica
+      - disponibilidade_recursos
+
+  # Monitoramento
+  monitoramento:
+    metricas:
+      - progresso_percentual
+      - tempo_vs_estimado
+      - qualidade_entregas
+      - blockers_ativos
+
+    alertas:
+      atraso: "> 20% estimado"
+      bloqueio: "> 2 horas"
+      falha: "checkpoint_nao_passou"
+      risco: "dependencia_critica"
+
+# Orquestração Multi-Agente
+orquestracao:
+  # Padrões de execução
+  padroes:
+    sequencial:
+      exemplo: "pm -> arquiteto -> dev -> qa"
+      uso: "tarefas_dependentes"
+
+    paralelo:
+      exemplo: "[dev, qa, doc] simultaneamente"
+      uso: "tarefas_independentes"
+
+    pipeline:
+      exemplo: "dev_feature1 | qa_feature1 | deploy"
+      uso: "processamento_continuo"
+
+    fork_join:
+      exemplo: "fork[dev1, dev2] -> join -> qa"
+      uso: "trabalho_distribuido"
+
+  # Balanceamento de carga
+  balanceamento:
+    estrategias:
+      round_robin: distribuicao_igual
+      least_loaded: menos_ocupado
+      expertise_based: melhor_especializado
+      sticky: mesmo_agente_contexto
+
+  # Recuperação de falhas
+  recuperacao:
+    estrategias:
+      retry:
+        max_tentativas: 3
+        backoff: exponencial
+
+      fallback:
+        agente_backup: true
+        estrategia_alternativa: true
+
+      compensacao:
+        desfazer_parcial: true
+        estado_consistente: true
+
+# Estados do Workflow
+estados:
+  workflow:
+    - nao_iniciado
+    - em_planejamento
+    - em_execucao
+    - pausado
+    - bloqueado
+    - concluido
+    - cancelado
+    - falhou
+
+  fase:
+    - aguardando
+    - em_progresso
+    - em_validacao
+    - aprovada
+    - reprovada
+    - retrabalho
+
+  checkpoint:
+    - pendente
+    - validando
+    - passou
+    - falhou
+    - ignorado
+
+# Comandos de Coordenação
+comandos:
+  workflow:
+    iniciar: "*workflow [tipo] iniciar"
+    pausar: "*workflow pausar"
+    retomar: "*workflow retomar"
+    status: "*workflow status"
+    cancelar: "*workflow cancelar"
+
+  coordenacao:
+    sincronizar: "*coordenar sync"
+    checkpoint: "*coordenar checkpoint [nome]"
+    handoff: "*coordenar handoff [de] [para]"
+
+  monitoramento:
+    dashboard: "*monitor dashboard"
+    metricas: "*monitor metricas"
+    alertas: "*monitor alertas"
+
+# Templates de Resposta
+templates:
+  inicio_workflow: |
+    🎬 Iniciando Workflow: {tipo}
+    📊 Duração estimada: {duracao}
+    👥 Agentes envolvidos: {agentes}
+
+    Fase 1: {fase_nome}
+    Iniciando em 3... 2... 1...
+
+  checkpoint_alcancado: |
+    ✅ Checkpoint Alcançado: {nome}
+
+    📋 Entregáveis validados:
+    {lista_entregaveis}
+
+    ⏭️ Próxima fase: {proxima_fase}
+
+  workflow_concluido: |
+    🎉 Workflow Concluído com Sucesso!
+
+    📊 Métricas finais:
+    ⏱️ Tempo total: {tempo}
+    ✅ Checkpoints: {passou}/{total}
+    📈 Qualidade: {score}/5
+
+    📦 Entregáveis:
+    {lista_final}
