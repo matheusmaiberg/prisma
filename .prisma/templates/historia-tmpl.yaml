@@ -1,0 +1,138 @@
+# <!-- Powered by BMAD™ Core -->
+template:
+  id: historia-template-v2
+  name: Documento de História
+  version: 2.0
+  output:
+    format: markdown
+    filename: docs/stories/{{epic_num}}.{{story_num}}.{{story_title_short}}.md
+    title: "História {{epic_num}}.{{story_num}}: {{story_title_short}}"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+agent_config:
+  editable_sections:
+    - Status
+    - História
+    - Critérios de Aceitação
+    - Tarefas / Subtarefas
+    - Notas de Desenvolvimento
+    - Testes
+    - Log de Mudanças
+
+sections:
+  - id: status
+    title: Status
+    type: choice
+    choices: [Rascunho, Aprovada, EmAndamento, Revisao, Concluida]
+    instruction: Selecione o status atual da história
+    owner: scrum-master
+    editors: [scrum-master, dev-agent]
+
+  - id: historia
+    title: História
+    type: template-text
+    template: |
+      **Como um** {{role}},
+      **Eu quero** {{action}},
+      **Para que** {{benefit}}
+    instruction: Defina a história do usuário usando o formato padrão com papel, ação e benefício
+    elicit: true
+    owner: scrum-master
+    editors: [scrum-master]
+
+  - id: criterios-aceitacao
+    title: Critérios de Aceitação
+    type: numbered-list
+    instruction: Copie a lista numerada de critérios de aceitação do arquivo épico
+    elicit: true
+    owner: scrum-master
+    editors: [scrum-master]
+
+  - id: tarefas-subtarefas
+    title: Tarefas / Subtarefas
+    type: bullet-list
+    instruction: |
+      Divida a história em tarefas específicas e subtarefas necessárias para implementação.
+      Referencie números de critérios de aceitação aplicáveis quando relevante.
+    template: |
+      - [ ] Tarefa 1 (CA: # se aplicável)
+        - [ ] Subtarefa1.1...
+      - [ ] Tarefa 2 (CA: # se aplicável)
+        - [ ] Subtarefa 2.1...
+      - [ ] Tarefa 3 (CA: # se aplicável)
+        - [ ] Subtarefa 3.1...
+    elicit: true
+    owner: scrum-master
+    editors: [scrum-master, dev-agent]
+
+  - id: notas-desenvolvimento
+    title: Notas de Desenvolvimento
+    instruction: |
+      Preencha informações relevantes, apenas o que foi extraído de artefatos reais da pasta docs, relevante para esta história:
+      - Não invente informações
+      - Se conhecido, adicione informações relevantes da Árvore de Código que se relacionam com esta história
+      - Se houve notas importantes de história anterior que são relevantes para esta, inclua-as aqui
+      - Coloque informações suficientes nesta seção para que o agente de desenvolvimento NUNCA precise ler os documentos de arquitetura, essas notas junto com as tarefas e subtarefas devem dar ao Agente de Desenvolvimento o contexto completo necessário para compreender com a menor sobrecarga possível as informações para completar a história, atendendo todos os CA e completando todas as tarefas+subtarefas
+    elicit: true
+    owner: scrum-master
+    editors: [scrum-master]
+    sections:
+      - id: padroes-teste
+        title: Testes
+        instruction: |
+          Liste os Padrões de Teste Relevantes da Arquitetura que o Desenvolvedor precisa seguir:
+          - Localização do arquivo de teste
+          - Padrões de teste
+          - Frameworks de teste e padrões a usar
+          - Quaisquer requisitos específicos de teste para esta história
+        elicit: true
+        owner: scrum-master
+        editors: [scrum-master]
+
+  - id: log-mudancas
+    title: Log de Mudanças
+    type: table
+    columns: [Data, Versão, Descrição, Autor]
+    instruction: Rastreie mudanças feitas neste documento de história
+    owner: scrum-master
+    editors: [scrum-master, dev-agent, qa-agent]
+
+  - id: registro-agente-dev
+    title: Registro do Agente de Desenvolvimento
+    instruction: Esta seção é preenchida pelo agente de desenvolvimento durante a implementação
+    owner: dev-agent
+    editors: [dev-agent]
+    sections:
+      - id: modelo-agente
+        title: Modelo do Agente Utilizado
+        template: "{{agent_model_name_version}}"
+        instruction: Registre o modelo específico de agente IA e versão usado para desenvolvimento
+        owner: dev-agent
+        editors: [dev-agent]
+
+      - id: referencias-log-debug
+        title: Referências de Log de Debug
+        instruction: Referencie quaisquer logs de debug ou traces gerados durante o desenvolvimento
+        owner: dev-agent
+        editors: [dev-agent]
+
+      - id: notas-conclusao
+        title: Lista de Notas de Conclusão
+        instruction: Notas sobre a conclusão de tarefas e quaisquer problemas encontrados
+        owner: dev-agent
+        editors: [dev-agent]
+
+      - id: lista-arquivos
+        title: Lista de Arquivos
+        instruction: Liste todos os arquivos criados, modificados ou afetados durante a implementação da história
+        owner: dev-agent
+        editors: [dev-agent]
+
+  - id: resultados-qa
+    title: Resultados QA
+    instruction: Resultados da revisão QA do Agente QA sobre a implementação completa da história
+    owner: qa-agent
+    editors: [qa-agent]

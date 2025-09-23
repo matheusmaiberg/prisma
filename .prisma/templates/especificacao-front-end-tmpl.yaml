@@ -1,0 +1,350 @@
+# <!-- Powered by BMAD™ Core -->
+template:
+  id: especificacao-frontend-template-v2
+  name: Especificação UI/UX
+  version: 2.0
+  output:
+    format: markdown
+    filename: docs/especificacao-front-end.md
+    title: "{{project_name}} Especificação UI/UX"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: introducao
+    title: Introdução
+    instruction: |
+      Revise os documentos fornecidos incluindo Project Brief, PRD e qualquer pesquisa de usuário para reunir contexto. Foque em entender as necessidades do usuário, pontos de dor e resultados desejados antes de iniciar a especificação.
+
+      Estabeleça o propósito e escopo do documento. Mantenha o conteúdo abaixo mas certifique-se de que o nome do projeto seja substituído adequadamente.
+    content: |
+      Este documento define os objetivos de experiência do usuário, arquitetura da informação, fluxos de usuário e especificações de design visual para a interface do usuário do {{project_name}}. Serve como base para design visual e desenvolvimento frontend, garantindo uma experiência coesa e centrada no usuário.
+    sections:
+      - id: objetivos-principios-ux
+        title: Objetivos e Princípios Gerais de UX
+        instruction: |
+          Trabalhe com o usuário para estabelecer e documentar o seguinte. Se ainda não definido, facilite uma discussão para determinar:
+
+          1. Personas de Usuário Alvo - elicite detalhes ou confirme as existentes do PRD
+          2. Objetivos Principais de Usabilidade - entenda como é o sucesso para os usuários
+          3. Princípios de Design Principais - estabeleça 3-5 princípios orientadores
+        elicit: true
+        sections:
+          - id: personas-usuario
+            title: Personas de Usuário Alvo
+            template: "{{persona_descriptions}}"
+            examples:
+              - "**Usuário Avançado:** Profissionais técnicos que precisam de recursos avançados e eficiência"
+              - "**Usuário Casual:** Usuários ocasionais que priorizam facilidade de uso e orientação clara"
+              - "**Administrador:** Gerentes de sistema que precisam de controle e capacidades de supervisão"
+          - id: objetivos-usabilidade
+            title: Objetivos de Usabilidade
+            template: "{{usability_goals}}"
+            examples:
+              - "Facilidade de aprendizado: Novos usuários podem completar tarefas principais em 5 minutos"
+              - "Eficiência de uso: Usuários avançados podem completar tarefas frequentes com cliques mínimos"
+              - "Prevenção de erros: Validação clara e confirmação para ações destrutivas"
+              - "Memorabilidade: Usuários infrequentes podem retornar sem reaprender"
+          - id: principios-design
+            title: Princípios de Design
+            template: "{{design_principles}}"
+            type: numbered-list
+            examples:
+              - "**Clareza sobre criatividade** - Priorizar comunicação clara sobre inovação estética"
+              - "**Divulgação progressiva** - Mostrar apenas o necessário, quando necessário"
+              - "**Padrões consistentes** - Usar padrões familiares de UI em toda a aplicação"
+              - "**Feedback imediato** - Toda ação deve ter uma resposta clara e imediata"
+              - "**Acessível por padrão** - Projetar para todos os usuários desde o início"
+      - id: changelog
+        title: Log de Mudanças
+        type: table
+        columns: [Data, Versão, Descrição, Autor]
+        instruction: Rastreie versões e mudanças do documento
+
+  - id: arquitetura-informacao
+    title: Arquitetura da Informação (AI)
+    instruction: |
+      Colabore com o usuário para criar uma arquitetura da informação abrangente:
+
+      1. Construa um Mapa do Site ou Inventário de Telas mostrando todas as áreas principais
+      2. Defina a Estrutura de Navegação (primária, secundária, breadcrumbs)
+      3. Use diagramas Mermaid para representação visual
+      4. Considere modelos mentais do usuário e agrupamentos esperados
+    elicit: true
+    sections:
+      - id: mapa-site
+        title: Mapa do Site / Inventário de Telas
+        type: mermaid
+        mermaid_type: graph
+        template: "{{sitemap_diagram}}"
+        examples:
+          - |
+            graph TD
+                A[Página Inicial] --> B[Dashboard]
+                A --> C[Produtos]
+                A --> D[Conta]
+                B --> B1[Analytics]
+                B --> B2[Atividade Recente]
+                C --> C1[Navegar]
+                C --> C2[Pesquisar]
+                C --> C3[Detalhes do Produto]
+                D --> D1[Perfil]
+                D --> D2[Configurações]
+                D --> D3[Cobrança]
+      - id: estrutura-navegacao
+        title: Estrutura de Navegação
+        template: |
+          **Navegação Primária:** {{primary_nav_description}}
+
+          **Navegação Secundária:** {{secondary_nav_description}}
+
+          **Estratégia de Breadcrumb:** {{breadcrumb_strategy}}
+
+  - id: fluxos-usuario
+    title: Fluxos de Usuário
+    instruction: |
+      Para cada tarefa crítica do usuário identificada no PRD:
+
+      1. Defina claramente o objetivo do usuário
+      2. Mapeie todos os passos incluindo pontos de decisão
+      3. Considere casos extremos e estados de erro
+      4. Use diagramas de fluxo Mermaid para clareza
+      5. Vincule a ferramentas externas (Figma/Miro) se existirem fluxos detalhados lá
+
+      Crie subseções para cada fluxo principal.
+    elicit: true
+    repeatable: true
+    sections:
+      - id: fluxo
+        title: "{{flow_name}}"
+        template: |
+          **Objetivo do Usuário:** {{flow_goal}}
+
+          **Pontos de Entrada:** {{entry_points}}
+
+          **Critérios de Sucesso:** {{success_criteria}}
+        sections:
+          - id: diagrama-fluxo
+            title: Diagrama de Fluxo
+            type: mermaid
+            mermaid_type: graph
+            template: "{{flow_diagram}}"
+          - id: casos-extremos
+            title: "Casos Extremos e Tratamento de Erros:"
+            type: bullet-list
+            template: "- {{edge_case}}"
+          - id: notas
+            template: "**Notas:** {{flow_notes}}"
+
+  - id: wireframes-mockups
+    title: Wireframes e Mockups
+    instruction: |
+      Esclareça onde designs visuais detalhados serão criados (Figma, Sketch, etc.) e como referenciá-los. Se wireframes de baixa fidelidade forem necessários, ofereça ajuda para conceituar layouts para telas principais.
+    elicit: true
+    sections:
+      - id: arquivos-design
+        template: "**Arquivos de Design Primários:** {{design_tool_link}}"
+      - id: layouts-telas-chave
+        title: Layouts de Telas Principais
+        repeatable: true
+        sections:
+          - id: tela
+            title: "{{screen_name}}"
+            template: |
+              **Propósito:** {{screen_purpose}}
+
+              **Elementos Principais:**
+              - {{element_1}}
+              - {{element_2}}
+              - {{element_3}}
+
+              **Notas de Interação:** {{interaction_notes}}
+
+              **Referência do Arquivo de Design:** {{specific_frame_link}}
+
+  - id: biblioteca-componentes
+    title: Biblioteca de Componentes / Sistema de Design
+    instruction: |
+      Discuta se deve usar um sistema de design existente ou criar um novo. Se criando novo, identifique componentes fundamentais e seus estados principais. Note que especificações técnicas detalhadas pertencem à arquitetura frontend.
+    elicit: true
+    sections:
+      - id: abordagem-sistema-design
+        template: "**Abordagem do Sistema de Design:** {{design_system_approach}}"
+      - id: componentes-principais
+        title: Componentes Principais
+        repeatable: true
+        sections:
+          - id: componente
+            title: "{{component_name}}"
+            template: |
+              **Propósito:** {{component_purpose}}
+
+              **Variantes:** {{component_variants}}
+
+              **Estados:** {{component_states}}
+
+              **Diretrizes de Uso:** {{usage_guidelines}}
+
+  - id: marca-estilo
+    title: Marca e Guia de Estilo
+    instruction: Vincule ao guia de estilo existente ou defina elementos principais da marca. Garanta consistência com diretrizes de marca da empresa se existirem.
+    elicit: true
+    sections:
+      - id: identidade-visual
+        title: Identidade Visual
+        template: "**Diretrizes da Marca:** {{brand_guidelines_link}}"
+      - id: paleta-cores
+        title: Paleta de Cores
+        type: table
+        columns: ["Tipo de Cor", "Código Hex", "Uso"]
+        rows:
+          - ["Primária", "{{primary_color}}", "{{primary_usage}}"]
+          - ["Secundária", "{{secondary_color}}", "{{secondary_usage}}"]
+          - ["Destaque", "{{accent_color}}", "{{accent_usage}}"]
+          - ["Sucesso", "{{success_color}}", "Feedback positivo, confirmações"]
+          - ["Aviso", "{{warning_color}}", "Cuidados, avisos importantes"]
+          - ["Erro", "{{error_color}}", "Erros, ações destrutivas"]
+          - ["Neutro", "{{neutral_colors}}", "Texto, bordas, fundos"]
+      - id: tipografia
+        title: Tipografia
+        sections:
+          - id: familias-fonte
+            title: Famílias de Fonte
+            template: |
+              - **Primária:** {{primary_font}}
+              - **Secundária:** {{secondary_font}}
+              - **Monoespaçada:** {{mono_font}}
+          - id: escala-tipo
+            title: Escala de Tipo
+            type: table
+            columns: ["Elemento", "Tamanho", "Peso", "Altura da Linha"]
+            rows:
+              - ["H1", "{{h1_size}}", "{{h1_weight}}", "{{h1_line}}"]
+              - ["H2", "{{h2_size}}", "{{h2_weight}}", "{{h2_line}}"]
+              - ["H3", "{{h3_size}}", "{{h3_weight}}", "{{h3_line}}"]
+              - ["Corpo", "{{body_size}}", "{{body_weight}}", "{{body_line}}"]
+              - ["Pequeno", "{{small_size}}", "{{small_weight}}", "{{small_line}}"]
+      - id: iconografia
+        title: Iconografia
+        template: |
+          **Biblioteca de Ícones:** {{icon_library}}
+
+          **Diretrizes de Uso:** {{icon_guidelines}}
+      - id: espacamento-layout
+        title: Espaçamento e Layout
+        template: |
+          **Sistema de Grade:** {{grid_system}}
+
+          **Escala de Espaçamento:** {{spacing_scale}}
+
+  - id: acessibilidade
+    title: Requisitos de Acessibilidade
+    instruction: Defina requisitos específicos de acessibilidade baseados no nível de conformidade alvo e necessidades do usuário. Seja abrangente mas prático.
+    elicit: true
+    sections:
+      - id: alvo-conformidade
+        title: Alvo de Conformidade
+        template: "**Padrão:** {{compliance_standard}}"
+      - id: requisitos-chave
+        title: Requisitos Principais
+        template: |
+          **Visual:**
+          - Razões de contraste de cor: {{contrast_requirements}}
+          - Indicadores de foco: {{focus_requirements}}
+          - Dimensionamento de texto: {{text_requirements}}
+
+          **Interação:**
+          - Navegação por teclado: {{keyboard_requirements}}
+          - Suporte a leitor de tela: {{screen_reader_requirements}}
+          - Alvos de toque: {{touch_requirements}}
+
+          **Conteúdo:**
+          - Texto alternativo: {{alt_text_requirements}}
+          - Estrutura de cabeçalhos: {{heading_requirements}}
+          - Rótulos de formulário: {{form_requirements}}
+      - id: estrategia-teste
+        title: Estratégia de Teste
+        template: "{{accessibility_testing}}"
+
+  - id: responsividade
+    title: Estratégia de Responsividade
+    instruction: Defina breakpoints e estratégias de adaptação para diferentes tamanhos de dispositivo. Considere tanto restrições técnicas quanto contextos de usuário.
+    elicit: true
+    sections:
+      - id: breakpoints
+        title: Breakpoints
+        type: table
+        columns: ["Breakpoint", "Largura Mín", "Largura Máx", "Dispositivos Alvo"]
+        rows:
+          - ["Mobile", "{{mobile_min}}", "{{mobile_max}}", "{{mobile_devices}}"]
+          - ["Tablet", "{{tablet_min}}", "{{tablet_max}}", "{{tablet_devices}}"]
+          - ["Desktop", "{{desktop_min}}", "{{desktop_max}}", "{{desktop_devices}}"]
+          - ["Amplo", "{{wide_min}}", "-", "{{wide_devices}}"]
+      - id: padroes-adaptacao
+        title: Padrões de Adaptação
+        template: |
+          **Mudanças de Layout:** {{layout_adaptations}}
+
+          **Mudanças de Navegação:** {{nav_adaptations}}
+
+          **Prioridade de Conteúdo:** {{content_adaptations}}
+
+          **Mudanças de Interação:** {{interaction_adaptations}}
+
+  - id: animacao
+    title: Animação e Micro-interações
+    instruction: Defina princípios de design de movimento e interações principais. Mantenha performance e acessibilidade em mente.
+    elicit: true
+    sections:
+      - id: principios-movimento
+        title: Princípios de Movimento
+        template: "{{motion_principles}}"
+      - id: animacoes-chave
+        title: Animações Principais
+        repeatable: true
+        template: "- **{{animation_name}}:** {{animation_description}} (Duração: {{duration}}, Easing: {{easing}})"
+
+  - id: performance
+    title: Considerações de Performance
+    instruction: Defina objetivos e estratégias de performance que impactem decisões de design UX.
+    sections:
+      - id: objetivos-performance
+        title: Objetivos de Performance
+        template: |
+          - **Carregamento de Página:** {{load_time_goal}}
+          - **Resposta de Interação:** {{interaction_goal}}
+          - **FPS de Animação:** {{animation_goal}}
+      - id: estrategias-design
+        title: Estratégias de Design
+        template: "{{performance_strategies}}"
+
+  - id: proximos-passos
+    title: Próximos Passos
+    instruction: |
+      Após completar a especificação UI/UX:
+
+      1. Recomende revisão com stakeholders
+      2. Sugira criar/atualizar designs visuais na ferramenta de design
+      3. Prepare para handoff ao Arquiteto de Design para arquitetura frontend
+      4. Note quaisquer questões abertas ou decisões necessárias
+    sections:
+      - id: acoes-imediatas
+        title: Ações Imediatas
+        type: numbered-list
+        template: "{{action}}"
+      - id: checklist-handoff-design
+        title: Checklist de Handoff de Design
+        type: checklist
+        items:
+          - "Todos os fluxos de usuário documentados"
+          - "Inventário de componentes completo"
+          - "Requisitos de acessibilidade definidos"
+          - "Estratégia responsiva clara"
+          - "Diretrizes de marca incorporadas"
+          - "Objetivos de performance estabelecidos"
+
+  - id: resultados-checklist
+    title: Resultados do Checklist
+    instruction: Se existe um checklist UI/UX, execute-o contra este documento e reporte os resultados aqui.

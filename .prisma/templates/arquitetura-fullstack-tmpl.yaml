@@ -1,0 +1,824 @@
+# <!-- Powered by BMAD™ Core -->
+template:
+  id: fullstack-architecture-template-v2
+  name: Documento de Arquitetura Fullstack
+  version: 2.0
+  output:
+    format: markdown
+    filename: docs/architecture.md
+    title: "Documento de Arquitetura Fullstack {{project_name}}"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: introduction
+    title: Introdução
+    instruction: |
+      Se disponíveis, revise quaisquer documentos relevantes fornecidos para coletar todo o contexto relevante antes de começar. No mínimo, você deve ter acesso a docs/prd.md e docs/front-end-spec.md. Peça ao usuário por quaisquer documentos que você precisa mas não consegue localizar. Este template cria uma arquitetura unificada que cobre tanto preocupações backend quanto frontend para guiar desenvolvimento fullstack orientado por IA.
+    elicit: true
+    content: |
+      Este documento delineia a arquitetura fullstack completa para {{project_name}}, incluindo sistemas backend, implementação frontend e sua integração. Serve como a única fonte da verdade para desenvolvimento orientado por IA, garantindo consistência em toda a pilha tecnológica.
+
+      Esta abordagem unificada combina o que tradicionalmente seriam documentos separados de arquitetura backend e frontend, simplificando o processo de desenvolvimento para aplicações fullstack modernas onde essas preocupações estão cada vez mais interligadas.
+    sections:
+      - id: starter-template
+        title: Template Inicial ou Projeto Existente
+        instruction: |
+          Antes de prosseguir com o design da arquitetura, verifique se o projeto é baseado em quaisquer templates iniciais ou codebases existentes:
+
+          1. Revise o PRD e outros documentos para menções de:
+          - Templates iniciais fullstack (ex: T3 Stack, starters MEAN/MERN, templates Django + React)
+          - Templates de monorepo (ex: starters Nx, Turborepo)
+          - Starters específicos de plataforma (ex: templates Vercel, starters AWS Amplify)
+          - Projetos existentes sendo estendidos ou clonados
+
+          2. Se templates iniciais ou projetos existentes forem mencionados:
+          - Peça ao usuário para fornecer acesso (links, repos ou arquivos)
+          - Analise para entender escolhas pré-configuradas e restrições
+          - Note quaisquer decisões arquiteturais já feitas
+          - Identifique o que pode ser modificado vs o que deve ser mantido
+
+          3. Se nenhum starter for mencionado mas este é greenfield:
+          - Sugira starters fullstack apropriados baseados em preferências tecnológicas
+          - Considere opções específicas de plataforma (Vercel, AWS, etc.)
+          - Deixe o usuário decidir se quer usar um
+
+          4. Documente a decisão e quaisquer restrições que ela impõe
+
+          Se nenhum, declare "N/A - Projeto greenfield"
+      - id: changelog
+        title: Log de Mudanças
+        type: table
+        columns: [Data, Versão, Descrição, Autor]
+        instruction: Rastrear versões e mudanças do documento
+
+  - id: high-level-architecture
+    title: Arquitetura de Alto Nível
+    instruction: Esta seção contém múltiplas subseções que estabelecem a fundação. Apresente todas as subseções juntas, então obtenha feedback na seção completa.
+    elicit: true
+    sections:
+      - id: technical-summary
+        title: Resumo Técnico
+        instruction: |
+          Forneça uma visão geral abrangente (4-6 frases) cobrindo:
+          - Estilo arquitetural geral e abordagem de implantação
+          - Escolhas de framework frontend e tecnologia backend
+          - Pontos-chave de integração entre frontend e backend
+          - Plataforma de infraestrutura e serviços
+          - Como esta arquitetura alcança os objetivos do PRD
+      - id: platform-infrastructure
+        title: Escolha de Plataforma e Infraestrutura
+        instruction: |
+          Baseado nos requisitos do PRD e premissas técnicas, faça uma recomendação de plataforma:
+
+          1. Considere padrões comuns (não uma lista exaustiva, use seu melhor julgamento e pesquise na web conforme necessário para tendências emergentes):
+          - **Vercel + Supabase**: Para desenvolvimento rápido com Next.js, auth/storage integrados
+          - **AWS Full Stack**: Para escala enterprise com Lambda, API Gateway, S3, Cognito
+          - **Azure**: Para ecossistemas .NET ou ambientes enterprise Microsoft
+          - **Google Cloud**: Para aplicações pesadas em ML/IA ou integração com ecossistema Google
+
+          2. Apresente 2-3 opções viáveis com prós/contras claros
+          3. Faça uma recomendação com justificativa
+          4. Obtenha confirmação explícita do usuário
+
+          Documente a escolha e serviços-chave que serão usados.
+        template: |
+          **Plataforma:** {{selected_platform}}
+          **Serviços-Chave:** {{core_services_list}}
+          **Host de Implantação e Regiões:** {{regions}}
+      - id: repository-structure
+        title: Estrutura do Repositório
+        instruction: |
+          Defina a abordagem do repositório baseada nos requisitos do PRD e escolha de plataforma, explique sua justificativa ou faça perguntas ao usuário se incerto:
+
+          1. Para apps fullstack modernos, monorepo é frequentemente preferido
+          2. Considere ferramentas (Nx, Turborepo, Lerna, npm workspaces)
+          3. Defina limites de pacote/app
+          4. Planeje para código compartilhado entre frontend e backend
+        template: |
+          **Estrutura:** {{repo_structure_choice}}
+          **Ferramenta de Monorepo:** {{monorepo_tool_if_applicable}}
+          **Organização de Pacotes:** {{package_strategy}}
+      - id: architecture-diagram
+        title: Diagrama de Arquitetura de Alto Nível
+        type: mermaid
+        mermaid_type: graph
+        instruction: |
+          Crie um diagrama Mermaid mostrando a arquitetura completa do sistema incluindo:
+          - Pontos de entrada do usuário (web, mobile)
+          - Implantação da aplicação frontend
+          - Camada de API (REST/GraphQL)
+          - Serviços backend
+          - Bancos de dados e armazenamento
+          - Integrações externas
+          - CDN e camadas de cache
+
+          Use tipo de diagrama apropriado para clareza.
+      - id: architectural-patterns
+        title: Padrões Arquiteturais
+        instruction: |
+          Liste padrões que guiarão tanto desenvolvimento frontend quanto backend. Inclua padrões para:
+          - Arquitetura geral (ex: Jamstack, Serverless, Microsserviços)
+          - Padrões frontend (ex: Baseado em componentes, Gerenciamento de estado)
+          - Padrões backend (ex: Repository, CQRS, Orientado a eventos)
+          - Padrões de integração (ex: BFF, API Gateway)
+
+          Para cada padrão, forneça recomendação e justificativa.
+        repeatable: true
+        template: "- **{{pattern_name}}:** {{pattern_description}} - _Justificativa:_ {{rationale}}"
+        examples:
+          - "**Arquitetura Jamstack:** Geração de site estático com APIs serverless - _Justificativa:_ Performance e escalabilidade ótimas para aplicações pesadas em conteúdo"
+          - "**UI Baseada em Componentes:** Componentes React reutilizáveis com TypeScript - _Justificativa:_ Manutenibilidade e segurança de tipos em codebases grandes"
+          - "**Padrão Repository:** Abstrair lógica de acesso a dados - _Justificativa:_ Habilita testes e flexibilidade para migração futura de banco de dados"
+          - "**Padrão API Gateway:** Ponto único de entrada para todas as chamadas de API - _Justificativa:_ Auth centralizado, rate limiting e monitoramento"
+
+  - id: tech-stack
+    title: Pilha Tecnológica
+    instruction: |
+      Esta é a seleção DEFINITIVA de tecnologia para todo o projeto. Trabalhe com o usuário para finalizar todas as escolhas. Esta tabela é a única fonte da verdade - todo desenvolvimento deve usar essas versões exatas.
+
+      Áreas-chave para cobrir:
+      - Linguagens/frameworks frontend e backend
+      - Bancos de dados e cache
+      - Autenticação e autorização
+      - Abordagem de API
+      - Ferramentas de teste para frontend e backend
+      - Ferramentas de build e implantação
+      - Monitoramento e logging
+
+      Ao renderizar, obtenha feedback imediatamente.
+    elicit: true
+    sections:
+      - id: tech-stack-table
+        title: Tabela da Pilha Tecnológica
+        type: table
+        columns: [Categoria, Tecnologia, Versão, Propósito, Justificativa]
+        rows:
+          - ["Linguagem Frontend", "{{fe_language}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - [
+              "Framework Frontend",
+              "{{fe_framework}}",
+              "{{version}}",
+              "{{purpose}}",
+              "{{why_chosen}}",
+            ]
+          - [
+              "Biblioteca de Componentes UI",
+              "{{ui_library}}",
+              "{{version}}",
+              "{{purpose}}",
+              "{{why_chosen}}",
+            ]
+          - ["Gerenciamento de Estado", "{{state_mgmt}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Linguagem Backend", "{{be_language}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - [
+              "Framework Backend",
+              "{{be_framework}}",
+              "{{version}}",
+              "{{purpose}}",
+              "{{why_chosen}}",
+            ]
+          - ["Estilo de API", "{{api_style}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Banco de Dados", "{{database}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Cache", "{{cache}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Armazenamento de Arquivos", "{{storage}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Autenticação", "{{auth}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Teste Frontend", "{{fe_test}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Teste Backend", "{{be_test}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Teste E2E", "{{e2e_test}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Ferramenta de Build", "{{build_tool}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Bundler", "{{bundler}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Ferramenta IaC", "{{iac_tool}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["CI/CD", "{{cicd}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Monitoramento", "{{monitoring}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Logging", "{{logging}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+          - ["Framework CSS", "{{css_framework}}", "{{version}}", "{{purpose}}", "{{why_chosen}}"]
+
+  - id: data-models
+    title: Modelos de Dados
+    instruction: |
+      Defina os modelos/entidades de dados principais que serão compartilhados entre frontend e backend:
+
+      1. Revise requisitos do PRD e identifique entidades de negócio-chave
+      2. Para cada modelo, explique seu propósito e relacionamentos
+      3. Inclua atributos-chave e tipos de dados
+      4. Mostre relacionamentos entre modelos
+      5. Crie interfaces TypeScript que podem ser compartilhadas
+      6. Discuta decisões de design com o usuário
+
+      Crie um modelo conceitual claro antes de prosseguir para o esquema do banco de dados.
+    elicit: true
+    repeatable: true
+    sections:
+      - id: model
+        title: "{{model_name}}"
+        template: |
+          **Propósito:** {{model_purpose}}
+
+          **Atributos-Chave:**
+          - {{attribute_1}}: {{type_1}} - {{description_1}}
+          - {{attribute_2}}: {{type_2}} - {{description_2}}
+        sections:
+          - id: typescript-interface
+            title: Interface TypeScript
+            type: code
+            language: typescript
+            template: "{{model_interface}}"
+          - id: relationships
+            title: Relacionamentos
+            type: bullet-list
+            template: "- {{relationship}}"
+
+  - id: api-spec
+    title: Especificação da API
+    instruction: |
+      Baseado no estilo de API escolhido da Pilha Tecnológica:
+
+      1. Se API REST, crie uma especificação OpenAPI 3.0
+      2. Se GraphQL, forneça o esquema GraphQL
+      3. Se tRPC, mostre definições de router
+      4. Inclua todos os endpoints de épicos/histórias
+      5. Defina esquemas de requisição/resposta baseados nos modelos de dados
+      6. Documente requisitos de autenticação
+      7. Inclua exemplos de requisições/respostas
+
+      Use formato apropriado para o estilo de API escolhido. Se não houver API (ex: site estático), pule esta seção.
+    elicit: true
+    sections:
+      - id: rest-api
+        title: Especificação da API REST
+        condition: Estilo de API é REST
+        type: code
+        language: yaml
+        template: |
+          openapi: 3.0.0
+          info:
+            title: {{api_title}}
+            version: {{api_version}}
+            description: {{api_description}}
+          servers:
+            - url: {{server_url}}
+              description: {{server_description}}
+      - id: graphql-api
+        title: Esquema GraphQL
+        condition: Estilo de API é GraphQL
+        type: code
+        language: graphql
+        template: "{{graphql_schema}}"
+      - id: trpc-api
+        title: Definições de Router tRPC
+        condition: Estilo de API é tRPC
+        type: code
+        language: typescript
+        template: "{{trpc_routers}}"
+
+  - id: components
+    title: Componentes
+    instruction: |
+      Baseado nos padrões arquiteturais, pilha tecnológica e modelos de dados acima:
+
+      1. Identifique componentes/serviços lógicos principais em todo o fullstack
+      2. Considere tanto componentes frontend quanto backend
+      3. Defina limites claros e interfaces entre componentes
+      4. Para cada componente, especifique:
+      - Responsabilidade primária
+      - Interfaces/APIs-chave expostas
+      - Dependências em outros componentes
+      - Especificidades tecnológicas baseadas nas escolhas da pilha tecnológica
+
+      5. Crie diagramas de componentes onde útil
+    elicit: true
+    sections:
+      - id: component-list
+        repeatable: true
+        title: "{{component_name}}"
+        template: |
+          **Responsabilidade:** {{component_description}}
+
+          **Interfaces-Chave:**
+          - {{interface_1}}
+          - {{interface_2}}
+
+          **Dependências:** {{dependencies}}
+
+          **Pilha Tecnológica:** {{component_tech_details}}
+      - id: component-diagrams
+        title: Diagramas de Componentes
+        type: mermaid
+        instruction: |
+          Crie diagramas Mermaid para visualizar relacionamentos de componentes. Opções:
+          - Diagrama C4 Container para visão de alto nível
+          - Diagrama de componentes para estrutura interna detalhada
+          - Diagramas de sequência para interações complexas
+          Escolha o mais apropriado para clareza
+
+  - id: external-apis
+    title: APIs Externas
+    condition: Projeto requer integrações de API externa
+    instruction: |
+      Para cada integração de serviço externo:
+
+      1. Identifique APIs necessárias baseadas nos requisitos do PRD e design de componentes
+      2. Se URLs de documentação são desconhecidas, peça especificidades ao usuário
+      3. Documente métodos de autenticação e considerações de segurança
+      4. Liste endpoints específicos que serão usados
+      5. Note quaisquer limites de taxa ou restrições de uso
+
+      Se nenhuma API externa for necessária, declare isso explicitamente e pule para a próxima seção.
+    elicit: true
+    repeatable: true
+    sections:
+      - id: api
+        title: "API {{api_name}}"
+        template: |
+          - **Propósito:** {{api_purpose}}
+          - **Documentação:** {{api_docs_url}}
+          - **URL(s) Base:** {{api_base_url}}
+          - **Autenticação:** {{auth_method}}
+          - **Limites de Taxa:** {{rate_limits}}
+
+          **Endpoints-Chave Usados:**
+          - `{{method}} {{endpoint_path}}` - {{endpoint_purpose}}
+
+          **Notas de Integração:** {{integration_considerations}}
+
+  - id: core-workflows
+    title: Fluxos de Trabalho Principais
+    type: mermaid
+    mermaid_type: sequence
+    instruction: |
+      Ilustre fluxos de trabalho-chave do sistema usando diagramas de sequência:
+
+      1. Identifique jornadas críticas do usuário do PRD
+      2. Mostre interações de componentes incluindo APIs externas
+      3. Inclua fluxos tanto frontend quanto backend
+      4. Inclua caminhos de tratamento de erro
+      5. Documente operações assíncronas
+      6. Crie diagramas tanto de alto nível quanto detalhados conforme necessário
+
+      Foque em fluxos de trabalho que esclarecem decisões arquiteturais ou interações complexas.
+    elicit: true
+
+  - id: database-schema
+    title: Esquema do Banco de Dados
+    instruction: |
+      Transforme os modelos de dados conceituais em esquemas concretos de banco de dados:
+
+      1. Use o(s) tipo(s) de banco de dados selecionado(s) na Pilha Tecnológica
+      2. Crie definições de esquema usando notação apropriada
+      3. Inclua índices, restrições e relacionamentos
+      4. Considere performance e escalabilidade
+      5. Para NoSQL, mostre estruturas de documentos
+
+      Apresente o esquema em formato apropriado ao tipo de banco de dados (SQL DDL, esquema JSON, etc.)
+    elicit: true
+
+  - id: frontend-architecture
+    title: Arquitetura Frontend
+    instruction: Defina detalhes específicos da arquitetura frontend. Após cada subseção, note se o usuário quer refinar antes de continuar.
+    elicit: true
+    sections:
+      - id: component-architecture
+        title: Arquitetura de Componentes
+        instruction: Defina organização e padrões de componentes baseados no framework escolhido.
+        sections:
+          - id: component-organization
+            title: Organização de Componentes
+            type: code
+            language: text
+            template: "{{component_structure}}"
+          - id: component-template
+            title: Template de Componente
+            type: code
+            language: typescript
+            template: "{{component_template}}"
+      - id: state-management
+        title: Arquitetura de Gerenciamento de Estado
+        instruction: Detalhe a abordagem de gerenciamento de estado baseada na solução escolhida.
+        sections:
+          - id: state-structure
+            title: Estrutura de Estado
+            type: code
+            language: typescript
+            template: "{{state_structure}}"
+          - id: state-patterns
+            title: Padrões de Gerenciamento de Estado
+            type: bullet-list
+            template: "- {{pattern}}"
+      - id: routing-architecture
+        title: Arquitetura de Roteamento
+        instruction: Defina estrutura de roteamento baseada na escolha do framework.
+        sections:
+          - id: route-organization
+            title: Organização de Rotas
+            type: code
+            language: text
+            template: "{{route_structure}}"
+          - id: protected-routes
+            title: Padrão de Rota Protegida
+            type: code
+            language: typescript
+            template: "{{protected_route_example}}"
+      - id: frontend-services
+        title: Camada de Serviços Frontend
+        instruction: Defina como o frontend se comunica com o backend.
+        sections:
+          - id: api-client-setup
+            title: Configuração do Cliente API
+            type: code
+            language: typescript
+            template: "{{api_client_setup}}"
+          - id: service-example
+            title: Exemplo de Serviço
+            type: code
+            language: typescript
+            template: "{{service_example}}"
+
+  - id: backend-architecture
+    title: Arquitetura Backend
+    instruction: Defina detalhes específicos da arquitetura backend. Considere abordagens serverless vs servidor tradicional.
+    elicit: true
+    sections:
+      - id: service-architecture
+        title: Arquitetura de Serviços
+        instruction: Baseado na escolha de plataforma, defina organização de serviços.
+        sections:
+          - id: serverless-architecture
+            condition: Arquitetura serverless escolhida
+            sections:
+              - id: function-organization
+                title: Organização de Funções
+                type: code
+                language: text
+                template: "{{function_structure}}"
+              - id: function-template
+                title: Template de Função
+                type: code
+                language: typescript
+                template: "{{function_template}}"
+          - id: traditional-server
+            condition: Arquitetura de servidor tradicional escolhida
+            sections:
+              - id: controller-organization
+                title: Organização de Controller/Rota
+                type: code
+                language: text
+                template: "{{controller_structure}}"
+              - id: controller-template
+                title: Template de Controller
+                type: code
+                language: typescript
+                template: "{{controller_template}}"
+      - id: database-architecture
+        title: Arquitetura de Banco de Dados
+        instruction: Defina esquema de banco de dados e padrões de acesso.
+        sections:
+          - id: schema-design
+            title: Design de Esquema
+            type: code
+            language: sql
+            template: "{{database_schema}}"
+          - id: data-access-layer
+            title: Camada de Acesso a Dados
+            type: code
+            language: typescript
+            template: "{{repository_pattern}}"
+      - id: auth-architecture
+        title: Autenticação e Autorização
+        instruction: Defina detalhes de implementação de auth.
+        sections:
+          - id: auth-flow
+            title: Fluxo de Auth
+            type: mermaid
+            mermaid_type: sequence
+            template: "{{auth_flow_diagram}}"
+          - id: auth-middleware
+            title: Middleware/Guards
+            type: code
+            language: typescript
+            template: "{{auth_middleware}}"
+
+  - id: unified-project-structure
+    title: Estrutura Unificada do Projeto
+    instruction: Crie uma estrutura de monorepo que acomode tanto frontend quanto backend. Adapte baseado em ferramentas e frameworks escolhidos.
+    elicit: true
+    type: code
+    language: plaintext
+    examples:
+      - |
+        {{project-name}}/
+        ├── .github/                    # Workflows CI/CD
+        │   └── workflows/
+        │       ├── ci.yaml
+        │       └── deploy.yaml
+        ├── apps/                       # Pacotes de aplicação
+        │   ├── web/                    # Aplicação frontend
+        │   │   ├── src/
+        │   │   │   ├── components/     # Componentes UI
+        │   │   │   ├── pages/          # Componentes de página/rotas
+        │   │   │   ├── hooks/          # Hooks React customizados
+        │   │   │   ├── services/       # Serviços de cliente API
+        │   │   │   ├── stores/         # Gerenciamento de estado
+        │   │   │   ├── styles/         # Estilos/temas globais
+        │   │   │   └── utils/          # Utilitários frontend
+        │   │   ├── public/             # Assets estáticos
+        │   │   ├── tests/              # Testes frontend
+        │   │   └── package.json
+        │   └── api/                    # Aplicação backend
+        │       ├── src/
+        │       │   ├── routes/         # Rotas/controllers API
+        │       │   ├── services/       # Lógica de negócio
+        │       │   ├── models/         # Modelos de dados
+        │       │   ├── middleware/     # Middleware Express/API
+        │       │   ├── utils/          # Utilitários backend
+        │       │   └── {{serverless_or_server_entry}}
+        │       ├── tests/              # Testes backend
+        │       └── package.json
+        ├── packages/                   # Pacotes compartilhados
+        │   ├── shared/                 # Tipos/utilitários compartilhados
+        │   │   ├── src/
+        │   │   │   ├── types/          # Interfaces TypeScript
+        │   │   │   ├── constants/      # Constantes compartilhadas
+        │   │   │   └── utils/          # Utilitários compartilhados
+        │   │   └── package.json
+        │   ├── ui/                     # Componentes UI compartilhados
+        │   │   ├── src/
+        │   │   └── package.json
+        │   └── config/                 # Configuração compartilhada
+        │       ├── eslint/
+        │       ├── typescript/
+        │       └── jest/
+        ├── infrastructure/             # Definições IaC
+        │   └── {{iac_structure}}
+        ├── scripts/                    # Scripts de build/deploy
+        ├── docs/                       # Documentação
+        │   ├── prd.md
+        │   ├── front-end-spec.md
+        │   └── fullstack-architecture.md
+        ├── .env.example                # Template de ambiente
+        ├── package.json                # package.json raiz
+        ├── {{monorepo_config}}         # Configuração de monorepo
+        └── README.md
+
+  - id: development-workflow
+    title: Fluxo de Trabalho de Desenvolvimento
+    instruction: Defina a configuração e fluxo de trabalho de desenvolvimento para a aplicação fullstack.
+    elicit: true
+    sections:
+      - id: local-setup
+        title: Configuração de Desenvolvimento Local
+        sections:
+          - id: prerequisites
+            title: Pré-requisitos
+            type: code
+            language: bash
+            template: "{{prerequisites_commands}}"
+          - id: initial-setup
+            title: Configuração Inicial
+            type: code
+            language: bash
+            template: "{{setup_commands}}"
+          - id: dev-commands
+            title: Comandos de Desenvolvimento
+            type: code
+            language: bash
+            template: |
+              # Iniciar todos os serviços
+              {{start_all_command}}
+
+              # Iniciar apenas frontend
+              {{start_frontend_command}}
+
+              # Iniciar apenas backend
+              {{start_backend_command}}
+
+              # Executar testes
+              {{test_commands}}
+      - id: environment-config
+        title: Configuração de Ambiente
+        sections:
+          - id: env-vars
+            title: Variáveis de Ambiente Necessárias
+            type: code
+            language: bash
+            template: |
+              # Frontend (.env.local)
+              {{frontend_env_vars}}
+
+              # Backend (.env)
+              {{backend_env_vars}}
+
+              # Compartilhado
+              {{shared_env_vars}}
+
+  - id: deployment-architecture
+    title: Arquitetura de Implantação
+    instruction: Defina estratégia de implantação baseada na escolha de plataforma.
+    elicit: true
+    sections:
+      - id: deployment-strategy
+        title: Estratégia de Implantação
+        template: |
+          **Implantação Frontend:**
+          - **Plataforma:** {{frontend_deploy_platform}}
+          - **Comando de Build:** {{frontend_build_command}}
+          - **Diretório de Saída:** {{frontend_output_dir}}
+          - **CDN/Edge:** {{cdn_strategy}}
+
+          **Implantação Backend:**
+          - **Plataforma:** {{backend_deploy_platform}}
+          - **Comando de Build:** {{backend_build_command}}
+          - **Método de Implantação:** {{deployment_method}}
+      - id: cicd-pipeline
+        title: Pipeline CI/CD
+        type: code
+        language: yaml
+        template: "{{cicd_pipeline_config}}"
+      - id: environments
+        title: Ambientes
+        type: table
+        columns: [Ambiente, URL Frontend, URL Backend, Propósito]
+        rows:
+          - ["Desenvolvimento", "{{dev_fe_url}}", "{{dev_be_url}}", "Desenvolvimento local"]
+          - ["Staging", "{{staging_fe_url}}", "{{staging_be_url}}", "Testes pré-produção"]
+          - ["Produção", "{{prod_fe_url}}", "{{prod_be_url}}", "Ambiente ao vivo"]
+
+  - id: security-performance
+    title: Segurança e Performance
+    instruction: Defina considerações de segurança e performance para a aplicação fullstack.
+    elicit: true
+    sections:
+      - id: security-requirements
+        title: Requisitos de Segurança
+        template: |
+          **Segurança Frontend:**
+          - Headers CSP: {{csp_policy}}
+          - Prevenção XSS: {{xss_strategy}}
+          - Armazenamento Seguro: {{storage_strategy}}
+
+          **Segurança Backend:**
+          - Validação de Entrada: {{validation_approach}}
+          - Rate Limiting: {{rate_limit_config}}
+          - Política CORS: {{cors_config}}
+
+          **Segurança de Autenticação:**
+          - Armazenamento de Token: {{token_strategy}}
+          - Gerenciamento de Sessão: {{session_approach}}
+          - Política de Senha: {{password_requirements}}
+      - id: performance-optimization
+        title: Otimização de Performance
+        template: |
+          **Performance Frontend:**
+          - Meta de Tamanho de Bundle: {{bundle_size}}
+          - Estratégia de Carregamento: {{loading_approach}}
+          - Estratégia de Cache: {{fe_cache_strategy}}
+
+          **Performance Backend:**
+          - Meta de Tempo de Resposta: {{response_target}}
+          - Otimização de Banco de Dados: {{db_optimization}}
+          - Estratégia de Cache: {{be_cache_strategy}}
+
+  - id: testing-strategy
+    title: Estratégia de Teste
+    instruction: Defina abordagem abrangente de teste para aplicação fullstack.
+    elicit: true
+    sections:
+      - id: testing-pyramid
+        title: Pirâmide de Teste
+        type: code
+        language: text
+        template: |
+          Testes E2E
+          /        \
+          Testes de Integração
+          /            \
+          Unit Frontend  Unit Backend
+      - id: test-organization
+        title: Organização de Teste
+        sections:
+          - id: frontend-tests
+            title: Testes Frontend
+            type: code
+            language: text
+            template: "{{frontend_test_structure}}"
+          - id: backend-tests
+            title: Testes Backend
+            type: code
+            language: text
+            template: "{{backend_test_structure}}"
+          - id: e2e-tests
+            title: Testes E2E
+            type: code
+            language: text
+            template: "{{e2e_test_structure}}"
+      - id: test-examples
+        title: Exemplos de Teste
+        sections:
+          - id: frontend-test
+            title: Teste de Componente Frontend
+            type: code
+            language: typescript
+            template: "{{frontend_test_example}}"
+          - id: backend-test
+            title: Teste de API Backend
+            type: code
+            language: typescript
+            template: "{{backend_test_example}}"
+          - id: e2e-test
+            title: Teste E2E
+            type: code
+            language: typescript
+            template: "{{e2e_test_example}}"
+
+  - id: coding-standards
+    title: Padrões de Codificação
+    instruction: Defina padrões MÍNIMOS mas CRÍTICOS para agentes IA. Foque apenas em regras específicas do projeto que previnem erros comuns. Estas serão usadas por agentes dev.
+    elicit: true
+    sections:
+      - id: critical-rules
+        title: Regras Críticas Fullstack
+        repeatable: true
+        template: "- **{{rule_name}}:** {{rule_description}}"
+        examples:
+          - "**Compartilhamento de Tipos:** Sempre defina tipos em packages/shared e importe de lá"
+          - "**Chamadas de API:** Nunca faça chamadas HTTP diretas - use a camada de serviços"
+          - "**Variáveis de Ambiente:** Acesse apenas através de objetos de configuração, nunca process.env diretamente"
+          - "**Tratamento de Erros:** Todas as rotas de API devem usar o manipulador de erro padrão"
+          - "**Atualizações de Estado:** Nunca mute estado diretamente - use padrões apropriados de gerenciamento de estado"
+      - id: naming-conventions
+        title: Convenções de Nomenclatura
+        type: table
+        columns: [Elemento, Frontend, Backend, Exemplo]
+        rows:
+          - ["Componentes", "PascalCase", "-", "`UserProfile.tsx`"]
+          - ["Hooks", "camelCase com 'use'", "-", "`useAuth.ts`"]
+          - ["Rotas API", "-", "kebab-case", "`/api/user-profile`"]
+          - ["Tabelas de Banco", "-", "snake_case", "`user_profiles`"]
+
+  - id: error-handling
+    title: Estratégia de Tratamento de Erros
+    instruction: Defina tratamento de erros unificado entre frontend e backend.
+    elicit: true
+    sections:
+      - id: error-flow
+        title: Fluxo de Erro
+        type: mermaid
+        mermaid_type: sequence
+        template: "{{error_flow_diagram}}"
+      - id: error-format
+        title: Formato de Resposta de Erro
+        type: code
+        language: typescript
+        template: |
+          interface ApiError {
+            error: {
+              code: string;
+              message: string;
+              details?: Record<string, any>;
+              timestamp: string;
+              requestId: string;
+            };
+          }
+      - id: frontend-error-handling
+        title: Tratamento de Erros Frontend
+        type: code
+        language: typescript
+        template: "{{frontend_error_handler}}"
+      - id: backend-error-handling
+        title: Tratamento de Erros Backend
+        type: code
+        language: typescript
+        template: "{{backend_error_handler}}"
+
+  - id: monitoring
+    title: Monitoramento e Observabilidade
+    instruction: Defina estratégia de monitoramento para aplicação fullstack.
+    elicit: true
+    sections:
+      - id: monitoring-stack
+        title: Stack de Monitoramento
+        template: |
+          - **Monitoramento Frontend:** {{frontend_monitoring}}
+          - **Monitoramento Backend:** {{backend_monitoring}}
+          - **Rastreamento de Erros:** {{error_tracking}}
+          - **Monitoramento de Performance:** {{perf_monitoring}}
+      - id: key-metrics
+        title: Métricas-Chave
+        template: |
+          **Métricas Frontend:**
+          - Core Web Vitals
+          - Erros JavaScript
+          - Tempos de resposta da API
+          - Interações do usuário
+
+          **Métricas Backend:**
+          - Taxa de requisições
+          - Taxa de erros
+          - Tempo de resposta
+          - Performance de consultas do banco de dados
+
+  - id: checklist-results
+    title: Relatório de Resultados do Checklist
+    instruction: Antes de executar o checklist, ofereça para produzir o documento completo de arquitetura. Uma vez que o usuário confirme, execute o architect-checklist e preencha os resultados aqui.

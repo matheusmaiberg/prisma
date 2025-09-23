@@ -1,0 +1,203 @@
+# <!-- Powered by BMAD™ Core -->
+template:
+  id: prd-template-v2
+  name: Documento de Requisitos de Produto
+  version: 2.0
+  output:
+    format: markdown
+    filename: docs/prd.md
+    title: "{{project_name}} Documento de Requisitos de Produto (PRD)"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: goals-context
+    title: Objetivos e Contexto de Background
+    instruction: |
+      Pergunte se o documento de Resumo do Projeto está disponível. Se NÃO existe Resumo do Projeto, RECOMENDE FORTEMENTE criar um primeiro usando project-brief-tmpl (ele fornece fundação essencial: declaração do problema, usuários-alvo, métricas de sucesso, escopo MVP, restrições). Se o usuário insistir no PRD sem resumo, colete essas informações durante a seção de Objetivos. Se o Resumo do Projeto existe, revise e use-o para popular Objetivos (lista de resultados desejados) e Contexto de Background (1-2 parágrafos sobre o que isso resolve e por quê) para que possamos determinar o que está e não está no escopo do PRD mvp. De qualquer forma, isso é crítico para determinar os requisitos. Inclua tabela de Log de Mudanças.
+    sections:
+      - id: goals
+        title: Objetivos
+        type: bullet-list
+        instruction: Lista de resultados desejados de 1 linha que o PRD entregará se bem-sucedido - desejos do usuário e do projeto
+      - id: background
+        title: Contexto de Background
+        type: paragraphs
+        instruction: 1-2 parágrafos curtos resumindo o contexto de background, como o que aprendemos no resumo sem ser redundante com os objetivos, o que e por que isso resolve um problema, qual é o cenário atual ou necessidade
+      - id: changelog
+        title: Log de Mudanças
+        type: table
+        columns: [Data, Versão, Descrição, Autor]
+        instruction: Rastrear versões e mudanças do documento
+
+  - id: requirements
+    title: Requisitos
+    instruction: Esboce a lista de requisitos funcionais e não funcionais nas duas subseções filhas
+    elicit: true
+    sections:
+      - id: functional
+        title: Funcionais
+        type: numbered-list
+        prefix: RF
+        instruction: Cada Requisito será um bullet markdown e uma sequência identificadora começando com RF
+        examples:
+          - "RF6: A Lista de Tarefas usa IA para detectar e avisar sobre itens de tarefa potencialmente duplicados que são escritos de forma diferente."
+      - id: non-functional
+        title: Não Funcionais
+        type: numbered-list
+        prefix: RNF
+        instruction: Cada Requisito será um bullet markdown e uma sequência identificadora começando com RNF
+        examples:
+          - "RNF1: O uso de serviços AWS deve visar permanecer dentro dos limites de nível gratuito onde for viável."
+
+  - id: ui-goals
+    title: Objetivos de Design da Interface do Usuário
+    condition: PRD tem requisitos de UX/UI
+    instruction: |
+      Capture a visão de alto nível de UI/UX para orientar o Arquiteto de Design e informar a criação de histórias. Passos:
+
+      1. Pré-preencha todas as subseções com suposições educadas baseadas no contexto do projeto
+      2. Apresente a seção completa renderizada ao usuário
+      3. Deixe claro ao usuário onde foram feitas suposições
+      4. Faça perguntas direcionadas para elementos pouco claros/faltantes ou áreas que precisam de mais especificação
+      5. Esta NÃO é especificação detalhada de UI - foque na visão do produto e objetivos do usuário
+    elicit: true
+    choices:
+      accessibility: [Nenhuma, WCAG AA, WCAG AAA]
+      platforms: [Web Responsivo, Apenas Mobile, Apenas Desktop, Multiplataforma]
+    sections:
+      - id: ux-vision
+        title: Visão Geral de UX
+      - id: interaction-paradigms
+        title: Paradigmas-chave de Interação
+      - id: core-screens
+        title: Telas e Visualizações Principais
+        instruction: Do ponto de vista do produto, quais são as telas ou visualizações mais críticas necessárias para entregar os valores e objetivos do PRD? Isso é destinado a ser Conceitual de Alto Nível para Impulsionar Épicos Aproximados ou Histórias de Usuário
+        examples:
+          - "Tela de Login"
+          - "Dashboard Principal"
+          - "Página de Detalhes do Item"
+          - "Página de Configurações"
+      - id: accessibility
+        title: "Acessibilidade: {Nenhuma|WCAG AA|WCAG AAA|Requisitos Personalizados}"
+      - id: branding
+        title: Branding
+        instruction: Quaisquer elementos de branding conhecidos ou guias de estilo que devem ser incorporados?
+        examples:
+          - "Replicar a aparência do cinema preto e branco do início dos anos 1900, incluindo efeitos animados replicando danos de filme ou falhas de projetor durante transições de página ou estado."
+          - "Anexada está a paleta de cores completa e tokens para nosso branding corporativo."
+      - id: target-platforms
+        title: "Dispositivos e Plataformas Alvo: {Web Responsivo|Apenas Mobile|Apenas Desktop|Multiplataforma}"
+        examples:
+          - "Web Responsivo, e todas as plataformas mobile"
+          - "Apenas iPhone"
+          - "Desktop Windows ASCII"
+
+  - id: technical-assumptions
+    title: Suposições Técnicas
+    instruction: |
+      Colete decisões técnicas que guiarão o Arquiteto. Passos:
+
+      1. Verifique se .bmad-core/data/technical-preferences.yaml ou um arquivo de preferências técnicas anexado existe - use-o para pré-popular escolhas
+      2. Pergunte ao usuário sobre: linguagens, frameworks, templates iniciais, bibliotecas, APIs, alvos de deploy
+      3. Para desconhecidos, ofereça orientação baseada nos objetivos do projeto e escopo MVP
+      4. Documente TODAS as escolhas técnicas com justificativa (por que essa escolha se adequa ao projeto)
+      5. Estas se tornam restrições para o Arquiteto - seja específico e completo
+    elicit: true
+    choices:
+      repository: [Monorepo, Polyrepo]
+      architecture: [Monólito, Microsserviços, Serverless]
+      testing: [Apenas Unitários, Unitários + Integração, Pirâmide Completa de Testes]
+    sections:
+      - id: repository-structure
+        title: "Estrutura do Repositório: {Monorepo|Polyrepo|Multi-repo}"
+      - id: service-architecture
+        title: Arquitetura de Serviços
+        instruction: "DECISÃO CRÍTICA - Documente a arquitetura de serviços de alto nível (ex.: Monólito, Microsserviços, Funções Serverless dentro de um Monorepo)."
+      - id: testing-requirements
+        title: Requisitos de Teste
+        instruction: "DECISÃO CRÍTICA - Documente os requisitos de teste, apenas unitários, integração, e2e, manual, necessidade de métodos de conveniência para teste manual)."
+      - id: additional-assumptions
+        title: Suposições e Solicitações Técnicas Adicionais
+        instruction: Durante todo o processo de rascunho deste documento, se outras suposições técnicas forem levantadas ou descobertas apropriadas para o arquiteto, adicione-as aqui como itens com marcadores adicionais
+
+  - id: epic-list
+    title: Lista de Épicos
+    instruction: |
+      Apresente uma lista de alto nível de todos os épicos para aprovação do usuário. Cada épico deve ter um título e uma declaração de objetivo curta (1 frase). Isso permite ao usuário revisar a estrutura geral antes de mergulhar nos detalhes.
+
+      CRÍTICO: Épicos DEVEM ser logicamente sequenciais seguindo melhores práticas ágeis:
+
+      - Cada épico deve entregar um incremento significativo, ponta-a-ponta, totalmente implementável de funcionalidade testável
+      - Épico 1 deve estabelecer infraestrutura fundamental do projeto (configuração do app, Git, CI/CD, serviços principais) a menos que estejamos adicionando nova funcionalidade a um app existente, enquanto também entrega uma peça inicial de funcionalidade, mesmo que simples como uma rota de health-check ou exibição de uma página canário simples - lembre-se disso quando produzirmos as histórias para o primeiro épico!
+      - Cada épico subsequente constrói sobre a funcionalidade dos épicos anteriores entregando grandes blocos de funcionalidade que fornecem valor tangível aos usuários ou negócio quando implementados
+      - Nem todo projeto precisa de múltiplos épicos, um épico precisa entregar valor. Por exemplo, uma API completa pode entregar valor mesmo se uma UI não estiver completa e planejada para um épico separado.
+      - Erre do lado de menos épicos, mas deixe o usuário saber sua justificativa e ofereça opções para dividi-los se parecer que alguns são muito grandes ou focados em coisas díspares.
+      - Preocupações Transversais devem fluir através de épicos e histórias e não ser histórias finais. Por exemplo, adicionar um framework de logging como última história de um épico, ou no final de um projeto como épico ou história final seria terrível pois não teríamos logging desde o início.
+    elicit: true
+    examples:
+      - "Épico 1: Fundação & Infraestrutura Principal: Estabelecer configuração do projeto, autenticação e gerenciamento básico de usuários"
+      - "Épico 2: Entidades de Negócio Principais: Criar e gerenciar objetos de domínio primários com operações CRUD"
+      - "Épico 3: Fluxos de Trabalho e Interações do Usuário: Habilitar jornadas-chave do usuário e processos de negócio"
+      - "Épico 4: Relatórios & Analytics: Fornecer insights e visualização de dados para usuários"
+
+  - id: epic-details
+    title: Épico {{epic_number}} {{epic_title}}
+    repeatable: true
+    instruction: |
+      Após a lista de épicos ser aprovada, apresente cada épico com todas suas histórias e critérios de aceitação como uma unidade completa de revisão.
+
+      Para cada épico forneça objetivo expandido (2-3 frases descrevendo o objetivo e valor que todas as histórias alcançarão).
+
+      REQUISITOS CRÍTICOS DE SEQUENCIAMENTO DE HISTÓRIAS:
+
+      - Histórias dentro de cada épico DEVEM ser logicamente sequenciais
+      - Cada história deve ser uma "fatia vertical" entregando funcionalidade completa além de histórias habilitadoras iniciais para fundação do projeto
+      - Nenhuma história deve depender de trabalho de uma história ou épico posterior
+      - Identifique e anote quaisquer histórias pré-requisito diretas
+      - Foque no "o quê" e "por quê" não "como" (deixe implementação técnica para o Arquiteto) mas seja preciso o suficiente para apoiar uma ordem lógica sequencial de operações de história para história.
+      - Assegure que cada história entregue valor claro ao usuário ou negócio, tente evitar habilitadores e construa-os em histórias que entreguem valor.
+      - Dimensione histórias para execução de agente IA: Cada história deve ser completável por um único agente IA em uma sessão focada sem overflow de contexto
+      - Pense "desenvolvedor junior trabalhando por 2-4 horas" - histórias devem ser pequenas, focadas e auto-contidas
+      - Se uma história parecer complexa, quebre-a ainda mais contanto que possa entregar uma fatia vertical
+    elicit: true
+    template: "{{epic_goal}}"
+    sections:
+      - id: story
+        title: História {{epic_number}}.{{story_number}} {{story_title}}
+        repeatable: true
+        template: |
+          Como um {{user_type}},
+          Eu quero {{action}},
+          Para que {{benefit}}.
+        sections:
+          - id: acceptance-criteria
+            title: Critérios de Aceitação
+            type: numbered-list
+            item_template: "{{criterion_number}}: {{criteria}}"
+            repeatable: true
+            instruction: |
+              Defina critérios de aceitação claros, abrangentes e testáveis que:
+
+              - Definam precisamente o que "concluído" significa do ponto de vista funcional
+              - Sejam inequívocos e sirvam como base para verificação
+              - Incluam quaisquer requisitos não funcionais críticos do PRD
+              - Considerem testabilidade local para componentes backend/dados
+              - Especifiquem requisitos de UI/UX e aderência a framework onde aplicável
+              - Evitem preocupações transversais que devem estar em outras histórias ou seções do PRD
+
+  - id: checklist-results
+    title: Relatório de Resultados da Lista de Verificação
+    instruction: Antes de executar a lista de verificação e rascunhar os prompts, ofereça para produzir o PRD completo atualizado. Se estiver produzindo-o, confirme com o usuário que você irá proceder para executar a lista de verificação e produzir o relatório. Uma vez que o usuário confirme, execute o pm-checklist e popule os resultados nesta seção.
+
+  - id: next-steps
+    title: Próximos Passos
+    sections:
+      - id: ux-expert-prompt
+        title: Prompt do Especialista UX
+        instruction: Esta seção conterá o prompt para o Especialista UX, mantenha-o curto e direto ao ponto para iniciar modo criar arquitetura usando este documento como entrada.
+      - id: architect-prompt
+        title: Prompt do Arquiteto
+        instruction: Esta seção conterá o prompt para o Arquiteto, mantenha-o curto e direto ao ponto para iniciar modo criar arquitetura usando este documento como entrada.
