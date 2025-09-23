@@ -1,0 +1,44 @@
+# 🔧 Time Backend PRISMA
+bundle:
+  name: Time Backend
+  icon: 🔧
+  description: Time especializado em desenvolvimento backend e APIs
+  version: 1.0.0
+
+agentes:
+  - alan-diretor          # Orquestrador
+  - bob-scrum-master      # Gestão Ágil
+  - wagner-arquiteto     # Arquitetura
+  - james-developer       # Desenvolvimento
+  - cleide-garantia-qualidade  # Qualidade
+  - gabriel-analista       # Análise de Performance
+
+capacidades:
+  - APIs RESTful
+  - GraphQL
+  - Microserviços
+  - Event-driven architecture
+  - Bancos de dados
+  - Message queues
+  - Caching strategies
+  - Performance optimization
+
+workflows:
+  - api-design.yaml
+  - microservices.yaml
+  - database-migration.yaml
+  - performance-tuning.yaml
+  - backend-security.yaml
+
+metricas:
+  uptime: 99.9%+
+  latencia_p99: <100ms
+  throughput: alto
+  cobertura_testes: 85%+
+
+ideal_para:
+  - APIs de alta performance
+  - Sistemas distribuídos
+  - Processamento de dados
+  - Integração de sistemas
+  - Backend as a Service

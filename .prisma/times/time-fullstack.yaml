@@ -1,0 +1,44 @@
+# 🚀 Time Fullstack PRISMA
+bundle:
+  name: Time Fullstack
+  icon: 🚀
+  description: Time capaz de desenvolvimento fullstack, frontend ou backend
+  version: 1.0.0
+
+agentes:
+  - alan-diretor          # Orquestrador
+  - bob-scrum-master      # Gestão Ágil
+  - sarah-product-owner   # Validação Negócio
+  - cecilia-ux-expert       # UI/UX Design
+  - wagner-arquiteto     # Arquitetura
+  - james-developer       # Desenvolvimento
+  - cleide-garantia-qualidade  # Qualidade
+
+capacidades:
+  - Desenvolvimento frontend completo
+  - Desenvolvimento backend completo
+  - APIs RESTful e GraphQL
+  - Design de interfaces
+  - Arquitetura de software
+  - Testes automatizados
+  - CI/CD pipelines
+
+workflows:
+  - greenfield-fullstack.yaml
+  - brownfield-fullstack.yaml
+  - api-development.yaml
+  - frontend-spa.yaml
+  - backend-microservices.yaml
+
+metricas:
+  velocity: media-alta
+  qualidade: alta
+  cobertura_testes: 80%+
+  time_to_market: rapido
+
+ideal_para:
+  - Aplicações web completas
+  - SPAs com backend robusto
+  - Sistemas com múltiplas APIs
+  - MVPs e protótipos funcionais
+  - Modernização de sistemas legados

@@ -1,0 +1,44 @@
+# 📈 Time Dados PRISMA
+bundle:
+  name: Time Dados
+  icon: 📈
+  description: Time especializado em análise de dados, ML e insights
+  version: 1.0.0
+
+agentes:
+  - alan-diretor          # Orquestrador
+  - gabriel-analista       # Análise e Insights
+  - james-developer       # Engenharia de Dados
+  - wagner-arquiteto     # Arquitetura de Dados
+  - diogo-product-manager # Estratégia de Dados
+  - cleide-garantia-qualidade  # Validação de Modelos
+
+capacidades:
+  - Machine Learning
+  - Deep Learning
+  - Análise estatística
+  - Data pipelines
+  - ETL/ELT
+  - Data warehousing
+  - Business Intelligence
+  - Predictive analytics
+
+workflows:
+  - ml-pipeline.yaml
+  - data-analysis.yaml
+  - etl-process.yaml
+  - model-training.yaml
+  - ab-testing.yaml
+
+metricas:
+  accuracy_modelos: 90%+
+  tempo_insights: rapido
+  qualidade_dados: alta
+  roi_iniciativas: 10x+
+
+ideal_para:
+  - Projetos de ML/AI
+  - Análise preditiva
+  - Business Intelligence
+  - Data warehousing
+  - Otimização baseada em dados

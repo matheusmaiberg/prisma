@@ -1,0 +1,44 @@
+# 🎨 Time Frontend PRISMA
+bundle:
+  name: Time Frontend
+  icon: 🎨
+  description: Time focado em desenvolvimento frontend e experiência do usuário
+  version: 1.0.0
+
+agentes:
+  - alan-diretor          # Orquestrador
+  - cecilia-ux-expert       # UX/UI Design
+  - james-developer       # Desenvolvimento Frontend
+  - cleide-garantia-qualidade  # Testes E2E
+  - sarah-product-owner   # Validação UX
+  - gabriel-analista       # Análise de UX e Métricas
+
+capacidades:
+  - React/Vue/Angular
+  - Design systems
+  - Responsive design
+  - PWAs
+  - Acessibilidade WCAG
+  - Animações e micro-interações
+  - Performance frontend
+  - Cross-browser compatibility
+
+workflows:
+  - spa-development.yaml
+  - design-system.yaml
+  - ui-components.yaml
+  - frontend-optimization.yaml
+  - accessibility-audit.yaml
+
+metricas:
+  lighthouse_score: 95+
+  acessibilidade: AAA
+  first_paint: <1s
+  bundle_size: otimizado
+
+ideal_para:
+  - Single Page Applications
+  - Progressive Web Apps
+  - Design systems
+  - Dashboards interativos
+  - Sites de alta performance

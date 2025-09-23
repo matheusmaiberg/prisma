@@ -1,0 +1,36 @@
+# ⚡ Time Mínimo PRISMA
+bundle:
+  name: Time Mínimo
+  icon: ⚡
+  description: Time enxuto para desenvolvimento rápido e MVPs
+  version: 1.0.0
+
+agentes:
+  - alan-diretor          # Orquestrador
+  - bob-scrum-master      # Gestão
+  - james-developer       # Desenvolvimento
+  - cleide-garantia-qualidade  # Qualidade Básica
+
+capacidades:
+  - Desenvolvimento rápido
+  - MVPs funcionais
+  - Prototipagem
+  - Testes essenciais
+  - Deploy básico
+
+workflows:
+  - mvp-rapido.yaml
+  - prototipo.yaml
+  - hotfix.yaml
+
+metricas:
+  time_to_market: muito_rapido
+  custo: minimo
+  flexibilidade: maxima
+
+ideal_para:
+  - Provas de conceito
+  - MVPs
+  - Protótipos
+  - Projetos pequenos
+  - Validações rápidas
