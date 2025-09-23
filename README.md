@@ -1,365 +1,583 @@
 <div align="center">
 
 ```
-     🌟                    ╭─────────────────────╮                    ✨
-        \                  │                     │                  /
-         \               ╱ │      P R I S M A    │ ╲               /
-          \            ╱   │                     │   ╲            /
-           \         ╱     ╰─────────────────────╯     ╲         /
-            \      ╱                                     ╲      /
-             \   ╱                                         ╲   /
-              \ ╱                                           ╲ /
-               ╱                                             ╲
-              ╱                                               ╲
-             ╱        🔴  🟠  🟡  🟢  🔵  🟣  🟤               ╲
-            ╱                                                   ╲
-           ╱             Luz branca → Espectro completo          ╲
-          ╱                                                       ╲
-         ╱___________________________________________________________╲
+        🌟                 ╭─────────────────────╮                 ✨
+           \               ╱ │                     │ ╲               /
+            \            ╱   │     P R I S M A     │   ╲            /
+             \         ╱     │                     │     ╲         /
+              \      ╱       ╰─────────────────────╯       ╲      /
+               \   ╱                                         ╲   /
+                \ ╱                                           ╲ /
+                 ╱                                             ╲
+                ╱           🎬 🔴 🟠 🟡 🟢 🔵 🟣               ╲
+               ╱                                                 ╲
+              ╱      Sistema de Subagents Especializados         ╲
+             ╱            com Continuous Activation                ╲
+            ╱___________________________________________________________╲
 ```
 
 # 🔷 PRISMA
-### **Processo Rápido de Implementação e Sistema de Metodologia Ágil**
+### **Sistema de Subagents Especializados para Claude Code CLI**
 
-> *"Estruturar antes de criar"*
+> *"Cinco especialistas sempre ativos, uma orquestração perfeita"*
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge)](https://github.com/your-repo/prisma)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg?style=for-the-badge)](https://github.com/your-repo/prisma)
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg?style=for-the-badge)](https://github.com/your-repo/prisma/actions)
-[![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen.svg?style=for-the-badge)](https://codecov.io/gh/your-repo/prisma)
+[![Subagents](https://img.shields.io/badge/subagents-5%20active-brightgreen.svg?style=for-the-badge)](docs/architecture.md)
+[![Quality Gates](https://img.shields.io/badge/quality%20gates-integrated-purple.svg?style=for-the-badge)](docs/qa/README.md)
 
 ---
 
-*Assim como um prisma decompõe a luz branca em um espectro completo de cores,*
-*PRISMA decompõe projetos complexos em componentes estruturados e gerenciáveis.*
+*Como um prisma decompõe luz em espectro completo, PRISMA decompõe desenvolvimento complexo em 5 subagents especializados sempre ativos, coordenados por Alan (Diretor) com quality gates integrados.*
 
 </div>
 
 ---
 
-## 📌 O que é PRISMA?
+## 🎯 **ULTRATHINK**: O Que É PRISMA?
 
-PRISMA é um framework de desenvolvimento ágil que decompõe a complexidade dos projetos como um prisma óptico decompõe a luz branca em seu espectro completo. Assim como a luz aparentemente simples revela múltiplas frequências quando passa por um prisma, um projeto aparentemente caótico revela estruturas organizadas e gerenciáveis quando processado pelo PRISMA.
+**PRISMA não é uma ferramenta - é um ecosistema vivo.**
 
-O sistema utiliza o **fabric pattern** para criar componentes reutilizáveis e manuteníveis, eliminando duplicação e garantindo consistência. Diferente de metodologias tradicionais, o PRISMA opera com um **Single Source of Truth** nativo em português brasileiro, onde cada componente existe em apenas um lugar e propaga automaticamente para onde é necessário.
+Imagine ter uma equipe de 5 especialistas elite trabalhando 24/7 no seu projeto, cada um com expertise específica, mas coordenados por um diretor genial que nunca perde o contexto. Agora imagine que essa equipe:
 
-## 🎯 Filosofia
+- 🧠 **Nunca esquece** - continuous activation preserva contexto entre sessões
+- 🔄 **Handoffs perfeitos** - transições automáticas entre especialistas sem perda
+- 📋 **Documentação viva** - cada decisão vira código da arquitetura
+- ⚡ **Quality gates** - qualidade não é checagem, é construção integrada
+- 🎭 **Adaptação total** - cada projeto é único, PRISMA se molda
 
-Nossa filosofia central é **"Estruturar antes de criar"** - um princípio que reconhece que a excelência nasce da arquitetura, não da improvisação. Assim como um engenheiro não constrói sem calcular, desenvolvedores não deveriam codificar sem estruturar.
+### 🧪 **A Revolução: Continuous Activation**
 
-O PRISMA não é apenas uma ferramenta, mas um **sistema que guia você através do processo**. Com recomendações inteligentes, detecção automática de contexto e sugestões proativas, você nunca fica perdido, mesmo em projetos complexos.
+```yaml
+tradicional:
+  ativacao: "pontual, por demanda"
+  contexto: "perdido entre chamadas"
+  coordenacao: "manual e sujeita a erro"
+  qualidade: "separada do desenvolvimento"
 
----
-
-## 🚀 Início Rápido
-
-Comece com PRISMA em menos de 5 minutos! O sistema guiará você em cada passo.
-
-### ⚡ 3 Passos para Começar
-
-#### 1️⃣ Instalação (30 segundos)
-```bash
-# Clone ou crie a estrutura PRISMA
-mkdir .prisma
-cd .prisma
-
-# Ou clone o template
-git clone https://github.com/seu-repo/prisma-template .
-```
-
-#### 2️⃣ Ativação (30 segundos)
-```bash
-# Ative o PRISMA no seu ambiente
-/prisma iniciar
-
-# Ou use o alias em inglês
-/prisma init
-```
-
-**Saída esperada:**
-```
-🔷 PRISMA Ativado!
-💡 Sistema de Recomendações: ON
-🎯 Detecção de Contexto: ON
-
-Qual tipo de projeto você está iniciando?
-1. 🌱 Nascente (projeto novo)
-2. 🏢 Existente (sistema legado)
-3. 🔗 Híbrido (migração gradual)
-
-[Digite 1-3 ou deixe o PRISMA detectar automaticamente]
-```
-
-#### 3️⃣ Primeiro Comando (1 minuto)
-```bash
-# PRISMA detecta e recomenda
-/prisma analisar
-
-# Sistema responde:
-🔍 Analisando estrutura do projeto...
-✅ Detectado: Projeto Next.js com TypeScript
-🎯 Workflow recomendado: Nascente
-💡 Sugestão: Começar com arquitetura modular
-
-Deseja que eu configure automaticamente? [S/n]
+prisma:
+  ativacao: "continuous, sempre ativos"
+  contexto: "preservado automaticamente"
+  coordenacao: "alan orquestra inteligentemente"
+  qualidade: "quinn integra gates nativamente"
 ```
 
 ---
 
-## 🧠 Sistema de Recomendações Inteligentes
+## 🎭 **Os 5 Subagents Especializados**
 
-O PRISMA nunca deixa você perdido. O sistema detecta seu contexto e oferece sugestões proativas:
+### 🎬 **Alan - O Diretor** (`*diretor`)
+> *"O maestro que nunca sai de cena"*
 
-### 💡 Detecção Automática
-
-| Você diz/faz | PRISMA detecta | Ação automática |
-|--------------|----------------|-----------------|
-| "pronto", "feito" | Task concluída | ✅ Marca como `completed`, sugere próxima |
-| "próximo", "continuar" | Progressão | ⏭️ Move para próxima task |
-| "problema", "erro" | Bloqueio | 🚫 Oferece debug e alternativas |
-| "não sei", hesitação | Dúvida | 💡 Ativa wizard de ajuda |
-| Inatividade 30s | Possível travamento | 🎯 Oferece sugestões contextuais |
-
-### 🎯 Recomendações Contextuais
+- **Orquestra** todos os subagents com delegação inteligente
+- **Analisa** contexto e direciona tarefas automaticamente
+- **Coordena** workflows sem intervenção manual
+- **Mantém** visão holística 360° do projeto
 
 ```bash
-# Exemplo: Após detectar padrão repetitivo
-🚨 PADRÃO DETECTADO
-Você criou 3 componentes similares manualmente.
-
-💡 Recomendação: Usar template para acelerar
-⚡ Ação rápida: Criar template agora? [S/n]
+*iniciar                    # Ativa PRISMA e dashboard
+*fazer [tarefa]             # Delega automaticamente
+*progresso                  # Status completo do sistema
 ```
 
-### 🔮 Decisões Assistidas
+### 📋 **Bob - O Scrum Master** (`*bob`)
+> *"Histórias que se implementam sozinhas"*
 
-Quando há múltiplas opções, PRISMA ajuda a decidir:
+- **PRP Engine**: Product Requirements Prompts executáveis
+- **Story Creation**: Épicos → histórias → tasks sequenciais
+- **Context Discovery**: Detecta framework, padrões, convenções automaticamente
+- **Executable Stories**: Histórias que James implementa diretamente
 
+```bash
+*criar-historia [épico]     # PRP Engine full cycle
+*quebrar-epic [épico]       # Decomposição inteligente
+*validar-historia [id]      # Validação estrutural
 ```
-🤔 DECISÃO NECESSÁRIA
-Detectei que você pode seguir 3 caminhos:
 
-1. 🚀 Caminho Rápido (2h)
-   ├ Prós: Velocidade, simplicidade
-   └ Contras: Menos flexível
+### ✅ **Sarah - A Product Owner** (`*sarah`)
+> *"Valor de negócio em cada linha"*
 
-2. 🏗️ Caminho Robusto (8h)
-   ├ Prós: Escalável, completo
-   └ Contras: Mais complexo
+- **Business Validation**: Cada feature alinhada com objetivos
+- **Requirements Refinement**: Critérios de aceitação claros
+- **Value Prioritization**: Backlog baseado em impacto real
+- **Stakeholder Alignment**: Comunicação efetiva automática
 
-3. ⚖️ Caminho Balanceado (4h) [RECOMENDADO]
-   ├ Prós: Bom custo-benefício
-   └ Contras: Algumas limitações
+```bash
+*validar-historia [id]      # Validação de valor
+*refinar-requisitos [id]    # Refinamento de critérios
+*priorizar-backlog          # Priorização inteligente
+```
 
-Digite [1-3] ou 'mais' para detalhes:
+### 💻 **James - O Developer** (`*james`)
+> *"Uma tarefa por vez, perfeição sempre"*
+
+- **Sequential Implementation**: Foco total, uma task por vez
+- **Quality Pre-integration**: Código limpo desde o início
+- **Context Awareness**: Entende padrões e convenções do projeto
+- **Executable Handoffs**: Implementa diretamente as histórias do Bob
+
+```bash
+*implementar-historia [id]  # Implementação sequencial
+*executar-tarefa [task]     # Execução focada
+*debug-problema [issue]     # Resolução inteligente
+```
+
+### 🧪 **Quinn - O Test Architect** (`*quinn`)
+> *"Quality gates que realmente funcionam"*
+
+- **Risk-based Testing**: Foco em probabilidade × impacto
+- **Deterministic Gates**: PASS/CONCERNS/FAIL/WAIVED com critérios claros
+- **Requirements Traceability**: Mapping automático requirements → tests
+- **NFR Validation**: Non-functional requirements sistematicamente validados
+
+```bash
+*risk [história]            # Análise probabilidade × impacto
+*design [história]          # Estratégia de testes
+*trace [história]           # Rastreabilidade completa
+*nfr [história]             # Validação NFRs
+*review [história]          # Review completo
+*gate [história]            # Decisão determinística
+```
+
+### 🏗️ **Winston - O Architect** (`*winston`)
+> *"Decisões técnicas que perduram"*
+
+- **System Design**: Arquiteturas pragmáticas e escaláveis
+- **ADRs**: Architecture Decision Records documentados
+- **Technology Assessment**: Avaliações técnicas fundamentadas
+- **Pragmatic Approach**: Soluções práticas, não ivory tower
+
+```bash
+*analisar-sistema [comp]    # Análise arquitetural
+*criar-adr [decisão]        # Architecture Decision Record
+*avaliar-tecnologia [tech]  # Assessment fundamentado
 ```
 
 ---
 
-## 🔄 Workflows
+## 🚀 **Início Ultrarrápido**
 
-O PRISMA oferece três tipos de workflows, cada um otimizado para diferentes contextos:
-
-### 🌱 Projeto Nascente
-**Para desenvolvimento do zero**
-- Liberdade total de arquitetura
-- Templates otimizados para início rápido
-- Sem amarras de código legado
+### ⚡ **30 Segundos para Estar Rodando**
 
 ```bash
-/prisma workflow nascente
+# 1. Ative o Alan (Diretor)
+*iniciar
+
+# 2. Deixe o PRISMA analisar seu projeto
+# (Alan detecta automaticamente: linguagens, frameworks, padrões)
+
+# 3. Comece a trabalhar
+*fazer "implementar sistema de autenticação"
+# Alan analisa → delega para Bob → Sarah valida → James implementa → Quinn gate
 ```
 
-### 🏢 Projeto Existente
-**Para evolução de código legado**
-- Análise de impacto integrada
-- Migração gradual e segura
-- Respeita estruturas existentes
+**Output esperado:**
+```
+🎬 ALAN DIRETOR PRISMA ATIVADO
 
-```bash
-/prisma workflow existente
+📊 Análise automática do projeto:
+✅ Framework: Next.js 14
+✅ Auth: NextAuth.js detectado
+✅ DB: PostgreSQL via Prisma
+✅ UI: Tailwind + Shadcn/UI
+
+🎯 Delegação inteligente:
+   Bob → Draft história com contexto detectado
+   Sarah → Validação de valor automática
+   James → Implementação sequencial
+   Quinn → Quality gates integrados
+
+Como posso ajudar?
 ```
 
-### 🔗 Projeto Híbrido
-**Para integração novo + legado**
-- Estratégias de coexistência
-- Transição progressiva
-- Balanceia inovação e estabilidade
+---
 
-```bash
-/prisma workflow hibrido
-```
-
-### 📊 Como Escolher?
+## 🔄 **Core Development Cycle**
 
 ```mermaid
 graph TD
-    A[Início] --> B{Tem código existente?}
-    B -->|Não| C[🌱 Nascente]
-    B -->|Sim| D{Vai refatorar tudo?}
-    D -->|Sim| E[🌱 Nascente]
-    D -->|Não| F{Mistura novo e antigo?}
-    F -->|Sim| G[🔗 Híbrido]
-    F -->|Não| H[🏢 Existente]
+    A["*iniciar"] --> B["Alan: Análise contexto"]
+    B --> C{Tipo de Tarefa?}
 
-    style C fill:#9f9,stroke:#333,stroke-width:2px
-    style H fill:#f99,stroke:#333,stroke-width:2px
-    style G fill:#ff9,stroke:#333,stroke-width:2px
+    C -->|"criar história"| D["Bob: Draft + PRP Engine"]
+    C -->|"validar valor"| E["Sarah: Business validation"]
+    C -->|"implementar"| F["James: Sequential dev"]
+    C -->|"análise qualidade"| G["Quinn: Quality gates"]
+    C -->|"decisão técnica"| H["Winston: ADR + Design"]
+
+    D --> I{Necessita validação PO?}
+    I -->|Sim| E
+    I -->|Não| J{Risco Alto?}
+
+    E --> K{Aprovado Sarah?}
+    K -->|Sim| J
+    K -->|Não| D
+
+    J -->|Sim| G
+    J -->|Não| F
+
+    F --> L["Quinn: *review automático"]
+    L --> M["Quinn: *gate decision"]
+
+    M --> N{Gate Status?}
+    N -->|PASS| O["Próxima história"]
+    N -->|CONCERNS/FAIL| P["James: Correções"]
+    P --> L
+
+    G --> Q["Quinn: *risk + *design"]
+    Q --> F
+
+    H --> R["Design aprovado"]
+    R --> F
+
+    O --> S["Alan: Coordenar próximo ciclo"]
+    S --> C
+
+    style A fill:#ff6b6b
+    style B fill:#4ecdc4
+    style O fill:#a8e6cf
 ```
 
 ---
 
-## 📁 Estrutura
+## 🧠 **Sistema de Quality Gates (Quinn)**
 
-```
-.prisma/
-├── 🎭 agentes/              # Fabric pattern de agentes
-│   ├── pm/
-│   │   ├── index.md         # Ponto único de entrada
-│   │   └── componentes/     # Partes reutilizáveis
-│   ├── dev/
-│   ├── qa/
-│   └── _compartilhado/      # Componentes comuns
-│
-├── 📋 templates/            # Templates em português
-│   ├── produto/
-│   ├── arquitetura/
-│   └── qualidade/
-│
-├── 🔄 workflows/
-│   ├── nascente/           # Projetos novos
-│   ├── existente/          # Sistemas legados
-│   └── hibrido/            # Migração gradual
-│
-├── 🛠️ ferramentas/
-│   ├── fragmentacao/       # Divide documentos
-│   ├── deteccao/          # Sistema de contexto
-│   └── validacao/         # Checa integridade
-│
-└── 📊 config/             # Configurações
-    ├── framework.md
-    ├── configuracao.yaml
-    └── metricas.md
+### **4 Decisões Determinísticas**
+
+```yaml
+PASS:
+  - todos_testes_passando: true
+  - cobertura_minima: ">= 80%"
+  - sem_riscos_altos: true
+  - nfrs_atendidos: true
+  - rastreabilidade_completa: true
+
+CONCERNS:
+  - riscos_medios: "6 <= risco < 9"
+  - cobertura_baixa: "60% <= cobertura < 80%"
+  - debt_tecnico: "acumulado mas controlado"
+
+FAIL:
+  - riscos_criticos: "risco >= 9"
+  - testes_falhando: "> 10%"
+  - nfrs_criticos_nao_atendidos: true
+
+WAIVED:
+  - justificativa_documentada: true
+  - aprovacao_stakeholder: true
+  - plano_mitigacao: defined
 ```
 
----
+### **Risk Analysis Matrix**
 
-## 🎯 Fabric Pattern e Single Source of Truth
+```
+Probabilidade × Impacto = Score de Risco
 
-### O Problema Resolvido
-
-❌ **Antes do PRISMA:**
-- Duplicação de código entre componentes
-- Alterações em múltiplos lugares
-- Inconsistência entre implementações
-- Manutenção complexa
-
-✅ **Com PRISMA:**
-- **Single Source of Truth**: Um arquivo, uma verdade
-- **Componentes Compartilhados**: Reutilização automática
-- **Herança Inteligente**: Comportamentos base propagados
-- **Manutenção Centralizada**: Altere uma vez, aplique em todos
-
-### Anatomia de um Agente PRISMA
-
-```mermaid
-graph LR
-    A[index.md] --> B[Componentes]
-    B --> C[carregamento]
-    B --> D[execucao]
-    B --> E[validacao]
-
-    F[_compartilhado] -.->|herda| C
-    F -.->|herda| D
-    F -.->|herda| E
-
-    style A fill:#f96,stroke:#333,stroke-width:2px
-    style F fill:#9f9,stroke:#333,stroke-width:2px
+     │  1   │  2   │  3   │
+─────┼──────┼──────┼──────┤
+  3  │  3   │  6   │  9   │ ← FAIL
+─────┼──────┼──────┼──────┤
+  2  │  2   │  4   │  6   │ ← CONCERNS
+─────┼──────┼──────┼──────┤
+  1  │  1   │  2   │  3   │ ← PASS
+─────┼──────┼──────┼──────┤
+     │ Baixo│ Médio│ Alto │
+        Impacto
 ```
 
 ---
 
-## 🔧 Comandos Principais
+## 🏗️ **Fabric Pattern & Zero Duplication**
 
-| Comando PT-BR | Descrição | Alias EN |
-|---------------|-----------|----------|
-| `/prisma iniciar` | Inicializa o PRISMA | `init` |
-| `/prisma agente {tipo}` | Ativa agente específico | `agent` |
-| `/prisma fragmentar {doc}` | Divide documento em partes | `shard` |
-| `/prisma compor {template}` | Cria doc com template | `compose` |
-| `/prisma analisar` | Analisa projeto atual | `analyze` |
-| `/prisma recomendar` | Ativa recomendações | `recommend` |
-| `/prisma pensamento-profundo` | Modo avançado com IA | `deep-think` |
+### **Shared Components Architecture**
 
-### 🌐 Mapeamento Completo
+```
+.prisma/agentes/
+├── alan-diretor/               # Orquestrador
+├── bob-scrum-master/           # Story creation + PRP Engine
+├── sarah-product-owner/        # Business validation
+├── james-developer/            # Sequential implementation
+├── quinn-test-architect/       # Quality gates
+├── winston-architect/          # Technical decisions
+└── _compartilhado/             # ZERO DUPLICATION
+    ├── componentes/
+    │   └── hierarquia.md       # Estrutura organizacional
+    ├── configuracao/
+    │   ├── prisma-config.yaml  # Config central
+    │   ├── agent-registry.yaml # Registry completo
+    │   └── fabric-registry.yaml# Fabric management
+    └── comportamentos-base.md  # Inherited behaviors
+```
 
-Todos os comandos funcionam em português e inglês. Consulte `.prisma/docs/mapeamento-comandos.md` para lista completa.
+**Single Source of Truth garantido:**
+- ✅ Cada informação existe em 1 lugar apenas
+- ✅ Mudanças propagam automaticamente
+- ✅ Inconsistências impossíveis por design
+- ✅ Manutenção centralizada
 
 ---
 
-## 🧠 PensamentoProfundo (Modo Avançado)
+## 📊 **Comandos Principais**
 
-Ative o modo de análise profunda com detecção automática de contexto:
-
+### **🎬 Alan (Diretor) - Orquestração**
 ```bash
-/prisma pensamento-profundo {objetivo}
-# ou
-/prisma pp {objetivo}
+*iniciar                    # Ativa PRISMA + dashboard
+*fazer [tarefa]             # Delega automaticamente
+*agente [tipo] [comando]    # Delegação específica
+*progresso                  # Status todas as tarefas
+*metricas                   # Dashboard de métricas
+*workflow [tipo]            # Executa workflow coordenado
 ```
 
-O sistema criará automaticamente uma hierarquia de tarefas e manterá você informado visualmente do progresso, atualizando conforme você avança.
+### **📋 Bob (Scrum Master) - Stories**
+```bash
+*criar-historia [épico]     # PRP Engine completo
+*quebrar-epic [épico]       # Decomposição inteligente
+*validar-historia [id]      # Validação estrutural
+*preparar-sprint            # Planning sprint
+```
+
+### **✅ Sarah (Product Owner) - Business**
+```bash
+*validar-historia [id]      # Validação valor negócio
+*refinar-requisitos [id]    # Refinement critérios
+*priorizar-backlog          # Priorização baseada valor
+```
+
+### **💻 James (Developer) - Implementation**
+```bash
+*implementar-historia [id]  # Implementação sequencial
+*executar-tarefa [task]     # Execução tarefa específica
+*debug-problema [issue]     # Resolução inteligente
+```
+
+### **🧪 Quinn (Test Architect) - Quality Gates**
+```bash
+*risk [história]            # Análise probabilidade × impacto
+*design [história]          # Estratégia testes
+*trace [história]           # Rastreabilidade requirements → tests
+*nfr [história]             # Validação Non-Functional Requirements
+*review [história]          # Review qualidade completo
+*gate [história]            # Decisão PASS/CONCERNS/FAIL/WAIVED
+```
+
+### **🏗️ Winston (Architect) - Technical Decisions**
+```bash
+*analisar-sistema [comp]    # Análise arquitetural completa
+*criar-adr [decisão]        # Architecture Decision Record
+*avaliar-tecnologia [tech]  # Assessment técnico fundamentado
+```
 
 ---
 
-## 📊 Métricas e Performance
+## 🎯 **Documentação como Código**
 
-PRISMA rastreia automaticamente:
+### **Stories Executáveis (Bob + PRP Engine)**
+```markdown
+# PRP-HISTÓRIA: AUTH.001 - Sistema de Login
 
-- **Velocidade**: Tempo entre requisito e implementação
-- **Qualidade**: Taxa de defeitos por fase
-- **Retrabalho**: Iterações necessárias
-- **Eficiência**: Código gerado vs. planejado
-- **Aprendizado**: Melhoria das recomendações ao longo do tempo
+## Contexto Descoberto (Auto-detection)
+- Framework: Next.js 14
+- Auth: NextAuth.js detectado
+- DB: PostgreSQL via Prisma
+- UI: Tailwind + Shadcn/UI
+
+## Persona & Valor
+**Como** usuário da aplicação,
+**Eu quero** fazer login de forma segura,
+**Para que** possa acessar funcionalidades protegidas
+
+## Prompt de Execução (Para James)
+"Como James, implemente sistema de login usando NextAuth.js
+com PostgreSQL, seguindo padrões Tailwind + Shadcn/UI do projeto,
+garantindo autenticação segura e UX fluida."
+```
+
+### **Quality Gates Documentation (Quinn)**
+```yaml
+# docs/qa/assessments/AUTH.001-risk-20250123.md
+risk_assessment:
+  historia: "AUTH.001 - Sistema de Login"
+  riscos_identificados:
+    - autenticacao_insegura:
+        probabilidade: 2
+        impacto: 3
+        score: 6  # CONCERNS
+    - session_management:
+        probabilidade: 1
+        impacto: 2
+        score: 2  # PASS
+
+gate_decision: "CONCERNS"
+justificativa: "Risco médio em auth requer atenção especial"
+acoes_mitigacao:
+  - implementar_2fa
+  - audit_logs_detalhados
+  - rate_limiting_robusto
+```
+
+### **Architecture Decision Records (Winston)**
+```markdown
+# ADR-001: Escolha do NextAuth.js
+
+## Status
+ACCEPTED
+
+## Contexto
+Sistema precisa de autenticação robusta com múltiplos providers
+
+## Decisão
+Usar NextAuth.js v4 com database sessions
+
+## Consequências
+✅ Integração nativa com Next.js
+✅ Múltiplos providers suportados
+✅ Security best practices built-in
+⚠️ Dependência externa adicional
+⚠️ Learning curve para configurações avançadas
+```
 
 ---
 
-## 🤝 Contribuindo
+## 🚀 **Vantagens Revolucionárias**
 
-Adoramos contribuições! Veja como participar:
+### **🔄 Continuous Activation vs Traditional**
+
+| Aspecto | PRISMA Continuous | Tradicional |
+|---------|------------------|-------------|
+| **Ativação** | Sempre ativos | Por demanda |
+| **Contexto** | Preservado sempre | Perdido entre calls |
+| **Especialização** | 5 experts dedicados | 1 agente genérico |
+| **Qualidade** | Gates integrados | QA separado |
+| **Coordenação** | Alan automático | Manual/error-prone |
+| **Memória** | Documentação persistente | Session-based |
+| **Handoffs** | Automáticos fluidos | Manuais com perda |
+| **Aprendizado** | Acumulativo | Reset a cada sessão |
+
+### **⚡ Métricas de Performance**
+
+```yaml
+targets_operacionais:
+  alan_director:
+    - delegacao_automatica: "> 90%"
+    - tempo_analise: "< 30s"
+    - acuracia_delegacao: "> 95%"
+    - handoffs_sucesso: "> 98%"
+
+  quality_gates_quinn:
+    - decisoes_deterministicas: "100%"
+    - tempo_gate_decision: "< 5min"
+    - pass_primeira_vez: "> 80%"
+    - cobertura_risk_analysis: "100%"
+
+  desenvolvimento_james:
+    - implementacao_sequencial: "100%"
+    - primeira_execucao_sucesso: "> 85%"
+    - tempo_medio_task: "< 2h"
+    - quality_pre_handoff: "> 90%"
+
+targets_negocio:
+  velocidade:
+    - lead_time_epic_delivery: "< 2 semanas"
+    - cycle_time_story: "< 3 dias"
+    - stories_por_sprint: "tracked + trending"
+
+  qualidade:
+    - bugs_producao: "< 1 por story"
+    - debt_tecnico: "< 10% tempo"
+    - satisfacao_stakeholders: "> 4.5/5"
+```
+
+---
+
+## 🔮 **Roadmap & Evolution**
+
+### **✅ Fase Atual: Sistema Completo Implementado**
+- ✅ 5 Subagents especializados com continuous activation
+- ✅ Alan como diretor orquestrador inteligente
+- ✅ Sistema completo de quality gates determinísticos
+- ✅ PRP Engine para histórias executáveis
+- ✅ Fabric pattern com `_compartilhado/` zero duplication
+- ✅ Documentação como código estruturada
+- ✅ Comandos `*comando` padronizados
+
+### **🚀 Próximas Evoluções**
+
+#### **Inteligência Adaptativa**
+- [ ] Machine learning de padrões de delegação
+- [ ] Predição de riscos baseada em histórico
+- [ ] Auto-otimização de workflows
+- [ ] Sugestões proativas contextuais
+
+#### **Expansion Ecosystem**
+- [ ] Subagents especializados por indústria
+- [ ] Marketplace de especializações
+- [ ] Templates workflows por domínio
+- [ ] Integração CI/CD nativa
+
+#### **Advanced Quality**
+- [ ] Quality gates customizáveis por projeto
+- [ ] AI-powered risk assessment
+- [ ] Automated NFR validation
+- [ ] Performance gates integrados
+
+---
+
+## 🤝 **Contribuindo**
+
+PRISMA é **open source** e **community-driven**:
 
 1. **Fork** o projeto
-2. **Crie** sua branch (`git checkout -b feature/IncribleFeature`)
-3. **Commit** suas mudanças (`git commit -m 'Add: Incredible Feature'`)
-4. **Push** para a branch (`git push origin feature/IncribleFeature`)
-5. **Abra** um Pull Request
+2. **Clone**: `git clone https://github.com/your-repo/prisma`
+3. **Branch**: `git checkout -b feature/amazing-feature`
+4. **Develop**: Siga os patterns PRISMA
+5. **Test**: Todos os quality gates devem passar
+6. **Commit**: `git commit -m 'feat: add amazing feature'`
+7. **Push**: `git push origin feature/amazing-feature`
+8. **PR**: Abra um Pull Request
 
-### 📋 Padrões
-
-- Código em português nos comentários
-- Documentação em PT-BR
-- Testes obrigatórios
-- Conventional Commits
-
----
-
-## 📜 Licença
-
-Distribuído sob licença MIT. Veja `LICENSE` para mais informações.
+### **📋 Contribution Guidelines**
+- Código e documentação em português
+- Quality gates obrigatórios (Quinn validação)
+- Testes unitários + integração
+- Continuous activation compatibility
+- Fabric pattern compliance
 
 ---
 
-## 🙏 Agradecimentos
+## 📜 **Licença**
 
-- Inspirado no BMad Method
-- Construído para a comunidade brasileira de desenvolvimento
-- Otimizado para desenvolvimento assistido por IA
+Distribuído sob **MIT License**. Veja `LICENSE` para detalhes completos.
+
+---
+
+## 🙏 **Agradecimentos & Inspiration**
+
+- **Claude Code CLI**: Infraestrutura que torna tudo possível
+- **Comunidade Brasil**: Feedback e inspiration constantes
+- **Agile/Scrum Community**: Metodologias que funcionam
+- **DevOps Culture**: Integration e automation mindset
+- **Open Source Movement**: Standing on shoulders of giants
 
 ---
 
 <div align="center">
 
-**PRISMA**: Transformando complexidade em clareza, um fragmento por vez. 🔷
+## 🎬 **Ready to Transform Your Development?**
 
-[Website](https://prisma.dev) | [Documentação](https://docs.prisma.dev) | [Comunidade](https://discord.gg/prisma)
+**PRISMA**: Onde 5 especialistas elite trabalham 24/7 no seu projeto com quality gates integrados e zero perda de contexto.
+
+### **Start Your Journey**
+
+```bash
+*iniciar
+# Welcome to the future of development
+```
+
+---
+
+**🔷 PRISMA v3.0.0** | **🏗️ Architecture** | **📚 Docs** | **💬 Community** | **🚀 Roadmap**
+
+*"Cinco especialistas, uma orquestração perfeita, qualidade integrada."*
 
 </div>
