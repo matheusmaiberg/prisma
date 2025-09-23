@@ -1,156 +1,156 @@
 <!-- Powered by BMAD™ Core -->
 
-# Elicitation Methods Data
+# Dados de Métodos de Elicitação
 
-## Core Reflective Methods
+## Métodos Reflexivos Centrais
 
-**Expand or Contract for Audience**
+**Expandir ou Contrair para o Público**
 
-- Ask whether to 'expand' (add detail, elaborate) or 'contract' (simplify, clarify)
-- Identify specific target audience if relevant
-- Tailor content complexity and depth accordingly
+- Perguntar se deve 'expandir' (adicionar detalhes, elaborar) ou 'contrair' (simplificar, esclarecer)
+- Identificar público-alvo específico se relevante
+- Adaptar complexidade e profundidade do conteúdo adequadamente
 
-**Explain Reasoning (CoT Step-by-Step)**
+**Explicar Raciocínio (CoT Passo a Passo)**
 
-- Walk through the step-by-step thinking process
-- Reveal underlying assumptions and decision points
-- Show how conclusions were reached from current role's perspective
+- Percorrer o processo de pensamento passo a passo
+- Revelar suposições subjacentes e pontos de decisão
+- Mostrar como as conclusões foram alcançadas da perspectiva do papel atual
 
-**Critique and Refine**
+**Criticar e Refinar**
 
-- Review output for flaws, inconsistencies, or improvement areas
-- Identify specific weaknesses from role's expertise
-- Suggest refined version reflecting domain knowledge
+- Revisar resultados para falhas, inconsistências ou áreas de melhoria
+- Identificar fraquezas específicas da expertise do papel
+- Sugerir versão refinada refletindo conhecimento do domínio
 
-## Structural Analysis Methods
+## Métodos de Análise Estrutural
 
-**Analyze Logical Flow and Dependencies**
+**Analisar Fluxo Lógico e Dependências**
 
-- Examine content structure for logical progression
-- Check internal consistency and coherence
-- Identify and validate dependencies between elements
-- Confirm effective ordering and sequencing
+- Examinar estrutura do conteúdo para progressão lógica
+- Verificar consistência interna e coerência
+- Identificar e validar dependências entre elementos
+- Confirmar ordenação e sequenciamento eficazes
 
-**Assess Alignment with Overall Goals**
+**Avaliar Alinhamento com Objetivos Gerais**
 
-- Evaluate content contribution to stated objectives
-- Identify any misalignments or gaps
-- Interpret alignment from specific role's perspective
-- Suggest adjustments to better serve goals
+- Avaliar contribuição do conteúdo para objetivos declarados
+- Identificar desalinhamentos ou lacunas
+- Interpretar alinhamento da perspectiva do papel específico
+- Sugerir ajustes para melhor servir aos objetivos
 
-## Risk and Challenge Methods
+## Métodos de Risco e Desafio
 
-**Identify Potential Risks and Unforeseen Issues**
+**Identificar Riscos Potenciais e Questões Imprevistas**
 
-- Brainstorm potential risks from role's expertise
-- Identify overlooked edge cases or scenarios
-- Anticipate unintended consequences
-- Highlight implementation challenges
+- Fazer brainstorming de riscos potenciais da expertise do papel
+- Identificar casos extremos ou cenários negligenciados
+- Antecipar consequências não intencionais
+- Destacar desafios de implementação
 
-**Challenge from Critical Perspective**
+**Desafiar de Perspectiva Crítica**
 
-- Adopt critical stance on current content
-- Play devil's advocate from specified viewpoint
-- Argue against proposal highlighting weaknesses
-- Apply YAGNI principles when appropriate (scope trimming)
+- Adotar postura crítica sobre conteúdo atual
+- Fazer papel de advogado do diabo de ponto de vista especificado
+- Argumentar contra proposta destacando fraquezas
+- Aplicar princípios YAGNI quando apropriado (redução de escopo)
 
-## Creative Exploration Methods
+## Métodos de Exploração Criativa
 
-**Tree of Thoughts Deep Dive**
+**Mergulho Profundo na Árvore de Pensamentos**
 
-- Break problem into discrete "thoughts" or intermediate steps
-- Explore multiple reasoning paths simultaneously
-- Use self-evaluation to classify each path as "sure", "likely", or "impossible"
-- Apply search algorithms (BFS/DFS) to find optimal solution paths
+- Dividir problema em "pensamentos" discretos ou etapas intermediárias
+- Explorar múltiplos caminhos de raciocínio simultaneamente
+- Usar autoavaliação para classificar cada caminho como "certo", "provável" ou "impossível"
+- Aplicar algoritmos de busca (BFS/DFS) para encontrar caminhos de solução ótimos
 
-**Hindsight is 20/20: The 'If Only...' Reflection**
+**Visão Retrospectiva é 20/20: A Reflexão 'Se Apenas...'**
 
-- Imagine retrospective scenario based on current content
-- Identify the one "if only we had known/done X..." insight
-- Describe imagined consequences humorously or dramatically
-- Extract actionable learnings for current context
+- Imaginar cenário retrospectivo baseado no conteúdo atual
+- Identificar o insight único "se apenas tivéssemos sabido/feito X..."
+- Descrever consequências imaginadas de forma humorística ou dramática
+- Extrair aprendizados acionáveis para contexto atual
 
-## Multi-Persona Collaboration Methods
+## Métodos de Colaboração Multi-Persona
 
-**Agile Team Perspective Shift**
+**Mudança de Perspectiva de Equipe Ágil**
 
-- Rotate through different Scrum team member viewpoints
-- Product Owner: Focus on user value and business impact
-- Scrum Master: Examine process flow and team dynamics
-- Developer: Assess technical implementation and complexity
-- QA: Identify testing scenarios and quality concerns
+- Alternar entre diferentes pontos de vista de membros da equipe Scrum
+- Product Owner: Focar em valor do usuário e impacto no negócio
+- Scrum Master: Examinar fluxo de processo e dinâmicas da equipe
+- Desenvolvedor: Avaliar implementação técnica e complexidade
+- QA: Identificar cenários de teste e preocupações de qualidade
 
-**Stakeholder Round Table**
+**Mesa Redonda de Stakeholders**
 
-- Convene virtual meeting with multiple personas
-- Each persona contributes unique perspective on content
-- Identify conflicts and synergies between viewpoints
-- Synthesize insights into actionable recommendations
+- Convocar reunião virtual com múltiplas personas
+- Cada persona contribui com perspectiva única sobre conteúdo
+- Identificar conflitos e sinergias entre pontos de vista
+- Sintetizar insights em recomendações acionáveis
 
-**Meta-Prompting Analysis**
+**Análise de Meta-Prompting**
 
-- Step back to analyze the structure and logic of current approach
-- Question the format and methodology being used
-- Suggest alternative frameworks or mental models
-- Optimize the elicitation process itself
+- Recuar para analisar estrutura e lógica da abordagem atual
+- Questionar formato e metodologia sendo usados
+- Sugerir frameworks alternativos ou modelos mentais
+- Otimizar o próprio processo de elicitação
 
-## Advanced 2025 Techniques
+## Técnicas Avançadas de 2025
 
-**Self-Consistency Validation**
+**Validação de Autoconsistência**
 
-- Generate multiple reasoning paths for same problem
-- Compare consistency across different approaches
-- Identify most reliable and robust solution
-- Highlight areas where approaches diverge and why
+- Gerar múltiplos caminhos de raciocínio para o mesmo problema
+- Comparar consistência entre diferentes abordagens
+- Identificar solução mais confiável e robusta
+- Destacar áreas onde abordagens divergem e por quê
 
-**ReWOO (Reasoning Without Observation)**
+**ReWOO (Raciocínio Sem Observação)**
 
-- Separate parametric reasoning from tool-based actions
-- Create reasoning plan without external dependencies
-- Identify what can be solved through pure reasoning
-- Optimize for efficiency and reduced token usage
+- Separar raciocínio paramétrico de ações baseadas em ferramentas
+- Criar plano de raciocínio sem dependências externas
+- Identificar o que pode ser resolvido através de raciocínio puro
+- Otimizar para eficiência e uso reduzido de tokens
 
-**Persona-Pattern Hybrid**
+**Híbrido Persona-Padrão**
 
-- Combine specific role expertise with elicitation pattern
-- Architect + Risk Analysis: Deep technical risk assessment
-- UX Expert + User Journey: End-to-end experience critique
-- PM + Stakeholder Analysis: Multi-perspective impact review
+- Combinar expertise de papel específico com padrão de elicitação
+- Arquiteto + Análise de Risco: Avaliação profunda de risco técnico
+- Especialista UX + Jornada do Usuário: Crítica de experiência end-to-end
+- PM + Análise de Stakeholder: Revisão de impacto multiperspectiva
 
-**Emergent Collaboration Discovery**
+**Descoberta de Colaboração Emergente**
 
-- Allow multiple perspectives to naturally emerge
-- Identify unexpected insights from persona interactions
-- Explore novel combinations of viewpoints
-- Capture serendipitous discoveries from multi-agent thinking
+- Permitir que múltiplas perspectivas emerjam naturalmente
+- Identificar insights inesperados de interações de personas
+- Explorar combinações novas de pontos de vista
+- Capturar descobertas fortuitas de pensamento multiagente
 
-## Game-Based Elicitation Methods
+## Métodos de Elicitação Baseados em Jogos
 
-**Red Team vs Blue Team**
+**Time Vermelho vs Time Azul**
 
-- Red Team: Attack the proposal, find vulnerabilities
-- Blue Team: Defend and strengthen the approach
-- Competitive analysis reveals blind spots
-- Results in more robust, battle-tested solutions
+- Time Vermelho: Atacar a proposta, encontrar vulnerabilidades
+- Time Azul: Defender e fortalecer a abordagem
+- Análise competitiva revela pontos cegos
+- Resulta em soluções mais robustas e testadas em batalha
 
-**Innovation Tournament**
+**Torneio de Inovação**
 
-- Pit multiple alternative approaches against each other
-- Score each approach across different criteria
-- Crowd-source evaluation from different personas
-- Identify winning combination of features
+- Confrontar múltiplas abordagens alternativas umas contra outras
+- Pontuar cada abordagem através de diferentes critérios
+- Avaliar através de crowdsourcing de diferentes personas
+- Identificar combinação vencedora de características
 
-**Escape Room Challenge**
+**Desafio de Sala de Escape**
 
-- Present content as constraints to work within
-- Find creative solutions within tight limitations
-- Identify minimum viable approach
-- Discover innovative workarounds and optimizations
+- Apresentar conteúdo como restrições para trabalhar dentro
+- Encontrar soluções criativas dentro de limitações rígidas
+- Identificar abordagem mínima viável
+- Descobrir contornos inovadores e otimizações
 
-## Process Control
+## Controle de Processo
 
-**Proceed / No Further Actions**
+**Prosseguir / Sem Ações Adicionais**
 
-- Acknowledge choice to finalize current work
-- Accept output as-is or move to next step
-- Prepare to continue without additional elicitation
+- Reconhecer escolha de finalizar trabalho atual
+- Aceitar resultado como está ou mover para próximo passo
+- Preparar para continuar sem elicitação adicional

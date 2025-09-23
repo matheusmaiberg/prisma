@@ -1,147 +1,147 @@
 <!-- Powered by BMAD™ Core -->
 
-# Test Levels Framework
+# Framework de Níveis de Teste
 
-Comprehensive guide for determining appropriate test levels (unit, integration, E2E) for different scenarios.
+Guia abrangente para determinar os níveis de teste apropriados (unitário, integração, E2E) para diferentes cenários.
 
-## Test Level Decision Matrix
+## Matriz de Decisão de Níveis de Teste
 
-### Unit Tests
+### Testes Unitários
 
-**When to use:**
+**Quando usar:**
 
-- Testing pure functions and business logic
-- Algorithm correctness
-- Input validation and data transformation
-- Error handling in isolated components
-- Complex calculations or state machines
+- Testando funções puras e lógica de negócio
+- Correção de algoritmos
+- Validação de entrada e transformação de dados
+- Tratamento de erros em componentes isolados
+- Cálculos complexos ou máquinas de estado
 
-**Characteristics:**
+**Características:**
 
-- Fast execution (immediate feedback)
-- No external dependencies (DB, API, file system)
-- Highly maintainable and stable
-- Easy to debug failures
+- Execução rápida (feedback imediato)
+- Sem dependências externas (DB, API, sistema de arquivos)
+- Altamente mantível e estável
+- Fácil de debugar falhas
 
-**Example scenarios:**
-
-```yaml
-unit_test:
-  component: 'PriceCalculator'
-  scenario: 'Calculate discount with multiple rules'
-  justification: 'Complex business logic with multiple branches'
-  mock_requirements: 'None - pure function'
-```
-
-### Integration Tests
-
-**When to use:**
-
-- Component interaction verification
-- Database operations and transactions
-- API endpoint contracts
-- Service-to-service communication
-- Middleware and interceptor behavior
-
-**Characteristics:**
-
-- Moderate execution time
-- Tests component boundaries
-- May use test databases or containers
-- Validates system integration points
-
-**Example scenarios:**
+**Cenários de exemplo:**
 
 ```yaml
-integration_test:
-  components: ['UserService', 'AuthRepository']
-  scenario: 'Create user with role assignment'
-  justification: 'Critical data flow between service and persistence'
-  test_environment: 'In-memory database'
+teste_unitario:
+  componente: 'CalculadoraPreco'
+  cenario: 'Calcular desconto com múltiplas regras'
+  justificativa: 'Lógica de negócio complexa com múltiplas ramificações'
+  requisitos_mock: 'Nenhum - função pura'
 ```
 
-### End-to-End Tests
+### Testes de Integração
 
-**When to use:**
+**Quando usar:**
 
-- Critical user journeys
-- Cross-system workflows
-- Visual regression testing
-- Compliance and regulatory requirements
-- Final validation before release
+- Verificação de interação entre componentes
+- Operações de banco de dados e transações
+- Contratos de endpoints de API
+- Comunicação entre serviços
+- Comportamento de middleware e interceptadores
 
-**Characteristics:**
+**Características:**
 
-- Slower execution
-- Tests complete workflows
-- Requires full environment setup
-- Most realistic but most brittle
+- Tempo de execução moderado
+- Testa limites de componentes
+- Pode usar bancos de dados de teste ou containers
+- Valida pontos de integração do sistema
 
-**Example scenarios:**
+**Cenários de exemplo:**
 
 ```yaml
-e2e_test:
-  journey: 'Complete checkout process'
-  scenario: 'User purchases with saved payment method'
-  justification: 'Revenue-critical path requiring full validation'
-  environment: 'Staging with test payment gateway'
+teste_integracao:
+  componentes: ['ServicoUsuario', 'RepositorioAuth']
+  cenario: 'Criar usuário com atribuição de papel'
+  justificativa: 'Fluxo de dados crítico entre serviço e persistência'
+  ambiente_teste: 'Banco de dados em memória'
 ```
 
-## Test Level Selection Rules
+### Testes End-to-End
 
-### Favor Unit Tests When:
+**Quando usar:**
 
-- Logic can be isolated
-- No side effects involved
-- Fast feedback needed
-- High cyclomatic complexity
+- Jornadas críticas do usuário
+- Fluxos de trabalho entre sistemas
+- Testes de regressão visual
+- Requisitos de conformidade e regulamentação
+- Validação final antes do lançamento
 
-### Favor Integration Tests When:
+**Características:**
 
-- Testing persistence layer
-- Validating service contracts
-- Testing middleware/interceptors
-- Component boundaries critical
+- Execução mais lenta
+- Testa fluxos de trabalho completos
+- Requer configuração completa do ambiente
+- Mais realista, mas mais frágil
 
-### Favor E2E Tests When:
+**Cenários de exemplo:**
 
-- User-facing critical paths
-- Multi-system interactions
-- Regulatory compliance scenarios
-- Visual regression important
+```yaml
+teste_e2e:
+  jornada: 'Processo completo de checkout'
+  cenario: 'Usuário compra com método de pagamento salvo'
+  justificativa: 'Caminho crítico de receita requerendo validação completa'
+  ambiente: 'Staging com gateway de pagamento de teste'
+```
 
-## Anti-patterns to Avoid
+## Regras de Seleção de Níveis de Teste
 
-- E2E testing for business logic validation
-- Unit testing framework behavior
-- Integration testing third-party libraries
-- Duplicate coverage across levels
+### Favoreça Testes Unitários Quando:
 
-## Duplicate Coverage Guard
+- A lógica pode ser isolada
+- Nenhum efeito colateral envolvido
+- Feedback rápido necessário
+- Alta complexidade ciclomática
 
-**Before adding any test, check:**
+### Favoreça Testes de Integração Quando:
 
-1. Is this already tested at a lower level?
-2. Can a unit test cover this instead of integration?
-3. Can an integration test cover this instead of E2E?
+- Testando camada de persistência
+- Validando contratos de serviço
+- Testando middleware/interceptadores
+- Limites de componentes críticos
 
-**Coverage overlap is only acceptable when:**
+### Favoreça Testes E2E Quando:
 
-- Testing different aspects (unit: logic, integration: interaction, e2e: user experience)
-- Critical paths requiring defense in depth
-- Regression prevention for previously broken functionality
+- Caminhos críticos voltados ao usuário
+- Interações multi-sistema
+- Cenários de conformidade regulatória
+- Regressão visual importante
 
-## Test Naming Conventions
+## Anti-padrões a Evitar
 
-- Unit: `test_{component}_{scenario}`
-- Integration: `test_{flow}_{interaction}`
-- E2E: `test_{journey}_{outcome}`
+- Testes E2E para validação de lógica de negócio
+- Testes unitários de comportamento de framework
+- Testes de integração de bibliotecas de terceiros
+- Cobertura duplicada entre níveis
 
-## Test ID Format
+## Proteção Contra Cobertura Duplicada
 
-`{EPIC}.{STORY}-{LEVEL}-{SEQ}`
+**Antes de adicionar qualquer teste, verifique:**
 
-Examples:
+1. Isso já é testado em um nível inferior?
+2. Um teste unitário pode cobrir isso ao invés de integração?
+3. Um teste de integração pode cobrir isso ao invés de E2E?
+
+**Sobreposição de cobertura só é aceitável quando:**
+
+- Testando aspectos diferentes (unitário: lógica, integração: interação, e2e: experiência do usuário)
+- Caminhos críticos requerendo defesa em profundidade
+- Prevenção de regressão para funcionalidade anteriormente quebrada
+
+## Convenções de Nomenclatura de Testes
+
+- Unitário: `teste_{componente}_{cenario}`
+- Integração: `teste_{fluxo}_{interacao}`
+- E2E: `teste_{jornada}_{resultado}`
+
+## Formato do ID de Teste
+
+`{ÉPICO}.{HISTÓRIA}-{NÍVEL}-{SEQ}`
+
+Exemplos:
 
 - `1.3-UNIT-001`
 - `1.3-INT-002`

@@ -7,7 +7,19 @@
       "Bash(find:*)",
       "Bash(mkdir:*)",
       "Bash(gh repo create:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(mv:*)",
+      "Bash(for dir in bob-scrum-master sarah-product-owner james-developer quinn-test-architect winston-architect)",
+      "Bash(do echo \"=== $dir ===\")",
+      "Bash(ls:*)",
+      "Bash(done)",
+      "Bash(for:*)",
+      "Bash(do sed -i \"s/sally-ux-expert/cecilia-ux-expert/g; s/Sally/Cecília/g\" \"$file\")",
+      "Bash(do cp \"$file\" \"C:/Users/Windows Home/Documents/GitHub/prisma/.prisma/biblioteca/conhecimento/\")",
+      "Bash(xcopy:*)",
+      "Bash(git add:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
