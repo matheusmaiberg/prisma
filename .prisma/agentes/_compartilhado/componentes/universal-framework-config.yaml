@@ -1,0 +1,445 @@
+# Universal Agent Framework Configuration - PRISMA v3.0
+# Integração completa do sistema modular baseado em insights do sistema KFC
+
+versao: 3.0.0
+framework: universal_agent_framework
+sistema_base: prisma_modular
+data_criacao: "2024-09-24"
+baseado_em: "Sistema KFC + arquitetura-modular.yaml"
+
+# Configuração do Alan-Diretor como Orquestrador Universal
+alan_director:
+  role: "orquestrador_central_universal"
+  token_limit: 500  # Limite RÍGIDO por resposta
+  scoring_system_enabled: true
+  prompt_loading_enabled: true
+  context_bridge_active: true
+
+  scoring_algorithm:
+    fatores_peso:
+      capability_match: 0.4      # Especialização vs requisitos da tarefa
+      availability: 0.25         # Carga atual do agente
+      recent_performance: 0.25   # Sucesso em tarefas similares recentes
+      context_relevance: 0.1     # Relevância do contexto atual
+
+    threshold_confidence: 0.7    # Mínimo para delegação automática
+    fallback_strategy: "executar_diretamente_alan"
+
+# Configuração de Agentes Especializados
+agentes_especializados:
+  sarah-product-owner:
+    id: "sarah-product-owner"
+    role: "especialista_negocio"
+    system_modular: true
+
+    especialidades_modulares:
+      - "requisitos_negocio"
+      - "valor_negocio"
+      - "priorizacao"
+      - "criterios_aceitacao"
+      - "stakeholder_management"
+
+    context_triggers:
+      primary_contexts:
+        - "analise_requisitos"
+        - "valor_negocio"
+        - "priorizacao"
+
+      file_patterns:
+        - "requirements*.md"
+        - "stories*.md"
+        - "backlog*.md"
+        - "prd*.md"
+        - "user-stories*.md"
+
+      keyword_triggers:
+        - "requisito"
+        - "funcionalidade"
+        - "usuário"
+        - "negócio"
+        - "valor"
+        - "história"
+        - "critério"
+
+    scoring_factors:
+      code_implementation: 0.2
+      business_requirements: 0.9
+      quality_assurance: 0.4
+      architecture_decisions: 0.3
+      project_coordination: 0.6
+
+    capacity:
+      max_concurrent_tasks: 8
+      timeout_threshold: 30000
+      performance_baseline: 0.80
+
+  james-developer:
+    id: "james-developer"
+    role: "especialista_implementacao"
+    system_modular: true
+
+    especialidades_modulares:
+      - "implementacao"
+      - "debug"
+      - "otimizacao"
+      - "testes_unitarios"
+      - "colaboracao_cross_agent"
+
+    context_triggers:
+      primary_contexts:
+        - "desenvolvimento_codigo"
+        - "debug_problemas"
+        - "integracao_sistemas"
+
+      file_patterns:
+        - "*.js"
+        - "*.ts"
+        - "*.py"
+        - "*.java"
+        - "*.cs"
+        - "*.go"
+        - "*.rs"
+        - "*.cpp"
+
+      keyword_triggers:
+        - "implementar"
+        - "código"
+        - "função"
+        - "classe"
+        - "método"
+        - "debug"
+        - "refatorar"
+
+    scoring_factors:
+      code_implementation: 0.9
+      debugging_problems: 0.85
+      test_writing: 0.8
+      architecture_compliance: 0.7
+      cross_agent_collaboration: 0.6
+
+    capacity:
+      max_concurrent_tasks: 5
+      timeout_threshold: 60000
+      performance_baseline: 0.85
+
+  bob-scrum-master:
+    id: "bob-scrum-master"
+    role: "coordenador_processos"
+    system_modular: true
+
+    especialidades_modulares:
+      - "coordenacao_equipe"
+      - "planning_sprints"
+      - "story_creation"
+      - "process_improvement"
+      - "team_coordination"
+
+    context_triggers:
+      primary_contexts:
+        - "gestao_coordenacao"
+        - "planning_sprints"
+        - "coordenacao_equipe"
+
+      file_patterns:
+        - "sprint*.md"
+        - "backlog*.md"
+        - "planning*.md"
+        - "roadmap*.md"
+        - "timeline*.md"
+
+      keyword_triggers:
+        - "sprint"
+        - "história"
+        - "épico"
+        - "planning"
+        - "coordenação"
+        - "scrum"
+        - "kanban"
+
+    scoring_factors:
+      project_coordination: 0.9
+      team_facilitation: 0.85
+      process_optimization: 0.8
+      sprint_management: 0.9
+      stakeholder_communication: 0.7
+
+    capacity:
+      max_concurrent_tasks: 10
+      timeout_threshold: 20000
+      performance_baseline: 0.75
+
+  quinn-qa:
+    id: "quinn-qa"
+    role: "especialista_qualidade"
+    system_modular: true
+
+    especialidades_modulares:
+      - "testes_automatizados"
+      - "analise_riscos"
+      - "quality_gates"
+      - "nfr_validation"
+      - "test_automation"
+
+    context_triggers:
+      primary_contexts:
+        - "testes_qualidade"
+        - "validacao_qualidade"
+        - "analise_riscos"
+
+      file_patterns:
+        - "*.test.js"
+        - "*.spec.js"
+        - "*.test.py"
+        - "*.spec.ts"
+        - "*.feature"
+        - "*test*"
+        - "*spec*"
+
+      keyword_triggers:
+        - "teste"
+        - "qualidade"
+        - "validação"
+        - "cobertura"
+        - "qa"
+        - "risco"
+        - "gate"
+
+    scoring_factors:
+      quality_assurance: 0.95
+      risk_analysis: 0.9
+      test_strategy: 0.85
+      nfr_validation: 0.8
+      quality_gates: 0.9
+
+    capacity:
+      max_concurrent_tasks: 6
+      timeout_threshold: 45000
+      performance_baseline: 0.88
+
+  winston-arquiteto:
+    id: "winston-arquiteto"
+    role: "especialista_arquitetura"
+    system_modular: true
+
+    especialidades_modulares:
+      - "decisoes_tecnicas"
+      - "design_sistema"
+      - "adr_management"
+      - "scalability"
+      - "integration_patterns"
+
+    context_triggers:
+      primary_contexts:
+        - "arquitetura_design"
+        - "decisoes_tecnicas"
+        - "design_sistema"
+
+      file_patterns:
+        - "architecture*.md"
+        - "design*.md"
+        - "adr-*.md"
+        - "technical-decision*.md"
+        - "system-design*.md"
+
+      keyword_triggers:
+        - "arquitetura"
+        - "design"
+        - "padrão"
+        - "decisão"
+        - "sistema"
+        - "componente"
+        - "escalabilidade"
+
+    scoring_factors:
+      architecture_decisions: 0.95
+      system_design: 0.9
+      technology_evaluation: 0.85
+      scalability_planning: 0.8
+      integration_strategy: 0.85
+
+    capacity:
+      max_concurrent_tasks: 4
+      timeout_threshold: 90000
+      performance_baseline: 0.82
+
+# Sistema de Context Bridge
+context_bridge:
+  location: "_compartilhado/"
+
+  estrutura:
+    tarefas:
+      path: "_compartilhado/tarefas/"
+      purpose: "Gerenciar execuções ativas e handoffs"
+      formato: "task_{id}.yaml + result_{id}.yaml"
+
+    configuracao:
+      path: "_compartilhado/configuracao/"
+      purpose: "Configurações globais do framework"
+      arquivos:
+        - "framework_config.yaml"
+        - "agent_capabilities.yaml"
+        - "delegation_rules.yaml"
+
+    componentes:
+      path: "_compartilhado/componentes/"
+      purpose: "Recursos compartilhados e templates"
+      arquivos:
+        - "universal-framework-config.yaml"
+        - "sistema-carregamento-dinamico.md"
+        - "arquitetura-modular.yaml"
+        - "base-agent-template.md"
+        - "base-prompt-loader.md"
+
+    cache:
+      path: "_compartilhado/cache/"
+      purpose: "Cache de prompts e decisões contextuais"
+      estrutura:
+        - "prompts/"
+        - "contexts/"
+        - "specializations/"
+
+# Sistema de Carregamento Dinâmico Integrado
+prompt_loading_system:
+  enabled: true
+  carregador: "_compartilhado/componentes/sistema-carregamento-dinamico.md"
+
+  hierarquia:
+    nivel_1: "_compartilhado/comportamentos-base.md"  # Sempre carregado
+    nivel_2: "{agent_id}/index.md"                   # Agente específico
+    nivel_3: "{agent_id}/especialidades/{spec}.md"   # Especialização contextual
+    nivel_4: "{agent_id}/contextos/{context}.md"     # Contexto específico
+    nivel_5: "{agent_id}/templates/{template}.md"    # Template de resposta
+
+  context_decision_engine:
+    algorithm: "sistema-carregamento-dinamico.md"
+    confidence_threshold: 0.3
+    fallback_specialization: "default"
+    cache_enabled: true
+    cache_ttl: 3600
+
+# Regras de Delegação Inteligente
+delegation_rules:
+  automatic_triggers:
+    "criar história": "bob-scrum-master"
+    "validar história": "sarah-product-owner"
+    "implementar": "james-developer"
+    "analisar riscos": "quinn-qa"
+    "design arquitetural": "winston-arquiteto"
+    "qualidade": "quinn-qa"
+    "refinamento": ["sarah-product-owner", "bob-scrum-master"]
+
+  context_based_delegation:
+    desenvolvimento_codigo:
+      primary_agent: "james-developer"
+      secondary_agents: ["winston-arquiteto", "quinn-qa"]
+
+    analise_requisitos:
+      primary_agent: "sarah-product-owner"
+      secondary_agents: ["bob-scrum-master", "winston-arquiteto"]
+
+    testes_qualidade:
+      primary_agent: "quinn-qa"
+      secondary_agents: ["james-developer"]
+
+    arquitetura_design:
+      primary_agent: "winston-arquiteto"
+      secondary_agents: ["james-developer", "quinn-qa"]
+
+    gestao_coordenacao:
+      primary_agent: "bob-scrum-master"
+      secondary_agents: ["sarah-product-owner"]
+
+# Configuração de Performance e Limites
+performance_config:
+  alan_director:
+    max_response_tokens: 500
+    decision_timeout_ms: 2000
+    token_analysis_timeout_ms: 500
+
+  context_bridge:
+    handoff_timeout_ms: 100
+    persistence_write_timeout_ms: 50
+    max_concurrent_handoffs: 10
+
+  prompt_loading:
+    max_loading_time_ms: 2000
+    cache_hit_ratio_target: 0.7
+    max_prompt_size_chars: 50000
+
+  global_timeouts:
+    simple_task_max_duration_ms: 10000
+    complex_task_max_duration_ms: 300000
+    agent_response_timeout_ms: 120000
+
+# Sistema de Monitoramento e Métricas
+monitoring:
+  metrics_collection:
+    enabled: true
+    location: "_compartilhado/metricas/"
+
+  tracked_metrics:
+    scoring_system:
+      - "agent_selection_accuracy"
+      - "confidence_distribution"
+      - "delegation_success_rate"
+
+    prompt_loading:
+      - "context_detection_accuracy"
+      - "specialization_match_rate"
+      - "loading_performance"
+
+    system_performance:
+      - "end_to_end_response_time"
+      - "cache_efficiency"
+      - "error_rate"
+
+    agent_performance:
+      - "task_completion_rate"
+      - "quality_score"
+      - "cross_agent_collaboration_score"
+
+# Recovery e Error Handling
+error_handling:
+  nivel_1_agente:
+    timeout_agent: 300000  # 5 minutos
+    fallback: "tentar_comando_alternativo"
+    escalacao: "retornar_para_alan"
+
+  nivel_2_bridge:
+    context_corruption: "restaurar_backup"
+    handoff_failure: "direct_execution_fallback"
+    escalacao: "modo_degradado"
+
+  nivel_3_alan:
+    scoring_failure: "usar_delegacao_default"
+    token_limit_exceeded: "truncar_resposta_inteligente"
+    total_failure: "executar_direto_sem_delegacao"
+
+# Status de Implementação
+status:
+  alan_director_scoring: ✅ implementado
+  context_bridge: ✅ estrutura_criada
+  prompt_loading_system: ✅ especificado
+  agent_integration: ✅ james_developer_exemplo
+  delegation_rules: ✅ configuradas
+  monitoring_system: ✅ planejado
+  error_handling: ✅ definido
+
+# Próximos Passos
+roadmap:
+  fase_atual:
+    - "Sistema modular baseado em KFC implementado"
+    - "Alan-diretor com scoring integrado"
+    - "Context bridge via _compartilhado/"
+    - "Carregamento dinâmico de prompts"
+
+  proxima_fase:
+    - "Integração completa dos 5 agentes"
+    - "Testes de sistema end-to-end"
+    - "Otimização de performance"
+    - "Documentação de uso"
+
+  futuro:
+    - "Machine learning para otimização de scoring"
+    - "Auto-adaptação baseada em métricas"
+    - "Expansão para novos domínios"

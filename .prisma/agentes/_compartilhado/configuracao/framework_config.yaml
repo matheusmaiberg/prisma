@@ -1,0 +1,272 @@
+# Framework Configuration - Universal Agent Framework
+# Configurações operacionais e runtime
+
+versao: 1.0.0
+ambiente: desenvolvimento
+debug: true
+
+# Configurações de Runtime
+runtime:
+  limite_tokens:
+    alan_diretor_max: 500
+    contexto_transferencia_max: 200
+    resposta_agente_recomendada: 1000
+
+  timeouts:
+    scoring_calculation: 2000      # 2 segundos
+    agent_selection: 1000          # 1 segundo
+    context_preparation: 3000      # 3 segundos
+    task_delegation: 5000          # 5 segundos
+    agent_response: 30000          # 30 segundos (variável por agente)
+
+  retry_policies:
+    max_attempts: 3
+    backoff_strategy: "exponential"
+    initial_delay: 1000
+    max_delay: 10000
+
+# Configurações de Scoring Avançadas
+scoring_avancado:
+  algoritmos_disponveis:
+    weighted_average: true
+    machine_learning: false      # Futuro
+    heuristic_rules: true
+    hybrid_approach: false       # Futuro
+
+  fatores_secundarios:
+    recent_success_rate: 0.05
+    task_complexity_match: 0.03
+    user_preference: 0.02
+
+  calibracao_automatica:
+    enabled: false               # Futuro
+    learning_rate: 0.1
+    min_samples: 100
+
+# Configurações por Modo de Execução
+modos_execucao:
+  desenvolvimento:
+    verbose_logging: true
+    performance_tracking: true
+    debug_scoring: true
+    cache_disabled: true
+
+  producao:
+    verbose_logging: false
+    performance_tracking: true
+    debug_scoring: false
+    cache_enabled: true
+
+  testing:
+    mock_agents: true
+    deterministic_scoring: true
+    fast_timeouts: true
+    detailed_metrics: true
+
+# Context Bridge Configurações Detalhadas
+context_bridge:
+  compressao_algoritmos:
+    relevance_based:
+      preserve_keywords: true
+      max_sentences: 10
+      min_sentence_length: 20
+
+    summarization:
+      enabled: false             # Requer NLP lib
+      max_compression_ratio: 0.5
+
+    structured_extraction:
+      extract_entities: true
+      extract_requirements: true
+      extract_context_tags: true
+
+  transferencia_otimizada:
+    batch_transfers: false
+    async_transfers: true
+    compression_threshold: 150
+    encryption: false            # Para desenvolvimento
+
+  cache_contexto:
+    enabled: true
+    ttl_seconds: 300
+    max_entries: 100
+    cleanup_interval: 600
+
+# Monitoramento e Métricas
+monitoring:
+  metricas_core:
+    - scoring_accuracy
+    - delegation_success_rate
+    - average_response_time
+    - agent_utilization
+    - context_compression_ratio
+
+  alertas:
+    performance_degradation:
+      threshold_response_time: 60000  # 1 minuto
+      threshold_success_rate: 0.8     # 80%
+
+    resource_utilization:
+      memory_threshold: 0.85
+      cpu_threshold: 0.9
+
+  dashboards:
+    real_time: false
+    historical: true
+    export_format: "json"
+
+# Configurações de Segurança
+security:
+  input_validation:
+    max_input_length: 5000
+    sanitize_input: true
+    block_suspicious_patterns: true
+
+  access_control:
+    enable_user_auth: false      # Para desenvolvimento
+    log_all_actions: true
+    audit_trail: true
+
+  data_protection:
+    anonymize_logs: false        # Para desenvolvimento
+    encrypt_context: false      # Para desenvolvimento
+    data_retention_days: 30
+
+# Otimizações de Performance
+optimizations:
+  scoring:
+    parallel_calculation: false  # Single thread por agora
+    memoization: true
+    early_exit: true            # Para threshold alto
+
+  memory_management:
+    garbage_collect_interval: 300000  # 5 minutos
+    max_context_history: 50
+    cleanup_old_logs: true
+
+  network:
+    connection_pooling: false    # Local execution
+    request_batching: false     # Sequential por agora
+
+# Configurações de Desenvolvimento
+development:
+  hot_reload: true
+  config_validation: true
+  schema_enforcement: true
+
+  debugging:
+    log_scoring_details: true
+    log_context_transfers: true
+    log_performance_metrics: true
+    trace_decision_path: true
+
+  testing_utilities:
+    mock_agent_responses: false
+    simulated_delays: false
+    error_injection: false
+
+# Configurações de Integração
+integracao:
+  prisma_compatibility:
+    preserve_existing_behavior: true
+    extend_only: true
+    no_breaking_changes: true
+
+  external_systems:
+    webhook_notifications: false
+    api_integrations: false
+    database_logging: false
+
+# Feature Flags
+features:
+  universal_framework: true
+  advanced_scoring: true
+  context_compression: true
+  performance_monitoring: true
+  machine_learning: false       # Futuro
+  distributed_execution: false  # Futuro
+
+# Configurações Experimentais
+experimental:
+  predictive_scoring: false
+  adaptive_thresholds: false
+  cross_agent_learning: false
+  dynamic_specialization: false
+
+# Limites e Quotas
+limits:
+  max_concurrent_tasks: 10
+  max_agent_instances: 5
+  max_context_size_bytes: 50000
+  max_log_file_size_mb: 100
+
+# Paths e Diretórios
+paths:
+  logs_directory: "_compartilhado/logs"
+  cache_directory: "_compartilhado/cache"
+  config_directory: "_compartilhado/configuracao"
+  tasks_directory: "_compartilhado/tarefas"
+  backup_directory: "_compartilhado/backup"
+
+# Configurações por Agente
+agent_specific:
+  sarah-product-owner:
+    specialty_boost: 1.1
+    quality_weight: 0.9
+    preferred_task_types: ["requisitos", "negocio"]
+
+  james-developer:
+    specialty_boost: 1.2
+    code_quality_focus: true
+    preferred_task_types: ["implementacao", "codigo"]
+
+  bob-scrum-master:
+    coordination_bonus: 1.1
+    workflow_optimization: true
+    preferred_task_types: ["planning", "coordenacao"]
+
+  quinn-qa:
+    quality_strictness: 1.3
+    risk_sensitivity: 1.2
+    preferred_task_types: ["qualidade", "testes"]
+
+  winston-arquiteto:
+    architecture_depth: 1.4
+    decision_weight: 1.2
+    preferred_task_types: ["arquitetura", "design"]
+
+# Configuração de Logs Estruturados
+logging_config:
+  format: "json"
+  timestamp_format: "ISO8601"
+  include_metadata: true
+
+  levels:
+    development: "DEBUG"
+    testing: "INFO"
+    production: "WARN"
+
+  rotation:
+    enabled: true
+    max_size_mb: 10
+    max_files: 5
+
+# Status e Metadados
+metadata:
+  config_version: "1.0.0"
+  compatible_prisma_version: "3.0.0"
+  created_date: "2025-01-23"
+  last_updated: "2025-01-23"
+  environment: "development"
+
+  validation:
+    schema_valid: true
+    dependencies_met: true
+    backward_compatible: true
+
+# Próximas Configurações (Roadmap)
+future_config:
+  ai_model_integration: false
+  distributed_agents: false
+  real_time_learning: false
+  advanced_analytics: false

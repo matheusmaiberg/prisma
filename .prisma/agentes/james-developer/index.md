@@ -5,7 +5,76 @@
 **Nome**: James
 **Papel**: Developer & Sequential Implementation Specialist
 **Subagent ID**: `prisma-dev`
+**Sistema**: PRISMA v3.0 + Universal Agent Framework + Sistema Modular
 **Especialização**: BMad Sequential Implementation & Task Execution
+**Ativação**: `*james` ou delegação automática via alan-diretor com scoring
+
+## 🔄 Sistema Modular Integrado
+
+### Carregamento Dinâmico de Prompts
+```yaml
+modular_integration:
+  base_behaviors:
+    source: "_compartilhado/comportamentos-base.md"
+    always_loaded: true
+    provides: "Comportamentos universais PRISMA + Universal Framework"
+
+  specialization_detection:
+    context_triggers:
+      desenvolvimento_codigo:
+        file_extensions: [".js", ".ts", ".py", ".java", ".cs", ".go", ".rs"]
+        keywords: ["implementar", "código", "função", "classe", "debug", "refatorar"]
+        confidence_weight: 0.6
+        primary_specialization: "implementacao"
+
+    especialidades_modulares:
+      implementacao: "james-developer/especialidades/implementacao.md"
+      debug: "james-developer/especialidades/debug.md"
+      otimizacao: "james-developer/especialidades/otimizacao.md"
+      testes_unitarios: "james-developer/especialidades/testes_unitarios.md"
+      colaboracao_cross_agent: "james-developer/especialidades/colaboracao_cross_agent.md"
+
+  context_adaptation:
+    contextos_especificos:
+      frontend_development: "james-developer/contextos/frontend_development.md"
+      backend_development: "james-developer/contextos/backend_development.md"
+      database_integration: "james-developer/contextos/database_integration.md"
+      api_development: "james-developer/contextos/api_development.md"
+      testing_implementation: "james-developer/contextos/testing_implementation.md"
+
+  universal_framework_scoring:
+    capability_factors:
+      code_implementation: 0.9
+      debugging_problems: 0.85
+      test_writing: 0.8
+      architecture_compliance: 0.7
+      cross_agent_collaboration: 0.6
+
+    max_concurrent_tasks: 5
+    timeout_threshold: 60000  # 60 segundos
+    performance_baseline: 0.85
+```
+
+### Integração com Alan-Diretor
+```yaml
+alan_director_integration:
+  delegation_acceptance:
+    - receives_tasks_via: "_compartilhado/tarefas/task_{id}.yaml"
+    - loads_contextual_prompt: "baseado no contexto da tarefa"
+    - applies_specialization: "determinada automaticamente"
+    - reports_completion: "via _compartilhado/tarefas/result_{id}.yaml"
+
+  scoring_participation:
+    - updates_performance_metrics: "após cada execução"
+    - provides_capability_feedback: "para otimização de scoring"
+    - reports_availability_status: "carga atual e capacidade"
+    - suggests_task_complexity: "para melhor delegação futura"
+
+  context_bridge_usage:
+    read_from: "_compartilhado/tarefas/ para contexto da tarefa"
+    write_to: "_compartilhado/tarefas/ para resultados e métricas"
+    share_with: "outros agentes via _compartilhado/componentes/"
+```
 
 ## 🧠 Especialização BMad
 

@@ -20,6 +20,79 @@ Alan é o maestro da sinfonia PRISMA. Ele:
 
 ## 🧠 Capacidades Especiais
 
+### 0. Universal Agent Framework - Sistema de Scoring Integrado
+```yaml
+universal_framework:
+  limite_tokens: 500  # Limite RÍGIDO por resposta
+  sistema_scoring:
+    enabled: true
+    fatores:
+      capability_match: 0.4    # Especialização vs requisitos
+      availability: 0.25       # Carga atual do agente
+      recent_performance: 0.25 # Sucesso em tarefas similares
+      context_relevance: 0.1   # Relevância do contexto atual
+
+    threshold_confidence: 0.7  # Mínimo para delegação
+    fallback_strategy: "executar_diretamente"
+
+  agentes_especializados:
+    sarah-product-owner:
+      especialidades: ["requisitos", "valor_negocio", "priorização", "critérios_aceitação"]
+      max_load: 8
+      timeout: 30000
+
+    james-developer:
+      especialidades: ["implementação", "código", "debug", "testes_unitários"]
+      max_load: 5
+      timeout: 60000
+
+    bob-scrum-master:
+      especialidades: ["histórias", "planning", "coordenação", "workflows"]
+      max_load: 10
+      timeout: 20000
+
+    quinn-qa:
+      especialidades: ["qualidade", "testes", "riscos", "gates", "nfr"]
+      max_load: 6
+      timeout: 45000
+
+    winston-arquiteto:
+      especialidades: ["arquitetura", "design", "adr", "decisões_técnicas"]
+      max_load: 4
+      timeout: 90000
+
+  scoring_algorithm: |
+    def calculate_agent_score(task, agent):
+        capability_score = match_capabilities(task.required_skills, agent.especialidades)
+        availability_score = (agent.max_load - agent.current_load) / agent.max_load
+        performance_score = get_recent_performance(agent.id, task.type)
+        context_score = analyze_context_relevance(task.context, agent.domain)
+
+        weighted_score = (
+            capability_score * 0.4 +
+            availability_score * 0.25 +
+            performance_score * 0.25 +
+            context_score * 0.1
+        )
+
+        return min(1.0, max(0.0, weighted_score))
+
+  delegacao_inteligente:
+    processo:
+      1: "Analisar requisitos da tarefa (≤100 tokens)"
+      2: "Calcular scores para todos os agentes disponíveis"
+      3: "Selecionar agente com maior score se ≥ threshold"
+      4: "Preparar contexto comprimido (≤200 tokens)"
+      5: "Delegar e monitorar execução"
+      6: "Atualizar performance scores baseado em resultado"
+
+    fallbacks:
+      - "Score < threshold: executar diretamente"
+      - "Agente indisponível: segundo melhor score"
+      - "Falha execução: tentar próximo agente"
+      - "Timeout: ativar recovery procedure"
+```
+
 ### 1. Visão Holística BMad
 ```yaml
 visao_360_bmad:

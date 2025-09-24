@@ -1,9 +1,15 @@
-# Comandos do Diretor PRISMA
+# Comandos do Diretor PRISMA - Universal Agent Framework Integrado
 # Mapeamento completo de comandos e suas ações
 
-versao: 1.0.0
-tipo: comandos-diretor
+versao: 2.0.0
+tipo: comandos-diretor-universal
 agente: diretor
+
+# Universal Agent Framework - Integração
+universal_framework:
+  limite_tokens_resposta: 500
+  scoring_enabled: true
+  auto_delegation: true
 
 # Comandos Principais
 comandos:
@@ -64,17 +70,39 @@ comandos:
         - priorizar_tarefas
         - apresentar_recomendacoes
 
-  # Delegação e Execução
+  # Delegação Universal Framework
   delegacao:
     fazer:
       aliases: [do, executar, execute, realizar]
       parametros: [descricao_tarefa]
-      descricao: "Analisa tarefa e delega automaticamente"
+      descricao: "Analisa tarefa e delega automaticamente com scoring"
       acoes:
         - analisar_complexidade
-        - identificar_agentes_necessarios
-        - criar_pipeline_execucao
-        - monitorar_progresso
+        - calcular_scoring_agentes  # NOVO: Universal Framework
+        - selecionar_agente_otimo   # NOVO: Baseado em score
+        - preparar_contexto_comprimido  # NOVO: ≤200 tokens
+        - delegar_com_monitoring
+        - atualizar_performance_scores  # NOVO: Aprendizado
+
+    auto-score:  # NOVO COMANDO
+      aliases: [score, avaliar-agentes, rank]
+      parametros: [descricao_tarefa]
+      descricao: "Mostra scoring de agentes para uma tarefa"
+      acoes:
+        - analisar_requisitos_tarefa
+        - calcular_scores_todos_agentes
+        - mostrar_ranking_agentes
+        - explicar_criterios_selecao
+
+    universal:   # NOVO COMANDO
+      aliases: [framework, uf, sistema]
+      parametros_opcionais: [acao]
+      descricao: "Controla Universal Agent Framework"
+      acoes:
+        - mostrar_status_framework
+        - configurar_parametros
+        - resetar_performance_scores
+        - mostrar_estatisticas_delegacao
 
     agente:
       aliases: [agent, chamar, call]
@@ -180,20 +208,41 @@ comandos:
         - implementar_otimizacoes
         - medir_impacto
 
-# Fluxos de Decisão
+# Fluxos de Decisão Universal Framework
 fluxos_decisao:
-  escolher_agente:
-    entrada: tipo_tarefa
-    regras:
-      - se: "contém 'requisito' ou 'prd'"
-        entao: agente_pm
-      - se: "contém 'implementar' ou 'código'"
-        entao: agente_dev
-      - se: "contém 'testar' ou 'qualidade'"
-        entao: agente_qa
-      - se: "contém 'arquitetura' ou 'design'"
-        entao: agente_arquiteto
-      - senao: perguntar_usuario
+  escolher_agente_universal:
+    entrada: [tipo_tarefa, contexto, estado_agentes]
+    algoritmo_scoring:
+      1: "Extrair required_skills da tarefa"
+      2: "Para cada agente: calcular capability_match"
+      3: "Para cada agente: calcular availability_score"
+      4: "Para cada agente: obter recent_performance"
+      5: "Para cada agente: calcular context_relevance"
+      6: "Aplicar weighted average com pesos configurados"
+      7: "Ordenar agentes por score descrescente"
+      8: "Se melhor_score >= threshold: selecionar"
+      9: "Senão: executar_diretamente"
+
+    mapeamento_especialidades:
+      sarah-product-owner: ["requisitos", "valor_negocio", "priorização", "critérios_aceitação", "backlog", "stakeholders"]
+      james-developer: ["implementação", "código", "debug", "testes_unitários", "refactoring", "deployment"]
+      bob-scrum-master: ["histórias", "planning", "coordenação", "workflows", "sprints", "retrospectivas"]
+      quinn-qa: ["qualidade", "testes", "riscos", "gates", "nfr", "automação", "cobertura"]
+      winston-arquiteto: ["arquitetura", "design", "adr", "decisões_técnicas", "padrões", "escalabilidade"]
+
+    fallback_tradicional:
+      regras:
+        - se: "contém 'requisito' ou 'prd' ou 'negócio'"
+          entao: sarah-product-owner
+        - se: "contém 'implementar' ou 'código' ou 'desenvolver'"
+          entao: james-developer
+        - se: "contém 'história' ou 'épico' ou 'planning'"
+          entao: bob-scrum-master
+        - se: "contém 'testar' ou 'qualidade' ou 'risco'"
+          entao: quinn-qa
+        - se: "contém 'arquitetura' ou 'design' ou 'adr'"
+          entao: winston-arquiteto
+        - senao: executar_diretamente
 
   priorizar_tarefa:
     entrada: lista_tarefas

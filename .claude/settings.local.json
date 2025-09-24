@@ -19,7 +19,10 @@
       "Bash(do cp \"$file\" \"C:/Users/Windows Home/Documents/GitHub/prisma/.prisma/biblioteca/conhecimento/\")",
       "Bash(xcopy:*)",
       "Bash(git add:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(rm:*)",
+      "Bash(echo $RANDOM)",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []

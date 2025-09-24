@@ -1,0 +1,313 @@
+# Arquitetura Modular de Agentes PRISMA
+# Padronização baseada no sistema KFC/PRISMA para coesão e decisão contextual
+
+versao: 1.0.0
+tipo: arquitetura_modular
+sistema: prisma
+
+# Filosofia da Arquitetura Modular
+filosofia:
+  principios:
+    - "Carregamento dinâmico de prompts por contexto"
+    - "Especialização automática baseada em entrada"
+    - "Modularidade sem duplicação de código"
+    - "Decisão de consumo de arquivo por contexto"
+    - "Preservação de conhecimento entre sessões"
+
+  vantagens_sistema_kfc:
+    - "Escala industrialmente (1-128 agentes)"
+    - "Quality gates automáticos integrados"
+    - "Zero perda de contexto entre sessões"
+    - "Adaptação automática ao projeto"
+    - "Documentação como código vivo"
+
+# Estrutura Padrão Modular de Agentes
+estrutura_padrao:
+  agente_template:
+    - "index.md"              # Prompt principal + especialização
+    - "system-config.yaml"    # Configuração específica do agente
+    - "context-mapping.yaml"  # Mapeamento de contextos → arquivos
+    - "prompt-loader.md"      # Carregador dinâmico de sub-prompts
+    - "especialidades/"       # Diretório de sub-especializações
+    - "contextos/"           # Contextos específicos pré-processados
+    - "templates/"           # Templates de resposta por contexto
+
+  shared_components:
+    - "_compartilhado/componentes/base-agent-template.md"
+    - "_compartilhado/componentes/context-decision-engine.yaml"
+    - "_compartilhado/componentes/prompt-inheritance.yaml"
+    - "_compartilhado/comportamentos-base.md"
+
+# Sistema de Decisão Contextual de Arquivos
+decisao_contextual:
+  trigger_patterns:
+    codigo:
+      files: ["*.js", "*.ts", "*.py", "*.java", "*.cs"]
+      agente_primario: james-developer
+      sub_especialidade: implementacao
+      prompt_context: "desenvolvimento_codigo"
+
+    requirements:
+      files: ["requirements.md", "*.stories", "*.requirements"]
+      agente_primario: sarah-product-owner
+      sub_especialidade: requisitos_negocio
+      prompt_context: "analise_requisitos"
+
+    arquitetura:
+      files: ["*.adr", "architecture.md", "design.md"]
+      agente_primario: winston-arquiteto
+      sub_especialidade: decisoes_tecnicas
+      prompt_context: "arquitetura_sistema"
+
+    testes:
+      files: ["*.test.*", "*.spec.*", "*test*", "*spec*"]
+      agente_primario: quinn-qa
+      sub_especialidade: qualidade_testes
+      prompt_context: "validacao_qualidade"
+
+    documentacao:
+      files: ["README.md", "docs/**/*", "*.documentation"]
+      agente_primario: bob-scrum-master
+      sub_especialidade: coordenacao_docs
+      prompt_context: "gestao_conhecimento"
+
+  algoritmo_decisao: |
+    def decidir_agente_por_contexto(input_files, task_description):
+        # 1. Analisar arquivos de entrada
+        file_patterns = extract_file_patterns(input_files)
+
+        # 2. Calcular scores por especialização
+        scores = {}
+        for agente, config in agentes.items():
+            score = calculate_context_match(
+                file_patterns,
+                config.especialidades,
+                task_description
+            )
+            scores[agente] = score
+
+        # 3. Aplicar Universal Framework scoring
+        final_scores = apply_universal_scoring(scores, task_description)
+
+        # 4. Selecionar agente + sub-especialização
+        best_agent = max(final_scores, key=final_scores.get)
+        sub_especialidade = determine_sub_specialization(
+            best_agent, file_patterns, task_description
+        )
+
+        return {
+            'agente': best_agent,
+            'sub_especialidade': sub_especialidade,
+            'prompt_context': get_prompt_context(best_agent, sub_especialidade),
+            'confidence': final_scores[best_agent]
+        }
+
+# Mapeamento de Especializações por Agente
+especializacoes_modulares:
+  alan-diretor:
+    role: "orquestrador_central"
+    primary_contexts:
+      - sistema_scoring
+      - delegacao_inteligente
+      - coordenacao_workflows
+    sub_especializacoes:
+      scoring_system: "universal_framework/scoring/"
+      delegation: "universal_framework/delegation/"
+      orchestration: "workflows/orchestration/"
+
+  sarah-product-owner:
+    role: "especialista_negocio"
+    primary_contexts:
+      - analise_requisitos
+      - valor_negocio
+      - priorizacao
+    sub_especializacoes:
+      requirements: "negocio/requirements/"
+      prioritization: "negocio/prioritization/"
+      stakeholder_mgmt: "negocio/stakeholders/"
+      backlog_mgmt: "negocio/backlog/"
+
+  james-developer:
+    role: "especialista_implementacao"
+    primary_contexts:
+      - desenvolvimento_codigo
+      - debug_problemas
+      - integracao_sistemas
+    sub_especializacoes:
+      frontend: "dev/frontend/"
+      backend: "dev/backend/"
+      database: "dev/database/"
+      apis: "dev/apis/"
+      testing_unit: "dev/testing/"
+
+  bob-scrum-master:
+    role: "coordenador_processos"
+    primary_contexts:
+      - gestao_historias
+      - coordenacao_equipe
+      - planning_sprints
+    sub_especializacoes:
+      story_creation: "scrum/stories/"
+      sprint_planning: "scrum/planning/"
+      process_improvement: "scrum/process/"
+      team_coordination: "scrum/coordination/"
+
+  quinn-qa:
+    role: "especialista_qualidade"
+    primary_contexts:
+      - validacao_qualidade
+      - analise_riscos
+      - testes_automatizados
+    sub_especializacoes:
+      risk_analysis: "qa/risk/"
+      test_strategy: "qa/strategy/"
+      quality_gates: "qa/gates/"
+      nfr_validation: "qa/nfr/"
+      test_automation: "qa/automation/"
+
+  winston-arquiteto:
+    role: "especialista_arquitetura"
+    primary_contexts:
+      - design_sistema
+      - decisoes_tecnicas
+      - arquitetura_evolutiva
+    sub_especializacoes:
+      system_design: "arch/system/"
+      technology_selection: "arch/technology/"
+      adr_management: "arch/adr/"
+      scalability: "arch/scalability/"
+      integration: "arch/integration/"
+
+# Sistema de Carregamento Dinâmico de Prompts
+prompt_loading:
+  carregador_base: "_compartilhado/componentes/base-prompt-loader.md"
+
+  algorithm: |
+    def carregar_prompt_contextual(agente, sub_especialidade, context):
+        # 1. Carregar base agent template
+        base_prompt = load_file(f"{agente}/index.md")
+
+        # 2. Carregar especialização específica
+        specialization_prompt = load_file(
+            f"{agente}/especialidades/{sub_especialidade}.md"
+        )
+
+        # 3. Carregar contexto específico
+        context_prompt = load_file(
+            f"{agente}/contextos/{context}.md"
+        )
+
+        # 4. Aplicar herança de comportamentos
+        shared_behaviors = load_file("_compartilhado/comportamentos-base.md")
+
+        # 5. Combinar prompts de forma hierárquica
+        final_prompt = combine_prompts([
+            shared_behaviors,      # Base comum
+            base_prompt,          # Agente específico
+            specialization_prompt, # Especialização
+            context_prompt        # Contexto específico
+        ])
+
+        return final_prompt
+
+  hierarquia_carregamento:
+    1: "_compartilhado/comportamentos-base.md"
+    2: "{agente}/index.md"
+    3: "{agente}/especialidades/{sub_especialidade}.md"
+    4: "{agente}/contextos/{context}.md"
+    5: "{agente}/templates/{response_template}.md"
+
+# Arquitetura de Herança e Composição
+heranca_modular:
+  base_behaviors:
+    location: "_compartilhado/comportamentos-base.md"
+    inherited_by: "todos_agentes"
+    contents:
+      - comportamento_base_prisma
+      - padrao_resposta_estruturada
+      - integracao_universal_framework
+      - preservacao_contexto
+
+  agent_templates:
+    location: "_compartilhado/componentes/base-agent-template.md"
+    provides:
+      - estrutura_padrao_prompt
+      - secoes_obrigatorias
+      - formato_especializacoes
+      - integracao_context_bridge
+
+  composicao_dinamica:
+    - "Base + Agente + Especialização + Contexto = Prompt Final"
+    - "Cada camada adiciona especificidade sem duplicação"
+    - "Modificações em base propagam para todos agentes"
+    - "Contextos específicos override comportamentos base quando necessário"
+
+# Sistema de Quality Gates Modular
+quality_gates_modulares:
+  per_agent:
+    sarah-product-owner:
+      gates: ["business_value_validation", "requirements_completeness"]
+    james-developer:
+      gates: ["code_quality", "test_coverage", "security_check"]
+    quinn-qa:
+      gates: ["risk_assessment", "quality_metrics", "nfr_validation"]
+
+  per_context:
+    desenvolvimento_codigo:
+      mandatory_gates: ["code_review", "unit_tests", "integration_tests"]
+    analise_requisitos:
+      mandatory_gates: ["stakeholder_approval", "criteria_validation"]
+    arquitetura_sistema:
+      mandatory_gates: ["adr_documentation", "impact_analysis"]
+
+# Métricas e Monitoramento Modular
+metricas_modulares:
+  per_agent:
+    - specialization_accuracy
+    - context_match_rate
+    - quality_gate_pass_rate
+    - response_time_per_context
+
+  per_context:
+    - context_identification_accuracy
+    - file_pattern_matching_success
+    - prompt_loading_performance
+
+  system_wide:
+    - modular_architecture_health
+    - prompt_reuse_efficiency
+    - specialization_distribution
+
+# Roadmap de Evolução Modular
+evolutionary_path:
+  fase_1_atual:
+    - "Padronização estrutural básica"
+    - "Sistema de decisão contextual"
+    - "Carregamento dinâmico de prompts"
+
+  fase_2_proxima:
+    - "Machine learning de padrões contextuais"
+    - "Auto-otimização de especializações"
+    - "Prompt generation baseado em padrões"
+
+  fase_3_futura:
+    - "Evolução automática de especializações"
+    - "Context-aware prompt optimization"
+    - "Cross-agent learning system"
+
+# Status de Implementação
+status:
+  arquitetura_definida: true
+  templates_base_criados: false
+  sistema_carregamento: false
+  integracao_universal_framework: true
+  testes_modularidade: false
+
+# Próximos Passos Implementação
+next_steps:
+  1: "Criar base-agent-template.md"
+  2: "Implementar base-prompt-loader.md"
+  3: "Criar comportamentos-base.md"
+  4: "Refatorar agentes existentes para estrutura modular"
+  5: "Implementar sistema de decisão contextual"
+  6: "Testes de integração modular"
