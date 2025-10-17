@@ -1,31 +1,55 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:www.youtube.com)",
-      "WebSearch",
-      "Read(//c/Users/**)",
+      "Bash",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Task",
+      "Bash(npm run build:*)",
+      "Bash(docker-compose:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(test:*)",
+      "Bash(npx tsx:*)",
       "Bash(find:*)",
-      "Bash(mkdir:*)",
-      "Bash(gh repo create:*)",
-      "Bash(git push:*)",
-      "Bash(claude mcp add:*)",
-      "Bash(mv:*)",
-      "Bash(for dir in bob-scrum-master sarah-product-owner james-developer quinn-test-architect winston-architect)",
-      "Bash(do echo \"=== $dir ===\")",
-      "Bash(ls:*)",
-      "Bash(done)",
-      "Bash(for:*)",
-      "Bash(do sed -i \"s/sally-ux-expert/cecilia-ux-expert/g; s/Sally/Cecília/g\" \"$file\")",
-      "Bash(do cp \"$file\" \"C:/Users/Windows Home/Documents/GitHub/prisma/.prisma/biblioteca/conhecimento/\")",
-      "Bash(xcopy:*)",
-      "Bash(git add:*)",
-      "Bash(cat:*)",
-      "Bash(rm:*)",
-      "Bash(echo $RANDOM)",
-      "Bash(python:*)",
-      "Bash(grep:*)"
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "SlashCommand(/prisma:implementacao-paralela ultrathink)",
+      "SlashCommand(/prisma:implementacao-paralela:*)",
+      "SlashCommand(/prisma:implementacao:revisar)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "defaultMode": "bypassPermissions"
+  },
+  "enableAllProjectMcpServers": false,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/hooks/invoke-documentador.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"✅ Arquivo salvo: $CLAUDE_FILE_PATHS\" >&2"
+          }
+        ]
+      }
+    ]
   }
 }

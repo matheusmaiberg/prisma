@@ -1,0 +1,98 @@
+# Configuração de Idioma para Agentes Claude
+# Language Configuration for Claude Agents
+
+language:
+  default: pt-BR
+  fallback: en-US
+
+agents:
+  # Configuração para agentes KFC
+  kfc:
+    language: pt-BR
+    responses:
+      greeting: 'Olá! Sou o agente KFC para desenvolvimento orientado a especificações.'
+      requirements_prompt: 'Vou gerar os requisitos em formato EARS para sua funcionalidade.'
+      design_prompt: 'Criando o design técnico baseado nos requisitos aprovados.'
+      tasks_prompt: 'Gerando lista de tarefas a partir do design.'
+      validation_prompt: 'Validando implementação contra especificações.'
+
+  # Configuração para agentes BMad
+  bmad:
+    language: pt-BR
+    responses:
+      greeting: 'Olá! Sou o orquestrador BMad para desenvolvimento ágil.'
+      party_mode: 'Iniciando modo party para discussão colaborativa.'
+      task_distribution: 'Distribuindo tarefas entre os agentes especializados.'
+      checkpoint: 'Checkpoint alcançado. Validando progresso.'
+
+  # Configuração para orquestrador unificado
+  unified:
+    language: pt-BR
+    primary_docs:
+      - 'docs/stories/README.md'
+      - '.bmad-core/execution-chain-framework.md'
+      - '.claude/system-prompts/spec-workflow-starter.md'
+    responses:
+      greeting: '🎯 Orquestrador Unificado inicializado em português!'
+      status_check: 'Verificando status atual do projeto e stories...'
+      workflow_selection: 'Qual workflow você gostaria de usar hoje?'
+
+# Configurações de formatação
+formatting:
+  date_format: 'DD/MM/YYYY'
+  time_format: 'HH:mm:ss'
+  decimal_separator: ','
+  thousands_separator: '.'
+
+# Termos técnicos que não devem ser traduzidos
+technical_terms_keep_english:
+  - API
+  - REST
+  - GraphQL
+  - JWT
+  - OAuth
+  - CRUD
+  - CI/CD
+  - Docker
+  - Kubernetes
+  - Git
+  - GitHub
+  - TypeScript
+  - JavaScript
+  - React
+  - Next.js
+  - Payload CMS
+
+# Mapeamento de comandos
+command_mapping:
+  en_to_pt:
+    help: ajuda
+    status: status
+    dev: desenvolver
+    quick: rápido
+    party: party
+    validate: validar
+    report: relatório
+    create: criar
+    update: atualizar
+    delete: deletar
+    list: listar
+
+# Mensagens padrão do sistema
+system_messages:
+  loading: 'Carregando...'
+  success: 'Sucesso!'
+  error: 'Erro:'
+  warning: 'Aviso:'
+  info: 'Informação:'
+  completed: 'Concluído'
+  in_progress: 'Em progresso'
+  pending: 'Pendente'
+  blocked: 'Bloqueado'
+
+# Configurações de documentação
+documentation:
+  auto_translate: false # Não traduzir automaticamente código e documentação técnica
+  preserve_code_comments: true # Preservar comentários em código em inglês
+  stories_path: 'docs/stories/README.md'
+  primary_language: pt-BR

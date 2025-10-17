@@ -1,0 +1,7 @@
+{
+  "tool_name": "Write",
+  "tool_input": {
+    "file_path": "docs/api/payment-api.md",
+    "content": "# Payment API\n\n## Overview\n\nThis API handles payment processing.\n\n###Missing Space Header\n\n```typescript\nconst payment = processPayment(data);\n```\n\n## Endpoints\n\n[Empty Link]()\n[](https://example.com)"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "tool_name": "Write",
+  "tool_input": {
+    "file_path": "docs/api/payment-api.md",
+    "content": "# Payment API\n\n## Overview\n\nThis API handles payment processing for the application.\n\n## Authentication\n\nAll endpoints require Bearer token authentication.\n\n```typescript\nconst response = await fetch('/api/payment', {\n  headers: {\n    'Authorization': `Bearer ${token}`\n  }\n});\n```\n\n## Endpoints\n\n### POST /api/payment\n\nCreates a new payment.\n\n**Request Body:**\n\n```json\n{\n  \"amount\": 1000,\n  \"currency\": \"USD\"\n}\n```\n\n**Response:**\n\n```json\n{\n  \"id\": \"pay_123\",\n  \"status\": \"success\"\n}\n```\n\n## Error Handling\n\nSee [Error Codes](./error-codes.md) for details."
+  }
+}
