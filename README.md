@@ -9,575 +9,641 @@
                \   ╱                                         ╲   /
                 \ ╱                                           ╲ /
                  ╱                                             ╲
-                ╱           🎬 🔴 🟠 🟡 🟢 🔵 🟣               ╲
+                ╱           🎯 📋 🏗️ ⚡ 🧪 📚 ✅               ╲
                ╱                                                 ╲
-              ╱      Sistema de Subagents Especializados         ╲
-             ╱            com Continuous Activation                ╲
+              ╱      Sistema Modular de Agentes Especializados    ╲
+             ╱            para Desenvolvimento de Software           ╲
             ╱___________________________________________________________╲
 ```
 
 # 🔷 PRISMA
-### **Sistema de Subagents Especializados para Claude Code CLI**
+### **Sistema Modular de Agentes Especializados para Claude Code**
 
-> *"Cinco especialistas sempre ativos, uma orquestração perfeita"*
+> *"Como um prisma decompõe luz em espectro completo, PRISMA decompõe desenvolvimento complexo em agentes especializados coordenados"*
 
-[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg?style=for-the-badge)](https://github.com/your-repo/prisma)
+[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg?style=for-the-badge)](https://github.com/your-repo/prisma)
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Subagents](https://img.shields.io/badge/subagents-5%20active-brightgreen.svg?style=for-the-badge)](docs/architecture.md)
-[![Quality Gates](https://img.shields.io/badge/quality%20gates-integrated-purple.svg?style=for-the-badge)](docs/qa/README.md)
+[![Agents](https://img.shields.io/badge/agents-15%20especializados-brightgreen.svg?style=for-the-badge)](.prisma/agentes/)
+[![Quality Gates](https://img.shields.io/badge/quality%20gates-incrementais-purple.svg?style=for-the-badge)](.prisma/agentes/decisor.md)
 
 ---
 
-*Como um prisma decompõe luz em espectro completo, PRISMA decompõe desenvolvimento complexo em 5 subagents especializados sempre ativos, coordenados por Alan (Diretor) com quality gates integrados.*
+*PRISMA é um framework de desenvolvimento orientado por especificações que utiliza agentes especializados para garantir qualidade incremental desde requisitos até documentação final.*
 
 </div>
 
 ---
 
-## 🎯 **ULTRATHINK**: O Que É PRISMA?
+## 🎯 O Que É PRISMA?
 
-**PRISMA não é uma ferramenta - é um ecosistema vivo.**
+**PRISMA** é um sistema modular que transforma desenvolvimento de software em um processo estruturado, rastreável e de alta qualidade através de **15 agentes especializados** coordenados pelo orquestrador **prisma**.
 
-Imagine ter uma equipe de 5 especialistas elite trabalhando 24/7 no seu projeto, cada um com expertise específica, mas coordenados por um diretor genial que nunca perde o contexto. Agora imagine que essa equipe:
-
-- 🧠 **Nunca esquece** - continuous activation preserva contexto entre sessões
-- 🔄 **Handoffs perfeitos** - transições automáticas entre especialistas sem perda
-- 📋 **Documentação viva** - cada decisão vira código da arquitetura
-- ⚡ **Quality gates** - qualidade não é checagem, é construção integrada
-- 🎭 **Adaptação total** - cada projeto é único, PRISMA se molda
-
-### 🧪 **A Revolução: Continuous Activation**
+### 🧪 Filosofia: Qualidade Desde o Início
 
 ```yaml
-tradicional:
-  ativacao: "pontual, por demanda"
-  contexto: "perdido entre chamadas"
-  coordenacao: "manual e sujeita a erro"
-  qualidade: "separada do desenvolvimento"
+abordagem_tradicional:
+  especificacao: "informal ou inexistente"
+  qualidade: "checagem no final"
+  rastreabilidade: "manual e incompleta"
+  decisoes: "ad-hoc e não documentadas"
 
-prisma:
-  ativacao: "continuous, sempre ativos"
-  contexto: "preservado automaticamente"
-  coordenacao: "alan orquestra inteligentemente"
-  qualidade: "quinn integra gates nativamente"
+abordagem_prisma:
+  especificacao: "formal, incremental e versionada"
+  qualidade: "gates incrementais integrados"
+  rastreabilidade: "automática requirements → code → tests"
+  decisoes: "determinísticas e documentadas"
 ```
 
 ---
 
-## 🎭 **Os 5 Subagents Especializados**
+## 🎭 Os 15 Agentes Especializados
 
-### 🎬 **Alan - O Diretor** (`*diretor`)
-> *"O maestro que nunca sai de cena"*
+### 🎯 **Agente Prisma** - Orquestrador Central
+> *"Coordena workflow completo do conceito à documentação"*
 
-- **Orquestra** todos os subagents com delegação inteligente
-- **Analisa** contexto e direciona tarefas automaticamente
-- **Coordena** workflows sem intervenção manual
-- **Mantém** visão holística 360° do projeto
+O agente **prisma** é o maestro que orquestra todo o ciclo de vida:
 
-```bash
-*iniciar                    # Ativa PRISMA e dashboard
-*fazer [tarefa]             # Delega automaticamente
-*progresso                  # Status completo do sistema
-```
-
-### 📋 **Bob - O Scrum Master** (`*bob`)
-> *"Histórias que se implementam sozinhas"*
-
-- **PRP Engine**: Product Requirements Prompts executáveis
-- **Story Creation**: Épicos → histórias → tasks sequenciais
-- **Context Discovery**: Detecta framework, padrões, convenções automaticamente
-- **Executable Stories**: Histórias que James implementa diretamente
+1. **Inicializa workflow** para nova feature
+2. **Delega** para agentes especializados conforme fase
+3. **Gerencia quality gates** incrementais
+4. **Coordena** transições entre fases
+5. **Garante** aprovações explícitas antes de avançar
 
 ```bash
-*criar-historia [épico]     # PRP Engine full cycle
-*quebrar-epic [épico]       # Decomposição inteligente
-*validar-historia [id]      # Validação estrutural
-```
-
-### ✅ **Sarah - A Product Owner** (`*sarah`)
-> *"Valor de negócio em cada linha"*
-
-- **Business Validation**: Cada feature alinhada com objetivos
-- **Requirements Refinement**: Critérios de aceitação claros
-- **Value Prioritization**: Backlog baseado em impacto real
-- **Stakeholder Alignment**: Comunicação efetiva automática
-
-```bash
-*validar-historia [id]      # Validação de valor
-*refinar-requisitos [id]    # Refinamento de critérios
-*priorizar-backlog          # Priorização inteligente
-```
-
-### 💻 **James - O Developer** (`*james`)
-> *"Uma tarefa por vez, perfeição sempre"*
-
-- **Sequential Implementation**: Foco total, uma task por vez
-- **Quality Pre-integration**: Código limpo desde o início
-- **Context Awareness**: Entende padrões e convenções do projeto
-- **Executable Handoffs**: Implementa diretamente as histórias do Bob
-
-```bash
-*implementar-historia [id]  # Implementação sequencial
-*executar-tarefa [task]     # Execução focada
-*debug-problema [issue]     # Resolução inteligente
-```
-
-### 🧪 **Quinn - O Test Architect** (`*quinn`)
-> *"Quality gates que realmente funcionam"*
-
-- **Risk-based Testing**: Foco em probabilidade × impacto
-- **Deterministic Gates**: PASS/CONCERNS/FAIL/WAIVED com critérios claros
-- **Requirements Traceability**: Mapping automático requirements → tests
-- **NFR Validation**: Non-functional requirements sistematicamente validados
-
-```bash
-*risk [história]            # Análise probabilidade × impacto
-*design [história]          # Estratégia de testes
-*trace [história]           # Rastreabilidade completa
-*nfr [história]             # Validação NFRs
-*review [história]          # Review completo
-*gate [história]            # Decisão determinística
-```
-
-### 🏗️ **Winston - O Architect** (`*winston`)
-> *"Decisões técnicas que perduram"*
-
-- **System Design**: Arquiteturas pragmáticas e escaláveis
-- **ADRs**: Architecture Decision Records documentados
-- **Technology Assessment**: Avaliações técnicas fundamentadas
-- **Pragmatic Approach**: Soluções práticas, não ivory tower
-
-```bash
-*analisar-sistema [comp]    # Análise arquitetural
-*criar-adr [decisão]        # Architecture Decision Record
-*avaliar-tecnologia [tech]  # Assessment fundamentado
+# Invocar orquestrador
+/nova-especificacao
+# ou
+"criar especificação para {feature}"
 ```
 
 ---
 
-## 🚀 **Início Ultrarrápido**
+### 📋 **Fase 1: Requirements**
 
-### ⚡ **30 Segundos para Estar Rodando**
+#### 📝 **Analista** - Especialista em Requisitos
+- Cria `requirements.md` usando formato EARS
+- Define user stories e acceptance criteria
+- Identifica requirements funcionais e não-funcionais
+- Garante testabilidade e clareza
 
-```bash
-# 1. Ative o Alan (Diretor)
-*iniciar
-
-# 2. Deixe o PRISMA analisar seu projeto
-# (Alan detecta automaticamente: linguagens, frameworks, padrões)
-
-# 3. Comece a trabalhar
-*fazer "implementar sistema de autenticação"
-# Alan analisa → delega para Bob → Sarah valida → James implementa → Quinn gate
-```
-
-**Output esperado:**
-```
-🎬 ALAN DIRETOR PRISMA ATIVADO
-
-📊 Análise automática do projeto:
-✅ Framework: Next.js 14
-✅ Auth: NextAuth.js detectado
-✅ DB: PostgreSQL via Prisma
-✅ UI: Tailwind + Shadcn/UI
-
-🎯 Delegação inteligente:
-   Bob → Draft história com contexto detectado
-   Sarah → Validação de valor automática
-   James → Implementação sequencial
-   Quinn → Quality gates integrados
-
-Como posso ajudar?
+```yaml
+output: .prisma/projeto/especificacoes/{feature}/requirements.md
+formato: EARS (Easy Approach to Requirements Syntax)
+aprovacao: Explícita do usuário obrigatória
 ```
 
 ---
 
-## 🔄 **Core Development Cycle**
+### 🏗️ **Fase 2: Design**
+
+#### 🏛️ **Designer** - Especialista em Design Técnico
+- Cria `design.md` com arquitetura da solução
+- Define componentes e responsabilidades
+- Gera diagramas Mermaid (arquitetura, fluxo de dados)
+- Documenta decisões de design
+
+#### 🏗️ **Arquiteto** - Especialista em Arquitetura
+- Documenta arquitetura técnica detalhada
+- Cria ADRs (Architecture Decision Records)
+- Valida escalabilidade e manutenibilidade
+- Define patterns e convenções
+
+```yaml
+outputs:
+  - design.md: Arquitetura da solução
+  - ADRs: Decisões arquiteturais documentadas
+diagramas: Mermaid (system, data flow, components)
+aprovacao: Explícita após validação
+```
+
+---
+
+### 📅 **Fase 3: Tasks**
+
+#### 📋 **Planejador** - Especialista em Decomposição
+- Cria `tasks.md` com breakdown detalhado
+- Define dependências entre tarefas
+- Gera diagrama de dependências (Mermaid)
+- Estima complexidade e tempo
+
+```yaml
+output: tasks.md
+estrutura:
+  - Hierarquia de tarefas
+  - Dependências explícitas
+  - Critérios de aceitação por task
+  - Diagrama de dependências
+```
+
+---
+
+### ⚡ **Fase 4: Implementation**
+
+#### 💻 **Implementador** - Especialista em Código
+- Implementa código funcional seguindo tasks
+- Executa **sequencialmente** (1 task por vez)
+- Segue padrões e convenções do projeto
+- Marca tasks como completas em `tasks.md`
+
+```yaml
+modo: SEQUENTIAL (default)
+processo:
+  1. Ler requirements + design + tasks
+  2. Implementar task específica
+  3. Marcar como completa
+  4. Avançar próxima task
+```
+
+---
+
+### 🧪 **Fase 5: Validation**
+
+#### 🧪 **Testador** - Especialista em Testes
+- Cria estratégia de testes baseada em risco
+- Implementa testes unitários e integração
+- Garante coverage ≥ 80%
+- Valida todos acceptance criteria
+
+#### 🧪 **Testador-Specs** - Validação 1:1
+- Valida correspondência requirements ↔ testes
+- Garante rastreabilidade completa
+- Documenta test coverage por requirement
+- Cria relatórios de validação
+
+#### 🔍 **Revisor** - Code Review Profissional
+- Analisa qualidade do código
+- Identifica code smells e anti-patterns
+- Valida best practices
+- Pontua qualidade (score 0-10)
+
+#### ✅ **Conformista** - Validação de Padrões
+- Valida compliance com coding standards
+- Verifica convenções de nomenclatura
+- Checa estrutura de diretórios
+- Garante consistency (≥ 90%)
+
+```yaml
+quality_gates:
+  - Test Coverage: ≥ 80%
+  - Code Quality Score: ≥ 8/10
+  - Security Issues: 0 (critical/high)
+  - Standards Compliance: ≥ 90%
+```
+
+---
+
+### 🎯 **Fase 6: Decision**
+
+#### ⚖️ **Decisor** - Quality Gate Orchestrator
+- Toma decisões baseado em quality scores
+- Retorna: **ADVANCE** | **REVISE** | **ROLLBACK**
+- Documenta justificativas
+- Coordena correções se necessário
+
+```yaml
+decisoes:
+  ADVANCE: Todos gates passaram - avançar
+  REVISE: Ajustes menores necessários
+  ROLLBACK: Problemas críticos - voltar fase anterior
+```
+
+---
+
+### 📚 **Fase 7: Documentation**
+
+#### 📚 **Documentador** - Documentação Profissional
+- Cria documentação estruturada pós-aprovação
+- Gera user guides e API reference
+- Documenta troubleshooting
+- Publica docs/ com cross-references
+
+```yaml
+output: docs/{feature-name}/
+conteudo:
+  - User guides
+  - API reference
+  - Troubleshooting
+  - ADRs (se aplicável)
+```
+
+---
+
+### 🔧 **Agentes Auxiliares**
+
+#### 🎯 **Elicitador** - Análise de Alinhamento
+- Identifica gaps entre requisitos e arquitetura
+- Detecta necessidade de elicitação profunda
+- Gera prompts para brainstorming
+- Valida alinhamento arquitetural
+
+#### 💡 **Idealizador** - Facilitador de Brainstorming
+- Facilita exploração estruturada de ideias
+- Gera alternativas para features complexas
+- Documenta opções e trade-offs
+- Auxilia em decisões de design
+
+#### 🎖️ **Juiz** - Avaliação de Candidatos
+- Avalia múltiplas versões de documentos
+- Seleciona melhor solução (ou combina)
+- Pontua baseado em critérios objetivos
+- Documenta justificativa da escolha
+
+#### 🔍 **Auditor** - Auditoria Profunda
+- Identifica micro-melhorias em specs
+- Detecta macro-mudanças necessárias
+- Gera relatórios detalhados de auditoria
+- Propõe otimizações
+
+#### ⚠️ **Avaliador de Riscos** - Análise de Riscos
+- Analisa riscos técnicos e arquiteturais
+- Avalia riscos de negócio
+- Calcula probabilidade × impacto
+- Propõe estratégias de mitigação
+
+#### 🔧 **Configurador** - Setup de Projetos
+- Inicializa estrutura PRISMA
+- Configura padrões de qualidade
+- Define workflows customizados
+- Setup de ferramentas e convenções
+
+#### 📏 **Regulador** - Enforcement de Padrões
+- Valida compliance com design patterns
+- Enforça coding standards
+- Checa architectural patterns
+- Garante consistency sistêmica
+
+#### 🔄 **Meta** - Otimização de Specs
+- Analisa e otimiza especificações
+- Melhora clareza e completude
+- Refina requisitos e design
+- Itera até qualidade ideal
+
+---
+
+## 🚀 Início Rápido
+
+### ⚡ 3 Passos para Começar
+
+```bash
+# 1. Criar nova especificação
+/nova-especificacao
+
+# 2. Descrever feature quando solicitado
+"Implementar sistema de autenticação com OAuth2"
+
+# 3. Aprovar cada fase conforme prisma orquestra
+# requirements → design → tasks → implementation → validation → docs
+```
+
+### 📊 Workflow Completo
 
 ```mermaid
-graph TD
-    A["*iniciar"] --> B["Alan: Análise contexto"]
-    B --> C{Tipo de Tarefa?}
+graph TB
+    A[Usuário solicita feature] --> B[Prisma: Criar estrutura]
+    B --> C[Analista: requirements.md]
+    C --> D{Aprovado?}
+    D -->|Sim| E[Designer: design.md]
+    D -->|Não| C
 
-    C -->|"criar história"| D["Bob: Draft + PRP Engine"]
-    C -->|"validar valor"| E["Sarah: Business validation"]
-    C -->|"implementar"| F["James: Sequential dev"]
-    C -->|"análise qualidade"| G["Quinn: Quality gates"]
-    C -->|"decisão técnica"| H["Winston: ADR + Design"]
+    E --> F{Aprovado?}
+    F -->|Sim| G[Planejador: tasks.md]
+    F -->|Não| E
 
-    D --> I{Necessita validação PO?}
-    I -->|Sim| E
-    I -->|Não| J{Risco Alto?}
+    G --> H{Aprovado?}
+    H -->|Sim| I[Implementador: código]
+    H -->|Não| G
 
-    E --> K{Aprovado Sarah?}
-    K -->|Sim| J
-    K -->|Não| D
+    I --> J[Testador: testes]
+    J --> K[Revisor: code review]
+    K --> L[Conformista: compliance]
 
-    J -->|Sim| G
-    J -->|Não| F
+    L --> M[Decisor: quality gate]
+    M --> N{Decisão?}
 
-    F --> L["Quinn: *review automático"]
-    L --> M["Quinn: *gate decision"]
+    N -->|ADVANCE| O[Documentador: docs]
+    N -->|REVISE| I
+    N -->|ROLLBACK| P{Qual fase?}
 
-    M --> N{Gate Status?}
-    N -->|PASS| O["Próxima história"]
-    N -->|CONCERNS/FAIL| P["James: Correções"]
-    P --> L
+    P -->|Requirements| C
+    P -->|Design| E
+    P -->|Tasks| G
 
-    G --> Q["Quinn: *risk + *design"]
-    Q --> F
-
-    H --> R["Design aprovado"]
-    R --> F
-
-    O --> S["Alan: Coordenar próximo ciclo"]
-    S --> C
+    O --> Q[Feature Completa ✅]
 
     style A fill:#ff6b6b
-    style B fill:#4ecdc4
-    style O fill:#a8e6cf
+    style Q fill:#a8e6cf
+    style M fill:#ffd93d
 ```
 
 ---
 
-## 🧠 **Sistema de Quality Gates (Quinn)**
+## 📁 Estrutura de Diretórios
 
-### **4 Decisões Determinísticas**
+```
+.prisma/
+├── agentes/                      # 15 agentes especializados
+│   ├── prisma.md                 # Orquestrador central
+│   ├── analista.md               # Requirements
+│   ├── designer.md               # Design técnico
+│   ├── arquiteto.md              # Arquitetura
+│   ├── planejador.md             # Tasks
+│   ├── implementador.md          # Código
+│   ├── testador.md               # Testes
+│   ├── testador-specs.md         # Validação 1:1
+│   ├── revisor.md                # Code review
+│   ├── conformista.md            # Compliance
+│   ├── decisor.md                # Quality gates
+│   ├── documentador.md           # Documentação
+│   ├── elicitador.md             # Elicitação
+│   ├── idealizador.md            # Brainstorming
+│   ├── juiz.md                   # Avaliação
+│   ├── auditor.md                # Auditoria
+│   ├── avaliador-riscos.md       # Análise riscos
+│   ├── configurador.md           # Setup
+│   ├── regulador.md              # Enforcement
+│   └── meta.md                   # Otimização
+│
+├── comandos/                     # Slash commands
+│   ├── especificacao/
+│   │   ├── nova.md               # /nova-especificacao
+│   │   ├── atualizar.md          # /atualizar-especificacao
+│   │   ├── validar.md            # /validar-especificacao
+│   │   └── auditar.md            # /auditar-especificacao
+│   ├── implementacao/
+│   │   ├── paralela.md           # /implementacao-paralela
+│   │   └── revisar.md            # /revisar-implementacao
+│   └── testes/
+│       └── executar.md           # /executar-testes
+│
+├── templates/                    # Templates de documentos
+│   ├── requisitos.md             # Template EARS
+│   ├── design.md                 # Template design
+│   └── tarefas.md                # Template tasks
+│
+├── configuracoes/                # Configurações
+│   ├── prisma.yaml               # Config workflow
+│   └── language-config.yaml      # Config linguagem
+│
+├── projeto/                      # Especificações do projeto
+│   └── especificacoes/
+│       └── {feature-name}/
+│           ├── requirements.md
+│           ├── design.md
+│           ├── tasks.md
+│           ├── artifacts/
+│           ├── decisions/
+│           └── reports/
+│
+└── relatorios/                   # Relatórios gerados
+    ├── auditoria/
+    ├── execucao/
+    ├── revisao-codigo/
+    └── seguranca/
+```
+
+---
+
+## 🎯 Comandos Disponíveis
+
+### Especificações
+
+```bash
+/nova-especificacao              # Iniciar workflow completo
+/atualizar-especificacao         # Atualizar spec existente
+/validar-especificacao           # Validar spec atual
+/auditar-especificacao           # Auditoria profunda
+/listar-especificacoes           # Listar specs do projeto
+/status-especificacao            # Status de spec específica
+```
+
+### Implementação
+
+```bash
+/implementacao-paralela          # Executar tasks em paralelo
+/revisar-implementacao           # Code review completo
+/executar-tarefa                 # Executar task específica
+```
+
+### Qualidade
+
+```bash
+/executar-testes                 # Executar suite de testes
+/analisar-riscos                 # Análise de riscos
+/decidir                         # Executar quality gate
+```
+
+### Organização
+
+```bash
+/organizar-documentacao          # Organizar docs/
+/organizar-relatorios            # Organizar relatórios
+```
+
+---
+
+## 🎓 Conceitos-Chave
+
+### Quality Gates Incrementais
+
+PRISMA aplica validação de qualidade **em cada fase**, não apenas no final:
 
 ```yaml
-PASS:
-  - todos_testes_passando: true
-  - cobertura_minima: ">= 80%"
-  - sem_riscos_altos: true
-  - nfrs_atendidos: true
-  - rastreabilidade_completa: true
+Gate 1: Requirements Review
+  - requirements.md aprovado
+  - Formato EARS validado
+  - Testabilidade confirmada
 
-CONCERNS:
-  - riscos_medios: "6 <= risco < 9"
-  - cobertura_baixa: "60% <= cobertura < 80%"
-  - debt_tecnico: "acumulado mas controlado"
+Gate 2: Design Review
+  - design.md aprovado
+  - Arquitetura validada
+  - Componentes bem definidos
 
-FAIL:
-  - riscos_criticos: "risco >= 9"
-  - testes_falhando: "> 10%"
-  - nfrs_criticos_nao_atendidos: true
+Gate 3: Tasks Review
+  - tasks.md aprovado
+  - Breakdown validado
+  - Dependências corretas
 
-WAIVED:
-  - justificativa_documentada: true
-  - aprovacao_stakeholder: true
-  - plano_mitigacao: defined
+Gate 4: Implementation Review
+  - Código implementado
+  - Tasks marcadas completas
+  - Padrões seguidos
+
+Gate 5: Validation Complete
+  - Testes passando (≥ 80% coverage)
+  - Code review ≥ 8/10
+  - Compliance ≥ 90%
+  - Security issues = 0
+
+Gate 6: Documentation Complete
+  - Docs criados e publicados
+  - Cross-references corretos
 ```
 
-### **Risk Analysis Matrix**
+### Rastreabilidade Automática
 
 ```
-Probabilidade × Impacto = Score de Risco
-
-     │  1   │  2   │  3   │
-─────┼──────┼──────┼──────┤
-  3  │  3   │  6   │  9   │ ← FAIL
-─────┼──────┼──────┼──────┤
-  2  │  2   │  4   │  6   │ ← CONCERNS
-─────┼──────┼──────┼──────┤
-  1  │  1   │  2   │  3   │ ← PASS
-─────┼──────┼──────┼──────┤
-     │ Baixo│ Médio│ Alto │
-        Impacto
+Requirements → Design → Tasks → Code → Tests → Docs
+     ↓            ↓        ↓       ↓       ↓       ↓
+   EARS      Arquitetura  Breakdown  Impl  Coverage  API
 ```
 
----
+### Aprovações Explícitas
 
-## 🏗️ **Fabric Pattern & Zero Duplication**
-
-### **Shared Components Architecture**
+O workflow **não avança** automaticamente. Cada fase requer aprovação explícita:
 
 ```
-.prisma/agentes/
-├── alan-diretor/               # Orquestrador
-├── bob-scrum-master/           # Story creation + PRP Engine
-├── sarah-product-owner/        # Business validation
-├── james-developer/            # Sequential implementation
-├── quinn-test-architect/       # Quality gates
-├── winston-architect/          # Technical decisions
-└── _compartilhado/             # ZERO DUPLICATION
-    ├── componentes/
-    │   └── hierarquia.md       # Estrutura organizacional
-    ├── configuracao/
-    │   ├── prisma-config.yaml  # Config central
-    │   ├── agent-registry.yaml # Registry completo
-    │   └── fabric-registry.yaml# Fabric management
-    └── comportamentos-base.md  # Inherited behaviors
-```
-
-**Single Source of Truth garantido:**
-- ✅ Cada informação existe em 1 lugar apenas
-- ✅ Mudanças propagam automaticamente
-- ✅ Inconsistências impossíveis por design
-- ✅ Manutenção centralizada
-
----
-
-## 📊 **Comandos Principais**
-
-### **🎬 Alan (Diretor) - Orquestração**
-```bash
-*iniciar                    # Ativa PRISMA + dashboard
-*fazer [tarefa]             # Delega automaticamente
-*agente [tipo] [comando]    # Delegação específica
-*progresso                  # Status todas as tarefas
-*metricas                   # Dashboard de métricas
-*workflow [tipo]            # Executa workflow coordenado
-```
-
-### **📋 Bob (Scrum Master) - Stories**
-```bash
-*criar-historia [épico]     # PRP Engine completo
-*quebrar-epic [épico]       # Decomposição inteligente
-*validar-historia [id]      # Validação estrutural
-*preparar-sprint            # Planning sprint
-```
-
-### **✅ Sarah (Product Owner) - Business**
-```bash
-*validar-historia [id]      # Validação valor negócio
-*refinar-requisitos [id]    # Refinement critérios
-*priorizar-backlog          # Priorização baseada valor
-```
-
-### **💻 James (Developer) - Implementation**
-```bash
-*implementar-historia [id]  # Implementação sequencial
-*executar-tarefa [task]     # Execução tarefa específica
-*debug-problema [issue]     # Resolução inteligente
-```
-
-### **🧪 Quinn (Test Architect) - Quality Gates**
-```bash
-*risk [história]            # Análise probabilidade × impacto
-*design [história]          # Estratégia testes
-*trace [história]           # Rastreabilidade requirements → tests
-*nfr [história]             # Validação Non-Functional Requirements
-*review [história]          # Review qualidade completo
-*gate [história]            # Decisão PASS/CONCERNS/FAIL/WAIVED
-```
-
-### **🏗️ Winston (Architect) - Technical Decisions**
-```bash
-*analisar-sistema [comp]    # Análise arquitetural completa
-*criar-adr [decisão]        # Architecture Decision Record
-*avaliar-tecnologia [tech]  # Assessment técnico fundamentado
+Prisma: "Requisitos prontos. Aprovar? (sim/não)"
+User: "sim"
+Prisma: [Avança para design]
 ```
 
 ---
 
-## 🎯 **Documentação como Código**
+## 🔧 Configuração
 
-### **Stories Executáveis (Bob + PRP Engine)**
-```markdown
-# PRP-HISTÓRIA: AUTH.001 - Sistema de Login
-
-## Contexto Descoberto (Auto-detection)
-- Framework: Next.js 14
-- Auth: NextAuth.js detectado
-- DB: PostgreSQL via Prisma
-- UI: Tailwind + Shadcn/UI
-
-## Persona & Valor
-**Como** usuário da aplicação,
-**Eu quero** fazer login de forma segura,
-**Para que** possa acessar funcionalidades protegidas
-
-## Prompt de Execução (Para James)
-"Como James, implemente sistema de login usando NextAuth.js
-com PostgreSQL, seguindo padrões Tailwind + Shadcn/UI do projeto,
-garantindo autenticação segura e UX fluida."
-```
-
-### **Quality Gates Documentation (Quinn)**
-```yaml
-# docs/qa/assessments/AUTH.001-risk-20250123.md
-risk_assessment:
-  historia: "AUTH.001 - Sistema de Login"
-  riscos_identificados:
-    - autenticacao_insegura:
-        probabilidade: 2
-        impacto: 3
-        score: 6  # CONCERNS
-    - session_management:
-        probabilidade: 1
-        impacto: 2
-        score: 2  # PASS
-
-gate_decision: "CONCERNS"
-justificativa: "Risco médio em auth requer atenção especial"
-acoes_mitigacao:
-  - implementar_2fa
-  - audit_logs_detalhados
-  - rate_limiting_robusto
-```
-
-### **Architecture Decision Records (Winston)**
-```markdown
-# ADR-001: Escolha do NextAuth.js
-
-## Status
-ACCEPTED
-
-## Contexto
-Sistema precisa de autenticação robusta com múltiplos providers
-
-## Decisão
-Usar NextAuth.js v4 com database sessions
-
-## Consequências
-✅ Integração nativa com Next.js
-✅ Múltiplos providers suportados
-✅ Security best practices built-in
-⚠️ Dependência externa adicional
-⚠️ Learning curve para configurações avançadas
-```
-
----
-
-## 🚀 **Vantagens Revolucionárias**
-
-### **🔄 Continuous Activation vs Traditional**
-
-| Aspecto | PRISMA Continuous | Tradicional |
-|---------|------------------|-------------|
-| **Ativação** | Sempre ativos | Por demanda |
-| **Contexto** | Preservado sempre | Perdido entre calls |
-| **Especialização** | 5 experts dedicados | 1 agente genérico |
-| **Qualidade** | Gates integrados | QA separado |
-| **Coordenação** | Alan automático | Manual/error-prone |
-| **Memória** | Documentação persistente | Session-based |
-| **Handoffs** | Automáticos fluidos | Manuais com perda |
-| **Aprendizado** | Acumulativo | Reset a cada sessão |
-
-### **⚡ Métricas de Performance**
+### Arquivo .prisma/configuracoes/prisma.yaml
 
 ```yaml
-targets_operacionais:
-  alan_director:
-    - delegacao_automatica: "> 90%"
-    - tempo_analise: "< 30s"
-    - acuracia_delegacao: "> 95%"
-    - handoffs_sucesso: "> 98%"
+workflow:
+  auto_advance: false           # Não avançar sem aprovação
+  parallel_default: 1           # Número padrão de agentes
+  quality_gates_enabled: true   # Gates habilitados
 
-  quality_gates_quinn:
-    - decisoes_deterministicas: "100%"
-    - tempo_gate_decision: "< 5min"
-    - pass_primeira_vez: "> 80%"
-    - cobertura_risk_analysis: "100%"
+agents:
+  analista:
+    enabled: true
+    max_parallel: 128
+  designer:
+    enabled: true
+    max_parallel: 128
+  implementador:
+    mode: SEQUENTIAL            # SEQUENTIAL | PARALLEL | AUTO
 
-  desenvolvimento_james:
-    - implementacao_sequencial: "100%"
-    - primeira_execucao_sucesso: "> 85%"
-    - tempo_medio_task: "< 2h"
-    - quality_pre_handoff: "> 90%"
-
-targets_negocio:
-  velocidade:
-    - lead_time_epic_delivery: "< 2 semanas"
-    - cycle_time_story: "< 3 dias"
-    - stories_por_sprint: "tracked + trending"
-
-  qualidade:
-    - bugs_producao: "< 1 por story"
-    - debt_tecnico: "< 10% tempo"
-    - satisfacao_stakeholders: "> 4.5/5"
+quality:
+  test_coverage_min: 80
+  code_quality_min: 8
+  security_issues_max: 0
+  compliance_min: 90
 ```
 
 ---
 
-## 🔮 **Roadmap & Evolution**
+## 📊 Métricas de Qualidade
 
-### **✅ Fase Atual: Sistema Completo Implementado**
-- ✅ 5 Subagents especializados com continuous activation
-- ✅ Alan como diretor orquestrador inteligente
-- ✅ Sistema completo de quality gates determinísticos
-- ✅ PRP Engine para histórias executáveis
-- ✅ Fabric pattern com `_compartilhado/` zero duplication
-- ✅ Documentação como código estruturada
-- ✅ Comandos `*comando` padronizados
+PRISMA rastreia métricas em tempo real:
 
-### **🚀 Próximas Evoluções**
+```yaml
+especificacoes:
+  - completude: % requirements implementados
+  - rastreabilidade: % requirements → testes
+  - aprovacoes: % specs aprovadas primeira vez
 
-#### **Inteligência Adaptativa**
-- [ ] Machine learning de padrões de delegação
-- [ ] Predição de riscos baseada em histórico
-- [ ] Auto-otimização de workflows
-- [ ] Sugestões proativas contextuais
+implementacao:
+  - coverage: % código coberto por testes
+  - quality_score: 0-10 (code review)
+  - compliance: % aderência a padrões
+  - security: # issues críticos
 
-#### **Expansion Ecosystem**
-- [ ] Subagents especializados por indústria
-- [ ] Marketplace de especializações
-- [ ] Templates workflows por domínio
-- [ ] Integração CI/CD nativa
-
-#### **Advanced Quality**
-- [ ] Quality gates customizáveis por projeto
-- [ ] AI-powered risk assessment
-- [ ] Automated NFR validation
-- [ ] Performance gates integrados
+workflow:
+  - cycle_time: tempo médio por fase
+  - rework_rate: % specs que voltam
+  - gate_pass_rate: % gates passados primeira vez
+```
 
 ---
 
-## 🤝 **Contribuindo**
+## 🚀 Casos de Uso
+
+### 1. Nova Feature Simples
+
+```bash
+User: /nova-especificacao
+Prisma: Descreva a feature
+User: Adicionar botão de logout no header
+Prisma: [Workflow automático com 1 agente por fase]
+```
+
+### 2. Feature Complexa (Múltiplas Perspectivas)
+
+```bash
+User: /nova-especificacao
+Prisma: Descreva a feature
+User: Sistema completo de pagamentos com múltiplos gateways
+Prisma: Quantos agentes analistas? (recomendado: 3-5 para complexo)
+User: 5
+Prisma: [Invoca 5 analistas em paralelo]
+Prisma: [Juiz seleciona melhor versão]
+Prisma: [Continua workflow com design, tasks, etc.]
+```
+
+### 3. Implementação Paralela
+
+```bash
+User: /implementacao-paralela
+Prisma: Quais tasks executar em paralelo?
+User: tasks 2.1, 2.2, 2.3 (são independentes)
+Prisma: [Invoca 3 implementadores]
+Prisma: [Aguarda todos completarem]
+Prisma: [Prossegue para validation]
+```
+
+---
+
+## 🤝 Contribuindo
 
 PRISMA é **open source** e **community-driven**:
 
-1. **Fork** o projeto
+1. **Fork** o repositório
 2. **Clone**: `git clone https://github.com/your-repo/prisma`
-3. **Branch**: `git checkout -b feature/amazing-feature`
-4. **Develop**: Siga os patterns PRISMA
-5. **Test**: Todos os quality gates devem passar
-6. **Commit**: `git commit -m 'feat: add amazing feature'`
-7. **Push**: `git push origin feature/amazing-feature`
-8. **PR**: Abra um Pull Request
+3. **Branch**: `git checkout -b feature/nova-feature`
+4. **Desenvolva** seguindo workflow PRISMA
+5. **Quality Gates**: Garanta que todos passem
+6. **Commit**: `git commit -m 'feat: adicionar nova feature'`
+7. **Push**: `git push origin feature/nova-feature`
+8. **Pull Request**: Abra PR com descrição detalhada
 
-### **📋 Contribution Guidelines**
-- Código e documentação em português
-- Quality gates obrigatórios (Quinn validação)
-- Testes unitários + integração
-- Continuous activation compatibility
-- Fabric pattern compliance
+### Guidelines
 
----
-
-## 📜 **Licença**
-
-Distribuído sob **MIT License**. Veja `LICENSE` para detalhes completos.
+- ✅ Português (pt-BR) para código e documentação
+- ✅ Seguir workflow PRISMA completo
+- ✅ Quality gates obrigatórios
+- ✅ Testes unitários + integração
+- ✅ Documentação atualizada
 
 ---
 
-## 🙏 **Agradecimentos & Inspiration**
+## 📜 Licença
 
-- **Claude Code CLI**: Infraestrutura que torna tudo possível
-- **Comunidade Brasil**: Feedback e inspiration constantes
-- **Agile/Scrum Community**: Metodologias que funcionam
-- **DevOps Culture**: Integration e automation mindset
-- **Open Source Movement**: Standing on shoulders of giants
+Distribuído sob **MIT License**. Veja [LICENSE](LICENSE) para detalhes.
+
+---
+
+## 🙏 Agradecimentos
+
+- **Anthropic Claude**: IA que torna tudo possível
+- **Claude Code**: Infraestrutura para agentes especializados
+- **Comunidade Open Source**: Inspiração constante
+- **Metodologias Ágeis**: Fundamentos de qualidade iterativa
 
 ---
 
 <div align="center">
 
-## 🎬 **Ready to Transform Your Development?**
+## 🎯 Pronto para Desenvolvimento de Qualidade?
 
-**PRISMA**: Onde 5 especialistas elite trabalham 24/7 no seu projeto com quality gates integrados e zero perda de contexto.
+**PRISMA**: Onde 15 agentes especializados garantem qualidade desde requisitos até documentação.
 
-### **Start Your Journey**
+### Comece Agora
 
 ```bash
-*iniciar
-# Welcome to the future of development
+/nova-especificacao
+# Bem-vindo ao futuro do desenvolvimento estruturado
 ```
 
 ---
 
-**🔷 PRISMA v3.0.0** | **🏗️ Architecture** | **📚 Docs** | **💬 Community** | **🚀 Roadmap**
+**🔷 PRISMA v4.0.0** | [📚 Docs](.prisma/) | [🤝 Contribuir](#-contribuindo) | [📜 Licença](#-licença)
 
-*"Cinco especialistas, uma orquestração perfeita, qualidade integrada."*
+*"Como um prisma decompõe luz em espectro completo, PRISMA decompõe desenvolvimento complexo em agentes especializados coordenados"*
 
 </div>
