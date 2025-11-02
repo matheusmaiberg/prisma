@@ -41,7 +41,7 @@ especificacoes_subfolders:
 claude:
   raiz: '.claude'
   agents: '.claude/agents'
-  commands: '.claude/commands'
+  commands: '.claude/commands/prisma'
   system_prompts: '.claude/system-prompts'
   templates: '.claude/templates'
   settings: '.claude/settings'

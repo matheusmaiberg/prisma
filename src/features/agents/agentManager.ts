@@ -133,12 +133,12 @@ export class AgentManager {
             return;
         }
 
-        // Fixed Claude default path (always in English)
-        const sourceDir = path.join(this.extensionPath, 'dist/resources/comandos');
-        const targetDir = path.join(this.workspaceRoot, '.claude/commands');
+        // Copy from dist/resources/comandos/prisma/ to .claude/commands/prisma/
+        const sourceDir = path.join(this.extensionPath, 'dist/resources/comandos/prisma');
+        const targetDir = path.join(this.workspaceRoot, '.claude/commands/prisma');
 
         try {
-            // Copy entire comandos directory recursively
+            // Copy entire prisma commands directory recursively
             await vscode.workspace.fs.copy(vscode.Uri.file(sourceDir), vscode.Uri.file(targetDir), { overwrite: true });
             this.outputChannel.appendLine('[AgentManager] Updated commands');
         } catch (error) {
