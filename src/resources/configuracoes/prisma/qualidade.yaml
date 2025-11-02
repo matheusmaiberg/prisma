@@ -1,0 +1,148 @@
+metadata:
+  versao: '1.0.0'
+  atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+revisao:
+  habilitado: true
+  agente: 'revisor'
+  aprovacao: true
+  metricas:
+    minima: 7.0
+    maxima: 10.0
+    seguranca:
+      criticos: 0
+      altos: 0
+  categorias:
+    - nome: 'Arquitetura'
+      peso: 20
+    - nome: 'Qualidade do Código'
+      peso: 25
+    - nome: 'Segurança'
+      peso: 25
+    - nome: 'Testabilidade'
+      peso: 15
+    - nome: 'Manutenibilidade'
+      peso: 15
+
+conformidade:
+  habilitado: true
+  agente: 'conformista'
+  aprovacao: true
+  percentual:
+    minimo: 95
+    bloqueio: 70
+    aviso: 85
+  validacoes:
+    - tipo: 'naming-conventions'
+      descricao: 'Verificar convenções de nomenclatura'
+      bloqueante: true
+    - tipo: 'file-structure'
+      descricao: 'Validar estrutura de arquivos e pastas'
+      bloqueante: true
+    - tipo: 'documentation'
+      descricao: 'Validar presença de documentação'
+      bloqueante: false
+    - tipo: 'specs-alignment'
+      descricao: 'Validar alinhamento com especificações'
+      bloqueante: true
+
+testes:
+  habilitado: true
+  agente: 'testador-specs'
+  cobertura:
+    requerida: true
+    linha: 80
+    branch: 75
+    funcao: 80
+    statement: 80
+  tipos:
+    - nome: 'unit'
+      habilitado: true
+      obrigatorio: true
+    - nome: 'integration'
+      habilitado: true
+      obrigatorio: true
+    - nome: 'e2e'
+      habilitado: true
+      obrigatorio: false
+  trophy:
+    habilitado: true
+    distribuicao:
+      unit: 70
+      integration: 20
+      e2e: 10
+
+gates:
+  requisitos:
+    - nome: 'EARS Format'
+      descricao: 'Requisitos seguem formato EARS'
+      bloqueante: true
+    - nome: 'User Stories'
+      descricao: 'Todas user stories têm acceptance criteria'
+      bloqueante: true
+  design:
+    - nome: 'Architecture Decision'
+      descricao: 'Decisões arquiteturais documentadas'
+      bloqueante: false
+    - nome: 'Diagramas'
+      descricao: 'Pelo menos um diagrama Mermaid presente'
+      bloqueante: false
+    - nome: 'Tech Stack Alignment'
+      descricao: 'Design alinhado com stack tecnológica'
+      bloqueante: true
+  tarefas:
+    - nome: 'Task Breakdown'
+      descricao: 'Todas tarefas são atômicas e executáveis'
+      bloqueante: true
+    - nome: 'Requirements Coverage'
+      descricao: 'Todas requirements têm tasks correspondentes'
+      bloqueante: true
+    - nome: 'Dependencies'
+      descricao: 'Dependências entre tasks identificadas'
+      bloqueante: false
+  implementacao:
+    - nome: 'Code Quality'
+      descricao: 'Score >= 7/10 na revisão de código'
+      bloqueante: true
+    - nome: 'Security Issues'
+      descricao: 'Zero problemas críticos/altos de segurança'
+      bloqueante: true
+    - nome: 'Test Coverage'
+      descricao: 'Cobertura >= 80%'
+      bloqueante: true
+    - nome: 'Standards Compliance'
+      descricao: 'Conformidade >= 95%'
+      bloqueante: true
+
+riscos:
+  habilitado: true
+  agente: 'avaliador-riscos'
+  categorias:
+    - nome: 'Técnico'
+      peso: 30
+    - nome: 'Arquitetural'
+      peso: 25
+    - nome: 'Segurança'
+      peso: 25
+    - nome: 'Negócio'
+      peso: 20
+  niveis:
+    baixo:
+      threshold: 3
+      acao: 'documentar'
+    medio:
+      threshold: 6
+      acao: 'mitigar'
+    alto:
+      threshold: 8
+      acao: 'bloquear_ou_redesenhar'
+    critico:
+      threshold: 10
+      acao: 'bloquear_imediatamente'
+
+auditoria:
+  habilitado: true
+  agente: 'auditor'
+  escopo: [codigo, especificacoes, testes, documentacao]
+  frequencia: 'por_demanda'

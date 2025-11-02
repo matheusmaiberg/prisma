@@ -1,0 +1,8 @@
+metadata:
+  versao: '1.0.0'
+  atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+features:
+  i18n:
+    habilitado: true

@@ -1,0 +1,36 @@
+metadata:
+  versao: '1.1.0'
+  atualizacao: '2025-11-02'
+  formato: 'YAML 1.2'
+  encoding: 'UTF-8'
+
+sistema:
+  nome: 'Prisma'
+  completo: 'Sistema Prisma de Especificações'
+  versao: '1.1.0'
+  descricao: 'Sistema de desenvolvimento orientado a especificações com agentes especializados'
+  responsavel: 'matheusmaiberg'
+  status: 'Ativo'
+
+breaking: false
+
+changelog:
+  v1.1.0:
+    data: '2025-11-02'
+    tipo: 'major'
+    descricao: 'Modularização completa de configurações'
+    mudancas:
+      - 'Criados arquivos específicos por domínio'
+      - 'Configurações gerais organizadas em configuracoes/prisma/'
+      - 'Removidas referências a sistemas legados (bmad, kfc)'
+      - 'Padronização de paths para .prisma/projeto/especificacoes'
+      - 'Estrutura de especificações com subpastas padrão (artifacts, decisions, reports)'
+  v1.0.0:
+    data: '2024-10-15'
+    tipo: 'initial'
+    descricao: 'Versão inicial do sistema Prisma'
+
+compatibilidade:
+  claude: '3.5'
+  vscode: '1.85.0'
+  node: '18.0.0'

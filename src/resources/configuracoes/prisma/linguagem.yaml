@@ -1,0 +1,15 @@
+metadata:
+  versao: '1.0.0'
+  atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+linguagem:
+  principal: 'pt-BR'
+  fallback: 'en-US'
+
+formatacao:
+  data: 'DD/MM/YYYY'
+  hora: 'HH:mm:ss'
+  decimal: ','
+  milhares: '.'
+  timezone: 'America/Sao_Paulo'

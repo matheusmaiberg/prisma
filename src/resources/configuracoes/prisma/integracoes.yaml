@@ -1,0 +1,27 @@
+metadata:
+  versao: '1.1.0'
+  atualizacao: '2025-11-02'
+  status: 'Ativo'
+  total: 1
+
+integracoes:
+  claude:
+    habilitado: true
+    modo: 'cli'
+    cli: 'claude'
+    mapeamento:
+      agents:
+        caminho: '.claude/agents'
+        recurso: prisma
+      commands:
+        caminho: '.claude/commands/'
+        recurso: prisma
+      systemPrompts:
+        caminho: '.claude/system-prompts'
+        recurso: null
+      templates:
+        caminho: '.claude/templates'
+        recurso: null
+      settings:
+        caminho: '.claude/settings'
+        recurso: null

@@ -1,0 +1,34 @@
+metadata:
+  versao: '1.0.0'
+  atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+fases: [requisitos, design, tarefas, implementacao, testes, compliance, documentacao]
+
+subfolders: [artifacts, decisions, reports]
+
+implementacao:
+  padrao: 'sequencial'
+  paralela: true
+  automatico:
+    habilitado: true
+    dependencias: true
+
+versionamento:
+  habilitado: true
+  estrategia: 'archive-on-major-change'
+  arquivo: 'archive'
+  versoes: 3
+  triggers:
+    - 'mudanca-stack'
+    - 'mudanca-arquitetura'
+    - 'remocao-feature'
+
+features:
+  arvore:
+    habilitado: true
+    maxDocs: 4
+    minDocs: 2
+  renomeacao:
+    habilitado: true
+    historico: true

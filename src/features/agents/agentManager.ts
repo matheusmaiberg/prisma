@@ -61,7 +61,7 @@ export class AgentManager {
             return;
         }
 
-        const targetDir = path.join(this.workspaceRoot, '.claude/agents/prisma');
+        const targetDir = path.join(this.workspaceRoot, this.configManager.getPath('agents'));
 
         try {
             // Ensure target directory exists
@@ -101,7 +101,7 @@ export class AgentManager {
         }
 
         // Fixed Claude default path (always in English)
-        const promptsDir = path.join(this.workspaceRoot, '.claude/system-prompts');
+        const promptsDir = path.join(this.workspaceRoot, this.configManager.getPath('prompts'));
         const prompts = ['elicitacoes.md', 'prisma-prompt.md', 'prisma-system.md'];
 
         try {
@@ -135,7 +135,7 @@ export class AgentManager {
 
         // Copy from dist/resources/comandos/prisma/ to .claude/commands/prisma/
         const sourceDir = path.join(this.extensionPath, 'dist/resources/comandos/prisma');
-        const targetDir = path.join(this.workspaceRoot, '.claude/commands/prisma');
+        const targetDir = path.join(this.workspaceRoot, this.configManager.getPath('commands'));
 
         try {
             // Copy entire prisma commands directory recursively
@@ -156,7 +156,7 @@ export class AgentManager {
 
         // Fixed Claude default path (always in English)
         const sourceDir = path.join(this.extensionPath, 'dist/resources/templates');
-        const targetDir = path.join(this.workspaceRoot, '.claude/templates');
+        const targetDir = path.join(this.workspaceRoot, this.configManager.getPath('templates'));
 
         try {
             // Copy entire templates directory
@@ -176,7 +176,7 @@ export class AgentManager {
         // Get project agents (including prisma built-in agents)
         if (type === 'project' || type === 'all') {
             if (this.workspaceRoot) {
-                const projectAgentsPath = path.join(this.workspaceRoot, '.claude/agents');
+                const projectAgentsPath = path.dirname(path.join(this.workspaceRoot, this.configManager.getPath('agents')));
                 const projectAgents = await this.getAgentsFromDirectory(
                     projectAgentsPath,
                     'project',
@@ -316,7 +316,7 @@ export class AgentManager {
      */
     checkAgentExists(agentName: string, location: 'project' | 'user'): boolean {
         const basePath = location === 'project'
-            ? (this.workspaceRoot ? path.join(this.workspaceRoot, '.claude/agents/prisma') : null)
+            ? (this.workspaceRoot ? path.join(this.workspaceRoot, this.configManager.getPath('agents')) : null)
             : path.join(os.homedir(), '.claude/agents');
 
         if (!basePath) {
@@ -333,7 +333,7 @@ export class AgentManager {
     getAgentPath(agentName: string): string | null {
         // Check project agents first
         if (this.workspaceRoot) {
-            const projectPath = path.join(this.workspaceRoot, '.claude/agents/prisma', `${agentName}.md`);
+            const projectPath = path.join(this.workspaceRoot, this.configManager.getPath('agents'), `${agentName}.md`);
             if (fs.existsSync(projectPath)) {
                 return projectPath;
             }

@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { DEFAULT_PATHS, CONFIG_FILE_NAME, DEFAULT_VIEW_VISIBILITY } from '../constants';
+import { YamlConfigLoader } from '../services/config/YamlConfigLoader';
+import { NotificationSettings, DEFAULT_NOTIFICATION_SETTINGS } from '../types/notification.types';
 
 export interface PrismaSettings {
     paths: {
@@ -22,6 +24,7 @@ export interface PrismaSettings {
     agents: {
         exclude: string[];
     };
+    notifications?: NotificationSettings;
 }
 
 export class ConfigManager {
@@ -48,6 +51,23 @@ export class ConfigManager {
             return this.getDefaultSettings();
         }
 
+        // Try loading YAML configs first
+        try {
+            const yamlLoader = YamlConfigLoader.getInstance();
+            const yamlConfigs = await yamlLoader.loadAll(this.workspaceFolder.uri.fsPath);
+
+            if (yamlConfigs) {
+                // YAMLs found - merge with defaults
+                const yamlSettings = this.mergeYamlToSettings(yamlConfigs);
+                this.settings = yamlSettings;
+                return this.settings;
+            }
+        } catch (error) {
+            console.error('[ConfigManager] Failed to load YAML configs:', error);
+            // Fallback to JSON
+        }
+
+        // Fallback: try loading JSON settings
         const settingsPath = path.join(
             this.workspaceFolder.uri.fsPath,
             DEFAULT_PATHS.settings,
@@ -139,6 +159,35 @@ export class ConfigManager {
         return this.settings?.agents?.exclude || ['prisma'];
     }
 
+    /**
+     * Get notification settings
+     */
+    getNotificationSettings(): NotificationSettings {
+        return this.settings?.notifications || DEFAULT_NOTIFICATION_SETTINGS;
+    }
+
+    /**
+     * Merge YAML configs into PrismaSettings structure
+     */
+    private mergeYamlToSettings(yamlConfigs: any): PrismaSettings {
+        const defaults = this.getDefaultSettings();
+
+        return {
+            paths: {
+                specs: yamlConfigs.paths.specs || defaults.paths.specs,
+                steering: yamlConfigs.paths.steering || defaults.paths.steering,
+                settings: yamlConfigs.paths.settings || defaults.paths.settings
+            },
+            views: defaults.views, // YAML does not override views (for now)
+            claude: {
+                invocationMode: yamlConfigs.integrations?.invocationMode || defaults.claude.invocationMode,
+                cliPath: yamlConfigs.integrations?.cliPath || defaults.claude.cliPath
+            },
+            agents: defaults.agents,
+            notifications: yamlConfigs.notifications || defaults.notifications
+        };
+    }
+
     private getDefaultSettings(): PrismaSettings {
         return {
             paths: { ...DEFAULT_PATHS },
@@ -155,7 +204,8 @@ export class ConfigManager {
             },
             agents: {
                 exclude: ['prisma']
-            }
+            },
+            notifications: DEFAULT_NOTIFICATION_SETTINGS
         };
     }
 

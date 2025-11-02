@@ -1,0 +1,37 @@
+metadata:
+  versao: '1.0.0'
+  atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+recursos:
+  agentes:
+    caminho: '.prisma/agentes'
+    subpastas: []
+
+  comandos:
+    caminho: '.prisma/comandos'
+    subpastas: []
+
+  projeto:
+    caminho: '.prisma/projeto'
+    subpastas: [especificacoes, mapa, arquitetura, analises, checklists, auditoria, relatorios, revisoes, sumarios, padroes]
+
+  prompts:
+    caminho: '.prisma/prompts'
+    subpastas: []
+
+  templates:
+    caminho: '.prisma/templates'
+    subpastas: []
+
+  configuracoes:
+    caminho: '.prisma/configuracoes'
+    subpastas: [prisma]
+
+  checkpoints:
+    caminho: '.prisma/checkpoints'
+    subpastas: []
+
+  workflows:
+    caminho: '.prisma/workflows'
+    subpastas: []

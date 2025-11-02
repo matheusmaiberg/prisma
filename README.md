@@ -135,6 +135,57 @@ A extensão adiciona uma seção "PRISMA" na sidebar com:
 }
 ```
 
+### Configuração YAML (Recomendado)
+
+A partir da v1.0.0, Prisma suporta configuração via arquivos YAML modulares em `.prisma/configuracoes/prisma/`:
+
+#### Arquivos de Configuração
+
+**caminhos.yaml** - Paths relativos ao workspace root
+```yaml
+paths:
+  agents: .claude/agents/prisma
+  prompts: .claude/system-prompts
+  commands: .claude/commands/prisma
+  templates: .claude/templates
+  specs: .prisma/projeto/especificacoes
+  steering: .claude/steering
+  settings: .claude/settings
+```
+
+**integracoes.yaml** - Configurações de integração com Claude
+```yaml
+claude:
+  invocationMode: cli  # cli | extension
+  cliPath: claude
+  terminal:
+    activationDelay: 800  # ms
+```
+
+**qualidade.yaml** - Configurações de validação
+```yaml
+validation:
+  enabled: true
+  strictMode: false
+  logLevel: warn  # error | warn | info | debug
+  showNotifications: true
+```
+
+#### Precedência de Configuração
+
+1. **YAML** (`.prisma/configuracoes/prisma/*.yaml`) - Prioridade máxima
+2. **JSON** (`.claude/settings/prisma.settings.json`) - Fallback
+3. **Defaults** - Valores padrão internos
+
+#### Segurança (ADR-001)
+
+Todos os paths são validados contra:
+- ✅ Path traversal (`../../../etc/passwd`)
+- ✅ Paths absolutos (`/etc/passwd`, `C:\Windows\System32`)
+- ✅ Resolução fora do workspace
+
+Paths inválidos são automaticamente substituídos por defaults seguros.
+
 ### Estrutura de Diretórios
 
 ```
