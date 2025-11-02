@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import * as os from 'os';
 import { ClaudeCodeProvider } from '../../providers/claudeCodeProvider';
 import { ConfigManager } from '../../utils/configManager';
 import { NotificationUtils } from '../../utils/notificationUtils';
@@ -204,7 +205,7 @@ export class SteeringManager {
      * Create global CLAUDE.md file in user's home directory
      */
     async createUserClaudeMd() {
-        const claudeDir = path.join(process.env.HOME || '', '.claude');
+        const claudeDir = path.join(os.homedir(), '.claude');
         const filePath = path.join(claudeDir, 'CLAUDE.md');
 
         // Ensure directory exists

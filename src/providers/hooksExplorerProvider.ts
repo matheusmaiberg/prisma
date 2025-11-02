@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as os from 'os';
+import { getTranslations } from '../i18n/translations';
 
 export class HooksExplorerProvider implements vscode.TreeDataProvider<HookItem> {
     private _onDidChangeTreeData: vscode.EventEmitter<HookItem | undefined | null | void> = new vscode.EventEmitter<HookItem | undefined | null | void>();
@@ -44,7 +46,7 @@ export class HooksExplorerProvider implements vscode.TreeDataProvider<HookItem> 
             if (this.isLoading) {
                 return [
                     new HookItem(
-                        'Loading agent hooks...',
+                        getTranslations().loading.hooks,
                         vscode.TreeItemCollapsibleState.None,
                         'loading',
                         'loading',
@@ -95,7 +97,7 @@ export class HooksExplorerProvider implements vscode.TreeDataProvider<HookItem> 
                         `trigger-${element.id}-${index}`,
                         element.configPath ? {
                             command: 'vscode.open',
-                            title: 'Open Configuration File',
+                            title: getTranslations().titles.openConfigFile,
                             arguments: [vscode.Uri.file(element.configPath)]
                         } : undefined,
                         this.context,
@@ -132,7 +134,7 @@ export class HooksExplorerProvider implements vscode.TreeDataProvider<HookItem> 
                             `${element.id}-command-${index}`,
                             {
                                 command: 'prisma.hooks.copyCommand',
-                                title: 'Copy Command',
+                                title: getTranslations().titles.copyCommand,
                                 arguments: [hook.command]
                             },
                             this.context
@@ -178,7 +180,7 @@ export class HooksExplorerProvider implements vscode.TreeDataProvider<HookItem> 
         
         // Then check global ~/.claude/settings.json
         try {
-            const claudeConfigPath = path.join(process.env.HOME || '', '.claude', 'settings.json');
+            const claudeConfigPath = path.join(os.homedir(), '.claude', 'settings.json');
             if (fs.existsSync(claudeConfigPath)) {
                 const config = JSON.parse(fs.readFileSync(claudeConfigPath, 'utf8'));
                 if (config.hooks) {

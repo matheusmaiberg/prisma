@@ -16,7 +16,8 @@ export class AgentManager {
     private outputChannel: vscode.OutputChannel;
     private extensionPath: string;
     private workspaceRoot: string | undefined;
-    
+    private configManager: any;
+
     private readonly BUILT_IN_AGENTS = [
         'analista',
         'arquiteto',
@@ -42,11 +43,13 @@ export class AgentManager {
 
     constructor(
         context: vscode.ExtensionContext,
-        outputChannel: vscode.OutputChannel
+        outputChannel: vscode.OutputChannel,
+        configManager: any
     ) {
         this.outputChannel = outputChannel;
         this.extensionPath = context.extensionPath;
         this.workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+        this.configManager = configManager;
     }
 
     /**
@@ -190,7 +193,20 @@ export class AgentManager {
             agents.push(...userAgents);
         }
 
-        return agents;
+        // Filter excluded agents from settings
+        const excludedAgents = this.configManager.getExcludedAgents();
+
+        // If wildcard "*" is present, exclude all agents
+        if (excludedAgents.includes('*')) {
+            this.outputChannel.appendLine(`[AgentManager] Wildcard '*' detected - excluding all agents`);
+            return [];
+        }
+
+        const filteredAgents = agents.filter(agent => !excludedAgents.includes(agent.name));
+
+        this.outputChannel.appendLine(`[AgentManager] Total agents: ${agents.length}, Excluded: ${excludedAgents.join(', ')}, Showing: ${filteredAgents.length}`);
+
+        return filteredAgents;
     }
 
     /**

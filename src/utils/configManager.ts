@@ -19,6 +19,9 @@ export interface PrismaSettings {
         invocationMode: 'cli' | 'extension';
         cliPath: string;
     };
+    agents: {
+        exclude: string[];
+    };
 }
 
 export class ConfigManager {
@@ -129,6 +132,13 @@ export class ConfigManager {
         return this.settings?.claude?.cliPath || 'claude';
     }
 
+    /**
+     * Get excluded agents list
+     */
+    getExcludedAgents(): string[] {
+        return this.settings?.agents?.exclude || ['prisma'];
+    }
+
     private getDefaultSettings(): PrismaSettings {
         return {
             paths: { ...DEFAULT_PATHS },
@@ -142,6 +152,9 @@ export class ConfigManager {
             claude: {
                 invocationMode: 'cli' as const,
                 cliPath: 'claude'
+            },
+            agents: {
+                exclude: ['prisma']
             }
         };
     }

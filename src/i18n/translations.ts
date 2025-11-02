@@ -50,6 +50,34 @@ export interface Translations {
         confirmDelete: string;
         yes: string;
         no: string;
+        selectViewsToShow: string;
+    };
+    loading: {
+        hooks: string;
+        mcpServers: string;
+        serverDetails: string;
+        specs: string;
+        steeringDocs: string;
+    };
+    titles: {
+        openAgent: string;
+        openRequirements: string;
+        openDesign: string;
+        openTasks: string;
+        openGlobalClaude: string;
+        openProjectClaude: string;
+        openConfigFile: string;
+        openSteeringDoc: string;
+        createGlobalClaude: string;
+        createProjectClaude: string;
+        copyCommand: string;
+    };
+    labels: {
+        createGlobalRule: string;
+        createProjectRule: string;
+        globalRule: string;
+        projectRule: string;
+        steeringDocs: string;
     };
     config: {
         specsPath: string;
@@ -112,7 +140,35 @@ const pt: Translations = {
         noSpecsFound: 'Nenhuma especificação encontrada',
         confirmDelete: 'Tem certeza que deseja deletar?',
         yes: 'Sim',
-        no: 'Não'
+        no: 'Não',
+        selectViewsToShow: 'Selecione as visualizações para exibir'
+    },
+    loading: {
+        hooks: 'Carregando hooks de agentes...',
+        mcpServers: 'Carregando servidores MCP...',
+        serverDetails: 'Carregando detalhes do servidor...',
+        specs: 'Carregando especificações...',
+        steeringDocs: 'Carregando documentos de direcionamento...'
+    },
+    titles: {
+        openAgent: 'Abrir Agente',
+        openRequirements: 'Abrir Requisitos',
+        openDesign: 'Abrir Design',
+        openTasks: 'Abrir Tarefas',
+        openGlobalClaude: 'Abrir CLAUDE.md Global',
+        openProjectClaude: 'Abrir CLAUDE.md do Projeto',
+        openConfigFile: 'Abrir Arquivo de Configuração',
+        openSteeringDoc: 'Abrir Documento de Direcionamento',
+        createGlobalClaude: 'Criar CLAUDE.md Global',
+        createProjectClaude: 'Criar CLAUDE.md do Projeto',
+        copyCommand: 'Copiar Comando'
+    },
+    labels: {
+        createGlobalRule: 'Criar Regra Global',
+        createProjectRule: 'Criar Regra do Projeto',
+        globalRule: 'Regra Global',
+        projectRule: 'Regra do Projeto',
+        steeringDocs: 'Documentos de Direcionamento'
     },
     config: {
         specsPath: 'Caminho para as especificações',
@@ -175,7 +231,35 @@ const en: Translations = {
         noSpecsFound: 'No specifications found',
         confirmDelete: 'Are you sure you want to delete?',
         yes: 'Yes',
-        no: 'No'
+        no: 'No',
+        selectViewsToShow: 'Select views to show'
+    },
+    loading: {
+        hooks: 'Loading agent hooks...',
+        mcpServers: 'Loading MCP servers...',
+        serverDetails: 'Loading server details...',
+        specs: 'Loading specs...',
+        steeringDocs: 'Loading steering documents...'
+    },
+    titles: {
+        openAgent: 'Open Agent',
+        openRequirements: 'Open Requirements',
+        openDesign: 'Open Design',
+        openTasks: 'Open Tasks',
+        openGlobalClaude: 'Open Global CLAUDE.md',
+        openProjectClaude: 'Open Project CLAUDE.md',
+        openConfigFile: 'Open Configuration File',
+        openSteeringDoc: 'Open Steering Document',
+        createGlobalClaude: 'Create Global CLAUDE.md',
+        createProjectClaude: 'Create Project CLAUDE.md',
+        copyCommand: 'Copy Command'
+    },
+    labels: {
+        createGlobalRule: 'Create Global Rule',
+        createProjectRule: 'Create Project Rule',
+        globalRule: 'Global Rule',
+        projectRule: 'Project Rule',
+        steeringDocs: 'Steering Docs'
     },
     config: {
         specsPath: 'Path to specifications',

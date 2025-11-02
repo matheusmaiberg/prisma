@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as os from 'os';
 import { ClaudeCodeProvider } from './providers/claudeCodeProvider';
 import { SpecManager } from './features/spec/specManager';
 import { SteeringManager } from './features/steering/steeringManager';
@@ -16,6 +17,7 @@ import { UpdateChecker } from './utils/updateChecker';
 import { PermissionManager } from './features/permission/permissionManager';
 import { NotificationUtils } from './utils/notificationUtils';
 import { SpecTaskCodeLensProvider } from './providers/specTaskCodeLensProvider';
+import { getTranslations } from './i18n/translations';
 
 let claudeCodeProvider: ClaudeCodeProvider;
 let specManager: SpecManager;
@@ -63,8 +65,12 @@ export async function activate(context: vscode.ExtensionContext) {
     specManager = new SpecManager(claudeCodeProvider, outputChannel);
     steeringManager = new SteeringManager(claudeCodeProvider, outputChannel);
 
+    // Get config manager instance
+    const configManager = ConfigManager.getInstance();
+    await configManager.loadSettings();
+
     // Initialize Agent Manager and agents
-    agentManager = new AgentManager(context, outputChannel);
+    agentManager = new AgentManager(context, outputChannel, configManager);
     await agentManager.initializeBuiltInAgents();
 
     // Register tree data providers
@@ -105,11 +111,9 @@ export async function activate(context: vscode.ExtensionContext) {
     outputChannel.appendLine('Update check initiated');
 
     const specTaskCodeLensProvider = new SpecTaskCodeLensProvider();
-    const configManager = ConfigManager.getInstance();
 
     let specDir = '.claude/especificacoes';
     try {
-        await configManager.loadSettings();
         const configuredSpecDir = configManager.getPath('specs');
         specDir = configuredSpecDir || specDir;
     } catch (error) {
@@ -209,7 +213,7 @@ async function toggleViews() {
 
     const selected = await vscode.window.showQuickPick(items, {
         canPickMany: true,
-        placeHolder: 'Select views to show'
+        placeHolder: getTranslations().messages.selectViewsToShow
     });
 
     if (selected) {
@@ -523,7 +527,7 @@ function setupFileWatchers(
 
     // Watch for changes in Claude settings
     const claudeSettingsWatcher = vscode.workspace.createFileSystemWatcher(
-        new vscode.RelativePattern(process.env.HOME || '', '.claude/settings.json')
+        new vscode.RelativePattern(os.homedir(), '.claude/settings.json')
     );
 
     claudeSettingsWatcher.onDidChange(() => {
@@ -535,7 +539,7 @@ function setupFileWatchers(
 
     // Watch for changes in CLAUDE.md files
     const globalClaudeMdWatcher = vscode.workspace.createFileSystemWatcher(
-        new vscode.RelativePattern(process.env.HOME || '', '.claude/CLAUDE.md')
+        new vscode.RelativePattern(os.homedir(), '.claude/CLAUDE.md')
     );
     const projectClaudeMdWatcher = vscode.workspace.createFileSystemWatcher('**/CLAUDE.md');
 

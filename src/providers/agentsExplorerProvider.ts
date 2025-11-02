@@ -162,7 +162,7 @@ class AgentItem extends vscode.TreeItem {
             // Add command to open agent file
             this.command = {
                 command: 'vscode.open',
-                title: 'Open Agent',
+                title: getTranslations().titles.openAgent,
                 arguments: [vscode.Uri.file(agentInfo.path)]
             };
         }

@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { SpecManager } from '../features/spec/specManager';
+import { getTranslations } from '../i18n/translations';
 
 export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
     private _onDidChangeTreeData: vscode.EventEmitter<SpecItem | undefined | null | void> = new vscode.EventEmitter<SpecItem | undefined | null | void>();
@@ -47,7 +48,7 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
             if (this.isLoading) {
                 // Show loading state
                 items.push(new SpecItem(
-                    'Loading specs...',
+                    getTranslations().loading.specs,
                     vscode.TreeItemCollapsibleState.None,
                     'spec-loading',
                     this.context
@@ -81,7 +82,7 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
                     'requirements',
                     {
                         command: 'prisma.spec.navigate.requirements',
-                        title: 'Open Requirements',
+                        title: getTranslations().titles.openRequirements,
                         arguments: [element.specName]
                     },
                     `${specPath}/requirements.md`
@@ -95,7 +96,7 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
                     'design',
                     {
                         command: 'prisma.spec.navigate.design',
-                        title: 'Open Design',
+                        title: getTranslations().titles.openDesign,
                         arguments: [element.specName]
                     },
                     `${specPath}/design.md`
@@ -109,7 +110,7 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
                     'tasks',
                     {
                         command: 'prisma.spec.navigate.tasks',
-                        title: 'Open Tasks',
+                        title: getTranslations().titles.openTasks,
                         arguments: [element.specName]
                     },
                     `${specPath}/tasks.md`

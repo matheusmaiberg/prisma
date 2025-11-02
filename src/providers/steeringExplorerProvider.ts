@@ -1,7 +1,9 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as os from 'os';
 import { SteeringManager } from '../features/steering/steeringManager';
+import { getTranslations } from '../i18n/translations';
 
 export class SteeringExplorerProvider implements vscode.TreeDataProvider<SteeringItem> {
     private _onDidChangeTreeData: vscode.EventEmitter<SteeringItem | undefined | null | void> = new vscode.EventEmitter<SteeringItem | undefined | null | void>();
@@ -41,7 +43,7 @@ export class SteeringExplorerProvider implements vscode.TreeDataProvider<Steerin
             if (this.isLoading) {
                 // Show loading state
                 items.push(new SteeringItem(
-                    'Loading steering documents...',
+                    getTranslations().loading.steeringDocs,
                     vscode.TreeItemCollapsibleState.None,
                     'steering-loading',
                     '',  // resourcePath
@@ -51,7 +53,7 @@ export class SteeringExplorerProvider implements vscode.TreeDataProvider<Steerin
             }
 
             // Check existence of files
-            const globalClaudeMd = path.join(process.env.HOME || '', '.claude', 'CLAUDE.md');
+            const globalClaudeMd = path.join(os.homedir(), '.claude', 'CLAUDE.md');
             const globalExists = fs.existsSync(globalClaudeMd);
 
             let projectClaudeMd = '';
@@ -64,14 +66,14 @@ export class SteeringExplorerProvider implements vscode.TreeDataProvider<Steerin
             // Always show Global Rule and Project Rule (if they exist)
             if (globalExists) {
                 items.push(new SteeringItem(
-                    'Global Rule',
+                    getTranslations().labels.globalRule,
                     vscode.TreeItemCollapsibleState.None,
                     'claude-md-global',
                     globalClaudeMd,
                     this.context,
                     {
                         command: 'vscode.open',
-                        title: 'Open Global CLAUDE.md',
+                        title: getTranslations().titles.openGlobalClaude,
                         arguments: [vscode.Uri.file(globalClaudeMd)]
                     }
                 ));
@@ -79,14 +81,14 @@ export class SteeringExplorerProvider implements vscode.TreeDataProvider<Steerin
 
             if (projectExists) {
                 items.push(new SteeringItem(
-                    'Project Rule',
+                    getTranslations().labels.projectRule,
                     vscode.TreeItemCollapsibleState.None,
                     'claude-md-project',
                     projectClaudeMd,
                     this.context,
                     {
                         command: 'vscode.open',
-                        title: 'Open Project CLAUDE.md',
+                        title: getTranslations().titles.openProjectClaude,
                         arguments: [vscode.Uri.file(projectClaudeMd)]
                     }
                 ));
@@ -98,7 +100,7 @@ export class SteeringExplorerProvider implements vscode.TreeDataProvider<Steerin
                 if (steeringDocs.length > 0) {
                     // Add a collapsible header item for steering documents
                     items.push(new SteeringItem(
-                        'Steering Docs',
+                        getTranslations().labels.steeringDocs,
                         vscode.TreeItemCollapsibleState.Expanded, // Make it expandable
                         'steering-header',
                         '',
@@ -110,28 +112,28 @@ export class SteeringExplorerProvider implements vscode.TreeDataProvider<Steerin
             // Add create buttons at the bottom for missing files
             if (!globalExists) {
                 items.push(new SteeringItem(
-                    'Create Global Rule',
+                    getTranslations().labels.createGlobalRule,
                     vscode.TreeItemCollapsibleState.None,
                     'create-global-claude',
                     '',
                     this.context,
                     {
                         command: 'prisma.steering.createUserRule',
-                        title: 'Create Global CLAUDE.md'
+                        title: getTranslations().titles.createGlobalClaude
                     }
                 ));
             }
 
             if (vscode.workspace.workspaceFolders && !projectExists) {
                 items.push(new SteeringItem(
-                    'Create Project Rule',
+                    getTranslations().labels.createProjectRule,
                     vscode.TreeItemCollapsibleState.None,
                     'create-project-claude',
                     '',
                     this.context,
                     {
                         command: 'prisma.steering.createProjectRule',
-                        title: 'Create Project CLAUDE.md'
+                        title: getTranslations().titles.createProjectClaude
                     }
                 ));
             }
@@ -156,7 +158,7 @@ export class SteeringExplorerProvider implements vscode.TreeDataProvider<Steerin
                         this.context,
                         {
                             command: 'vscode.open',
-                            title: 'Open Steering Document',
+                            title: getTranslations().titles.openSteeringDoc,
                             arguments: [vscode.Uri.file(doc.path)]
                         },
                         relativePath // Pass relative path without prefix

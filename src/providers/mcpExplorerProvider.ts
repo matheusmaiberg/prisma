@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { getTranslations } from '../i18n/translations';
 
 const execAsync = promisify(exec);
 
@@ -52,7 +53,7 @@ export class MCPExplorerProvider implements vscode.TreeDataProvider<MCPItem> {
 
             if (this.isLoading) {
                 items.push(new MCPItem(
-                    'Loading MCP servers...',
+                    getTranslations().loading.mcpServers,
                     vscode.TreeItemCollapsibleState.None,
                     'mcp-loading',
                     'loading',
@@ -93,7 +94,7 @@ export class MCPExplorerProvider implements vscode.TreeDataProvider<MCPItem> {
             // If still loading details, show loading message
             if (server.isLoadingDetails) {
                 items.push(new MCPItem(
-                    'Loading server details...',
+                    getTranslations().loading.serverDetails,
                     vscode.TreeItemCollapsibleState.None,
                     'mcp-loading',
                     `${element.id}-loading`,
