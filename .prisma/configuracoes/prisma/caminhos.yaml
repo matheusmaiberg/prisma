@@ -30,6 +30,21 @@ caminhos:
     caminho: '.prisma/workflows'
     subpastas: []
 
+# Caminhos de Recursos (src/resources/)
+recursos:
+  agentes:
+    caminho: 'src/resources/agentes'
+    subpastas: []
+  comandos:
+    caminho: 'src/resources/comandos'
+    subpastas: ['prisma']
+  prompts:
+    caminho: 'src/resources/prompts'
+    subpastas: []
+  templates:
+    caminho: 'src/resources/templates'
+    subpastas: []
+
 # Caminhos do Projeto (.prisma/projeto/)
 projeto:
   especificacoes:
@@ -69,8 +84,8 @@ claude:
     caminho: '.claude/agents'
     subpastas: ['prisma']
   commands:
-    caminho: '.claude/commands/prisma'
-    subpastas: []
+    caminho: '.claude/commands/'
+    subpastas: ['prisma']
   system_prompts:
     caminho: '.claude/system-prompts'
     subpastas: []
