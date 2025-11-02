@@ -8,40 +8,75 @@ metadata:
 
 # Caminhos Principais (.prisma/)
 caminhos:
-  raiz: '.prisma'
-  agentes: '.prisma/agentes'
-  comandos: '.prisma/comandos'
-  prompts: '.prisma/prompts'
-  templates: '.prisma/templates'
-  configuracoes: '.prisma/configuracoes'
-  checkpoints: '.prisma/checkpoints'
-  workflows: '.prisma/workflows'
+  agentes:
+    caminho: '.prisma/agentes'
+    subpastas: []
+  comandos:
+    caminho: '.prisma/comandos'
+    subpastas: []
+  prompts:
+    caminho: '.prisma/prompts'
+    subpastas: []
+  templates:
+    caminho: '.prisma/templates'
+    subpastas: []
+  configuracoes:
+    caminho: '.prisma/configuracoes'
+    subpastas: ['prisma']
+  checkpoints:
+    caminho: '.prisma/checkpoints'
+    subpastas: []
+  workflows:
+    caminho: '.prisma/workflows'
+    subpastas: []
 
 # Caminhos do Projeto (.prisma/projeto/)
 projeto:
-  raiz: '.prisma/projeto'
-  especificacoes: '.prisma/projeto/especificacoes'
-  mapa: '.prisma/projeto/mapa'
-  arquitetura: '.prisma/projeto/arquitetura'
-  analises: '.prisma/projeto/analises'
-  checklists: '.prisma/projeto/checklists'
-  auditoria: '.prisma/projeto/auditoria'
-  relatorios: '.prisma/projeto/relatorios'
-  revisoes: '.prisma/projeto/revisoes'
-  sumarios: '.prisma/projeto/sumarios'
-  padroes: '.prisma/projeto/padroes'
-
-# Subpastas Padrão de Especificações
-especificacoes_subfolders:
-  - 'artifacts'
-  - 'decisions'
-  - 'reports'
+  especificacoes:
+    caminho: '.prisma/projeto/especificacoes'
+    subpastas: ['artifacts', 'decisions', 'reports']
+  mapa:
+    caminho: '.prisma/projeto/mapa'
+    subpastas: []
+  arquitetura:
+    caminho: '.prisma/projeto/arquitetura'
+    subpastas: []
+  analises:
+    caminho: '.prisma/projeto/analises'
+    subpastas: []
+  checklists:
+    caminho: '.prisma/projeto/checklists'
+    subpastas: []
+  auditoria:
+    caminho: '.prisma/projeto/auditoria'
+    subpastas: []
+  relatorios:
+    caminho: '.prisma/projeto/relatorios'
+    subpastas: []
+  revisoes:
+    caminho: '.prisma/projeto/revisoes'
+    subpastas: []
+  sumarios:
+    caminho: '.prisma/projeto/sumarios'
+    subpastas: []
+  padroes:
+    caminho: '.prisma/projeto/padroes'
+    subpastas: []
 
 # Caminhos de Integração (.claude/)
 claude:
-  raiz: '.claude'
-  agents: '.claude/agents'
-  commands: '.claude/commands/prisma'
-  system_prompts: '.claude/system-prompts'
-  templates: '.claude/templates'
-  settings: '.claude/settings'
+  agents:
+    caminho: '.claude/agents'
+    subpastas: ['prisma']
+  commands:
+    caminho: '.claude/commands/prisma'
+    subpastas: []
+  system_prompts:
+    caminho: '.claude/system-prompts'
+    subpastas: []
+  templates:
+    caminho: '.claude/templates'
+    subpastas: []
+  settings:
+    caminho: '.claude/settings'
+    subpastas: []
