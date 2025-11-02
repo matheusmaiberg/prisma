@@ -186,6 +186,95 @@ Todos os paths são validados contra:
 
 Paths inválidos são automaticamente substituídos por defaults seguros.
 
+### Migrando de JSON para YAML (v1.0 → v1.1+)
+
+Se você já usa Prisma v1.0 com configuração JSON (`.claude/settings/prisma.settings.json`), pode migrar gradualmente para YAML:
+
+#### Migração Automática (Recomendado)
+
+O Prisma detecta automaticamente configurações YAML e usa-as com prioridade sobre JSON:
+
+1. Crie `.prisma/configuracoes/prisma/` na raiz do workspace
+2. Copie os arquivos YAML default da extensão (aparecerão automaticamente na primeira execução)
+3. Edite os YAMLs conforme necessário
+4. Mantenha o JSON como backup (fallback automático)
+
+#### Migração Manual
+
+**De JSON:**
+```json
+{
+  "paths": {
+    "specs": ".prisma/projeto/especificacoes",
+    "steering": ".claude/steering",
+    "settings": ".claude/settings"
+  },
+  "claude": {
+    "invocationMode": "cli",
+    "cliPath": "claude"
+  }
+}
+```
+
+**Para YAML:**
+
+**caminhos.yaml:**
+```yaml
+paths:
+  agents: .claude/agents/prisma
+  prompts: .claude/system-prompts
+  commands: .claude/commands/prisma
+  templates: .claude/templates
+  specs: .prisma/projeto/especificacoes  # ← Copiado do JSON
+  steering: .claude/steering              # ← Copiado do JSON
+  settings: .claude/settings              # ← Copiado do JSON
+```
+
+**integracoes.yaml:**
+```yaml
+claude:
+  invocationMode: cli  # ← Copiado do JSON
+  cliPath: claude      # ← Copiado do JSON
+  terminal:
+    activationDelay: 800
+```
+
+**qualidade.yaml:**
+```yaml
+validation:
+  enabled: true
+  strictMode: false
+  logLevel: warn
+  showNotifications: true
+```
+
+#### Compatibilidade
+
+- ✅ **Backward compatible**: JSON continua funcionando
+- ✅ **Gradual migration**: Migre um campo por vez
+- ✅ **Fallback automático**: YAML → JSON → defaults
+- ✅ **No breaking changes**: Extensão funciona com ou sem YAML
+
+#### Verificação
+
+Para verificar que YAML está sendo usado:
+
+1. Abra DevTools do VSCode (Help → Toggle Developer Tools)
+2. Console deve mostrar: `[YamlConfigLoader] Loaded configs from YAML`
+3. Se mostrar `[ConfigManager] Failed to load YAML configs`, está usando JSON
+
+#### Troubleshooting
+
+**YAML não está sendo carregado:**
+- Verifique sintaxe YAML (indentação correta)
+- Paths devem ser relativos ao workspace root
+- Não use tabs, apenas espaços (2 espaços)
+
+**Paths customizados não funcionam:**
+- Verifique validação de segurança (não use `..` ou paths absolutos)
+- Console mostra warnings se path for inválido
+- Path inválido é substituído por default automaticamente
+
 ### Estrutura de Diretórios
 
 ```
