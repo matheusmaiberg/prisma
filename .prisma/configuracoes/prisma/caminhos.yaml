@@ -1,4 +1,4 @@
-# Configurações de Paths - Sistema Prisma
+# Configurações de Caminhos - Sistema Prisma
 # Define todos os caminhos utilizados pelo sistema
 
 metadata:
@@ -6,8 +6,8 @@ metadata:
   ultima_atualizacao: '2025-11-02'
   status: 'Ativo'
 
-# Paths Principais (.prisma/)
-paths:
+# Caminhos Principais (.prisma/)
+caminhos:
   raiz: '.prisma'
   agentes: '.prisma/agentes'
   comandos: '.prisma/comandos'
@@ -17,7 +17,7 @@ paths:
   checkpoints: '.prisma/checkpoints'
   workflows: '.prisma/workflows'
 
-# Paths do Projeto (.prisma/projeto/)
+# Caminhos do Projeto (.prisma/projeto/)
 projeto:
   raiz: '.prisma/projeto'
   especificacoes: '.prisma/projeto/especificacoes'
@@ -37,7 +37,7 @@ especificacoes_subfolders:
   - 'decisions'
   - 'reports'
 
-# Paths de Integração (.claude/)
+# Caminhos de Integração (.claude/)
 claude:
   raiz: '.claude'
   agents: '.claude/agents'
