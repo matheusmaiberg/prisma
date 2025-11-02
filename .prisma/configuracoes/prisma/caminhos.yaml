@@ -1,14 +1,9 @@
-# Configurações de Caminhos - Sistema Prisma
-# Define todos os caminhos utilizados pelo sistema
-
 metadata:
   versao: '1.0.0'
   ultima_atualizacao: '2025-11-02'
   status: 'Ativo'
 
-# Todos os recursos do sistema
 recursos:
-  # Recursos principais (.prisma/)
   agentes:
     caminho: '.prisma/agentes'
     subpastas: []
@@ -30,8 +25,6 @@ recursos:
   workflows:
     caminho: '.prisma/workflows'
     subpastas: []
-
-  # Recursos do projeto (.prisma/projeto/)
   especificacoes:
     caminho: '.prisma/projeto/especificacoes'
     subpastas: ['artifacts', 'decisions', 'reports']
@@ -62,8 +55,6 @@ recursos:
   padroes:
     caminho: '.prisma/projeto/padroes'
     subpastas: []
-
-  # Recursos fonte (src/resources/)
   recursos_agentes:
     caminho: 'src/resources/agentes'
     subpastas: []
@@ -77,7 +68,6 @@ recursos:
     caminho: 'src/resources/templates'
     subpastas: []
 
-# Integrações
 integracoes:
   claude:
     agents:
