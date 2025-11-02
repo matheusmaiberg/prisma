@@ -1,0 +1,418 @@
+{
+  "name": "prisma-for-cc",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "1.0.0",
+  "publisher": "matheusmaiberg",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matheusmaiberg/prisma"
+  },
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "bin": {
+    "prisma": "./dist/cli/index.js"
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "prisma",
+          "title": "Prisma",
+          "icon": "./icons/prisma.svg"
+        }
+      ]
+    },
+    "views": {
+      "prisma": [
+        {
+          "id": "prisma.views.specExplorer",
+          "name": "%views.specs%",
+          "when": "!(workbenchState == empty || workspaceFolderCount == 0) && config.prisma.views.specs.visible"
+        },
+        {
+          "id": "prisma.views.agentsExplorer",
+          "name": "%views.agents%",
+          "when": "!(workbenchState == empty || workspaceFolderCount == 0) && config.prisma.views.agents.visible"
+        },
+        {
+          "id": "prisma.views.steeringExplorer",
+          "name": "%views.steering%",
+          "when": "!(workbenchState == empty || workspaceFolderCount == 0) && config.prisma.views.steering.visible"
+        },
+        {
+          "id": "prisma.views.mcpServerStatus",
+          "name": "%views.mcpServers%",
+          "when": "!(workbenchState == empty || workspaceFolderCount == 0) && config.prisma.views.mcp.visible"
+        },
+        {
+          "id": "prisma.views.hooksStatus",
+          "name": "%views.hooks%",
+          "when": "!(workbenchState == empty || workspaceFolderCount == 0) && config.prisma.views.hooks.visible"
+        },
+        {
+          "id": "prisma.views.overview",
+          "name": "%views.settings%",
+          "visibility": "collapsed",
+          "when": "!(workbenchState == empty || workspaceFolderCount == 0) && config.prisma.views.settings.visible"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "prisma.views.overview",
+        "contents": "%welcome.overview%"
+      },
+      {
+        "view": "prisma.views.specExplorer",
+        "contents": "%welcome.specs%"
+      },
+      {
+        "view": "prisma.views.hooksStatus",
+        "contents": "%welcome.hooks%"
+      },
+      {
+        "view": "prisma.views.steeringExplorer",
+        "contents": "%welcome.steering%"
+      },
+      {
+        "view": "prisma.views.mcpServerStatus",
+        "contents": "%welcome.mcp%"
+      }
+    ],
+    "commands": [
+      {
+        "command": "prisma.spec.create",
+        "title": "%cmd.spec.create%",
+        "category": "Prisma",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "prisma.spec.createWithAgents",
+        "title": "%cmd.spec.createWithAgents%",
+        "category": "Prisma",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "prisma.steering.create",
+        "title": "%cmd.steering.create%",
+        "category": "Prisma",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "prisma.steering.generateInitial",
+        "title": "%cmd.steering.init%",
+        "category": "Prisma",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "prisma.steering.refine",
+        "title": "%cmd.steering.refine%",
+        "category": "Prisma",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "prisma.spec.delete",
+        "title": "%cmd.spec.delete%",
+        "category": "Prisma",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "prisma.steering.delete",
+        "title": "%cmd.steering.delete%",
+        "category": "Prisma",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "prisma.steering.createUserRule",
+        "title": "%cmd.steering.createUserRule%",
+        "category": "Prisma",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "prisma.steering.createProjectRule",
+        "title": "%cmd.steering.createProjectRule%",
+        "category": "Prisma",
+        "icon": "$(root-folder)"
+      },
+      {
+        "command": "prisma.hooks.refresh",
+        "title": "%cmd.hooks.refresh%",
+        "category": "Prisma",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "prisma.mcp.refresh",
+        "title": "%cmd.mcp.refresh%",
+        "category": "Prisma",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "prisma.settings.open",
+        "title": "%cmd.settings.open%",
+        "category": "Prisma",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "prisma.checkForUpdates",
+        "title": "%cmd.checkForUpdates%",
+        "category": "Prisma",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "prisma.spec.refresh",
+        "title": "%cmd.spec.refresh%",
+        "category": "Prisma",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "prisma.steering.refresh",
+        "title": "%cmd.steering.refresh%",
+        "category": "Prisma",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "prisma.agents.refresh",
+        "title": "%cmd.agents.refresh%",
+        "category": "Prisma",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "prisma.help.open",
+        "title": "%cmd.help.open%",
+        "category": "Prisma",
+        "icon": "$(question)"
+      },
+      {
+        "command": "prisma.menu.open",
+        "title": "%cmd.menu.open%",
+        "category": "Prisma",
+        "icon": "$(ellipsis)"
+      },
+      {
+        "command": "prisma.permission.check",
+        "title": "%cmd.permission.check%",
+        "category": "Prisma",
+        "icon": "$(info)"
+      },
+      {
+        "command": "prisma.permission.reset",
+        "title": "%cmd.permission.reset%",
+        "category": "Prisma",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "prisma.spec.implTask",
+        "title": "%cmd.spec.implTask%",
+        "category": "Prisma"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "prisma.menu.open",
+          "when": "view == prisma.views.overview",
+          "group": "navigation"
+        },
+        {
+          "command": "prisma.spec.create",
+          "when": "view == prisma.views.specExplorer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "prisma.spec.createWithAgents",
+          "when": "view == prisma.views.specExplorer",
+          "group": "navigation@2"
+        },
+        {
+          "command": "prisma.spec.refresh",
+          "when": "view == prisma.views.specExplorer",
+          "group": "navigation@3"
+        },
+        {
+          "command": "prisma.steering.generateInitial",
+          "when": "view == prisma.views.steeringExplorer",
+          "group": "navigation@2"
+        },
+        {
+          "command": "prisma.steering.create",
+          "when": "view == prisma.views.steeringExplorer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "prisma.steering.refresh",
+          "when": "view == prisma.views.steeringExplorer",
+          "group": "navigation@3"
+        },
+        {
+          "command": "prisma.mcp.refresh",
+          "when": "view == prisma.views.mcpServerStatus",
+          "group": "navigation"
+        },
+        {
+          "command": "prisma.hooks.refresh",
+          "when": "view == prisma.views.hooksStatus",
+          "group": "navigation"
+        },
+        {
+          "command": "prisma.agents.refresh",
+          "when": "view == prisma.views.agentsExplorer",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "prisma.spec.delete",
+          "when": "view == prisma.views.specExplorer && viewItem == spec",
+          "group": "7_modification"
+        },
+        {
+          "command": "prisma.steering.refine",
+          "when": "view == prisma.views.steeringExplorer && viewItem == steering-document",
+          "group": "inline"
+        },
+        {
+          "command": "prisma.steering.delete",
+          "when": "view == prisma.views.steeringExplorer && viewItem == steering-document",
+          "group": "7_modification"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "prisma.spec.create"
+        },
+        {
+          "command": "prisma.steering.create",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "prisma.checkForUpdates"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "%displayName%",
+      "properties": {
+        "prisma.claudePath": {
+          "type": "string",
+          "default": "claude",
+          "description": "%config.claudePath%"
+        },
+        "prisma.autoRefreshSpecs": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.autoRefreshSpecs%"
+        },
+        "prisma.showWelcomeMessage": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.showWelcomeMessage%"
+        },
+        "prisma.views.specs.visible": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.views.specs.visible%"
+        },
+        "prisma.views.agents.visible": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.views.agents.visible%"
+        },
+        "prisma.views.hooks.visible": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.views.hooks.visible%"
+        },
+        "prisma.views.steering.visible": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.views.steering.visible%"
+        },
+        "prisma.views.mcp.visible": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.views.mcp.visible%"
+        },
+        "prisma.views.settings.visible": {
+          "type": "boolean",
+          "default": false,
+          "description": "%config.views.settings.visible%"
+        },
+        "prisma.claude.invocationMode": {
+          "type": "string",
+          "enum": [
+            "cli",
+            "extension"
+          ],
+          "default": "cli",
+          "enumDescriptions": [
+            "%config.claude.invocationMode.cli%",
+            "%config.claude.invocationMode.extension%"
+          ],
+          "description": "%config.claude.invocationMode.description%",
+          "order": 1
+        },
+        "prisma.claude.cliPath": {
+          "type": "string",
+          "default": "claude",
+          "description": "%config.claude.cliPath.description%",
+          "order": 2
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package-web",
+    "compile": "npm run build-prompts && tsc -p ./",
+    "watch": "concurrently \"tsc -watch -p ./\" \"node scripts/watch-prompts.js\"",
+    "package": "vsce package",
+    "build-prompts": "node scripts/build-prompts.js",
+    "compile-web": "webpack --mode development",
+    "watch-web": "webpack --mode development --watch",
+    "package-web": "npm run build-prompts && webpack --mode production --devtool hidden-source-map",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prisma:init": "node dist/cli/index.js init",
+    "prisma:sync": "node dist/cli/index.js sync",
+    "prisma:cleanup": "node dist/cli/index.js cleanup",
+    "changelog:update": "node scripts/update-changelog.js",
+    "hooks:install": "node scripts/install-hooks.js",
+    "postinstall": "npm run hooks:install"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.8",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/glob": "^8.1.0",
+    "@types/handlebars": "^4.0.40",
+    "@types/jest": "^30.0.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.84.0",
+    "concurrently": "^9.2.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.3.0",
+    "vsce": "^2.15.0",
+    "webpack": "^5.100.2",
+    "webpack-cli": "^6.0.1"
+  },
+  "license": "MIT"
+}

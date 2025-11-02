@@ -1,0 +1,52 @@
+#!/bin/sh
+# Hook prepare-commit-msg
+# Detecta mudanças de versão no package.json e sugere atualizar o changelog
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# Apenas processa commits normais (não merge, squash, etc)
+if [ -n "$COMMIT_SOURCE" ]; then
+  exit 0
+fi
+
+# Verifica se package.json foi modificado
+if git diff --cached --name-only | grep -q "package.json"; then
+  # Verifica se a versão mudou
+  OLD_VERSION=$(git show HEAD:package.json 2>/dev/null | grep '"version"' | head -1 | sed 's/.*"version": "\(.*\)".*/\1/')
+  NEW_VERSION=$(git diff --cached package.json | grep '+".*"version"' | sed 's/.*"version": "\(.*\)".*/\1/')
+
+  if [ -n "$NEW_VERSION" ] && [ "$OLD_VERSION" != "$NEW_VERSION" ]; then
+    echo ""
+    echo "🔔 Version changed: $OLD_VERSION → $NEW_VERSION"
+    echo ""
+
+    # Verifica se o changelog foi atualizado
+    if ! git diff --cached CHANGELOG.md | grep -q "\[${NEW_VERSION}\]"; then
+      echo "⚠️  CHANGELOG.md doesn't contain version $NEW_VERSION"
+      echo ""
+      echo "Run: node scripts/update-changelog.js $NEW_VERSION"
+      echo ""
+      echo "Or add it manually, then:"
+      echo "  git add CHANGELOG.md CHANGELOG.pt-BR.md"
+      echo "  git commit --amend --no-edit"
+      echo ""
+
+      # Pergunta se quer atualizar automaticamente
+      if command -v node >/dev/null 2>&1; then
+        printf "Do you want to update changelogs now? [y/N] "
+        read -r response
+        if [ "$response" = "y" ] || [ "$response" = "Y" ]; then
+          node scripts/update-changelog.js "$NEW_VERSION"
+          git add CHANGELOG.md CHANGELOG.pt-BR.md
+          echo ""
+          echo "✅ Changelogs updated and staged!"
+          echo "⚠️  Don't forget to edit them with your changes!"
+          echo ""
+        fi
+      fi
+    fi
+  fi
+fi
+
+exit 0

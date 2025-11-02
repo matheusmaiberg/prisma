@@ -1,7 +1,0 @@
-{
-  "tool_name": "Write",
-  "tool_input": {
-    "file_path": "test.md",
-    "content": "# Test\n\n```typescript\nconst x = 1;"
-  }
-}

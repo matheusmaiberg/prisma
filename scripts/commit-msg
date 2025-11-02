@@ -1,0 +1,199 @@
+#!/bin/sh
+# Hook commit-msg
+# Detecta conventional commits e sugere/adiciona automaticamente no changelog
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Extrai o tipo e a descrição do commit
+COMMIT_TYPE=$(echo "$COMMIT_MSG" | grep -oE '^(feat|fix|docs|style|refactor|perf|test|chore|build|ci)' | head -1)
+COMMIT_SCOPE=$(echo "$COMMIT_MSG" | grep -oE '^\w+\(([^)]+)\)' | sed 's/.*(\(.*\)).*/\1/')
+COMMIT_DESC=$(echo "$COMMIT_MSG" | sed 's/^[^:]*: *//')
+
+# Se não é um conventional commit, ignora
+if [ -z "$COMMIT_TYPE" ]; then
+  exit 0
+fi
+
+# Obtém a versão atual
+CURRENT_VERSION=$(grep '"version"' package.json | head -1 | sed 's/.*"version": "\(.*\)".*/\1/')
+
+# Define o arquivo de changelog baseado no idioma do commit
+CHANGELOG_FILE="CHANGELOG.md"
+CHANGELOG_PT_FILE="CHANGELOG.pt-BR.md"
+
+# Detecta se é português ou inglês
+if echo "$COMMIT_DESC" | grep -qE '[áàâãéèêíïóôõöúçÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇ]'; then
+  LANG="pt"
+else
+  LANG="en"
+fi
+
+# Mapeia tipo de commit para seção do changelog
+get_changelog_section() {
+  case "$1" in
+    feat)
+      if [ "$LANG" = "pt" ]; then
+        echo "### ✨ Novos Recursos"
+      else
+        echo "### ✨ New Features"
+      fi
+      ;;
+    fix)
+      if [ "$LANG" = "pt" ]; then
+        echo "### 🐛 Correções de Bugs"
+      else
+        echo "### 🐛 Bug Fixes"
+      fi
+      ;;
+    docs)
+      if [ "$LANG" = "pt" ]; then
+        echo "### 📚 Documentação"
+      else
+        echo "### 📚 Documentation"
+      fi
+      ;;
+    perf)
+      if [ "$LANG" = "pt" ]; then
+        echo "### ⚡ Performance"
+      else
+        echo "### ⚡ Performance"
+      fi
+      ;;
+    refactor|style|build|ci|test|chore)
+      if [ "$LANG" = "pt" ]; then
+        echo "### 🔧 Melhorias"
+      else
+        echo "### 🔧 Improvements"
+      fi
+      ;;
+    *)
+      echo ""
+      ;;
+  esac
+}
+
+# Adiciona entrada no changelog
+add_to_changelog() {
+  local file=$1
+  local section=$2
+  local desc=$3
+  local lang=$4
+
+  # Verifica se já existe uma seção para a versão atual
+  if ! grep -q "## \[$CURRENT_VERSION\]" "$file"; then
+    echo ""
+    if [ "$lang" = "pt" ]; then
+      echo "ℹ️  Versão $CURRENT_VERSION não existe no changelog"
+      echo "   Execute: npm run changelog:update"
+    else
+      echo "ℹ️  Version $CURRENT_VERSION doesn't exist in changelog"
+      echo "   Run: npm run changelog:update"
+    fi
+    return 1
+  fi
+
+  # Cria arquivo temporário
+  temp_file=$(mktemp)
+
+  # Processa o arquivo
+  awk -v version="$CURRENT_VERSION" -v section="$section" -v desc="$desc" '
+    BEGIN { in_version=0; in_section=0; added=0 }
+
+    # Encontra a versão atual
+    $0 ~ "## \\[" version "\\]" { in_version=1; print; next }
+
+    # Se chegou em outra versão, para
+    in_version && $0 ~ /^## \[/ { in_version=0 }
+
+    # Se está na versão e encontra a seção
+    in_version && $0 == section {
+      in_section=1
+      print
+      next
+    }
+
+    # Se está na seção e encontra linha vazia após itens
+    in_section && $0 ~ /^$/ && !added {
+      print "- " desc
+      added=1
+      in_section=0
+    }
+
+    # Se está na seção e encontra outra seção
+    in_section && $0 ~ /^###/ && !added {
+      print "- " desc
+      print ""
+      added=1
+      in_section=0
+    }
+
+    # Imprime a linha normal
+    { print }
+  ' "$file" > "$temp_file"
+
+  # Se conseguiu adicionar, substitui o arquivo
+  if grep -q "- $desc" "$temp_file"; then
+    mv "$temp_file" "$file"
+    return 0
+  else
+    rm "$temp_file"
+    return 1
+  fi
+}
+
+# Processa baseado no tipo de commit
+if [ -n "$COMMIT_TYPE" ]; then
+  SECTION=$(get_changelog_section "$COMMIT_TYPE")
+
+  if [ -n "$SECTION" ]; then
+    # Adiciona escopo se houver
+    if [ -n "$COMMIT_SCOPE" ]; then
+      FORMATTED_DESC="**$COMMIT_SCOPE**: $COMMIT_DESC"
+    else
+      FORMATTED_DESC="$COMMIT_DESC"
+    fi
+
+    echo ""
+    echo "🔔 Conventional commit detectado: $COMMIT_TYPE"
+    echo "   Descrição: $COMMIT_DESC"
+    echo ""
+
+    # Adiciona automaticamente no changelog apropriado
+    ADDED=false
+
+    if [ "$LANG" = "pt" ]; then
+      if add_to_changelog "$CHANGELOG_PT_FILE" "$SECTION" "$FORMATTED_DESC" "pt"; then
+        echo "✅ Adicionado automaticamente ao $CHANGELOG_PT_FILE"
+        git add "$CHANGELOG_PT_FILE"
+        ADDED=true
+      fi
+    else
+      if add_to_changelog "$CHANGELOG_FILE" "$SECTION" "$FORMATTED_DESC" "en"; then
+        echo "✅ Automatically added to $CHANGELOG_FILE"
+        git add "$CHANGELOG_FILE"
+        ADDED=true
+      fi
+    fi
+
+    # Também adiciona no outro idioma se possível
+    if [ "$ADDED" = true ]; then
+      if [ "$LANG" = "pt" ]; then
+        # Adiciona versão em inglês também
+        add_to_changelog "$CHANGELOG_FILE" "$SECTION" "$FORMATTED_DESC" "en" 2>/dev/null && \
+          git add "$CHANGELOG_FILE" && \
+          echo "✅ Also added to $CHANGELOG_FILE"
+      else
+        # Adiciona versão em português também
+        add_to_changelog "$CHANGELOG_PT_FILE" "$SECTION" "$FORMATTED_DESC" "pt" 2>/dev/null && \
+          git add "$CHANGELOG_PT_FILE" && \
+          echo "✅ Também adicionado ao $CHANGELOG_PT_FILE"
+      fi
+
+      echo ""
+      echo "💡 Changelog(s) atualizado(s) e staged automaticamente!"
+    fi
+  fi
+fi
+
+exit 0

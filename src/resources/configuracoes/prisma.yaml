@@ -1,0 +1,336 @@
+# Prisma - Sistema de Especificações
+# Configuração Centralizada
+version: '1.0.0'
+name: 'Prisma'
+description: 'Sistema de desenvolvimento orientado a especificações'
+
+# Informações do Projeto
+projeto:
+  nome: 'zion-prompt-lab'
+  tipo: 'next-app'
+  framework: 'Next.js 14'
+  gerenciador_pacotes: 'pnpm'
+  idioma_principal: 'pt-BR'
+
+# Configurações de Paths
+paths:
+  especificacoes: '.prisma/especificacoes'
+  agentes: '.prisma/agentes'
+  comandos: '.prisma/comandos'
+  prompts: '.prisma/prompts'
+  templates: '.prisma/templates'
+  melhorias:
+    agentes: '.prisma/melhorias/agentes'
+    prompts: '.prisma/melhorias/prompts'
+  projeto:
+    mapa: '.prisma/projeto/mapa'
+    arquitetura: '.prisma/projeto/arquitetura'
+    analises: '.prisma/projeto/analises'
+    checklists: '.prisma/projeto/checklists'
+    auditoria: '.prisma/projeto/auditoria'
+    relatorios: '.prisma/projeto/relatorios'
+    revisoes: '.prisma/projeto/revisoes'
+    sumarios: '.prisma/projeto/sumarios'
+    padroes: '.prisma/projeto/padroes'
+  # Paths do Claude Code (apontadores)
+  claude:
+    agentes: '.claude/agents/prisma'
+    comandos: '.claude/commands/prisma'
+
+# Configurações de Agentes
+agentes:
+  carregador:
+    nome: 'Carregador de Prompt'
+    cor: '#7F8C8D'
+    descricao: 'Carrega prompt principal do workflow Prisma'
+  auditor:
+    nome: 'Auditor de Código'
+    cor: '#D35400'
+    descricao: 'Agente meta-analítico para auditoria profunda'
+  revisor:
+    nome: 'Revisor de Código'
+    cor: '#3498DB'
+    descricao: 'Especializado em revisão profissional de código'
+  testador:
+    nome: 'Testador'
+    cor: '#9B59B6'
+    descricao: 'Revolucionário para padronização e geração de testes'
+  configurador:
+    nome: 'Configurador'
+    cor: '#1ABC9C'
+    descricao: 'Inicializa e configura projetos com padrões de alta qualidade'
+  regulador:
+    nome: 'Regulador'
+    cor: '#2980B9'
+    descricao: 'Validação e enforcement de padrões de código'
+  arquiteto:
+    nome: 'Arquiteto'
+    cor: '#16A085'
+    descricao: 'Documentação técnica automática pós-design'
+  idealizador:
+    nome: 'Idealizador'
+    cor: '#9B59B6'
+    descricao: 'Facilitação estruturada de exploração de ideias'
+  conformista:
+    nome: 'Conformista'
+    cor: '#95A5A6'
+    descricao: 'Verificar conformidade com regras e padrões'
+  decisor:
+    nome: 'Decisor'
+    cor: '#8E44AD'
+    descricao: 'Orquestrador para decidir ADVANCE/REVISE/ROLLBACK'
+  designer:
+    nome: 'Designer'
+    cor: '#2ECC71'
+    descricao: 'Cria e refina documentos de design técnico'
+  documentador:
+    nome: 'Documentador'
+    cor: '#F1C40F'
+    descricao: 'Cria documentação estruturada na pasta /docs'
+  elicitador:
+    nome: 'Elicitador'
+    cor: '#3498DB'
+    descricao: 'Análise de alinhamento automática pré-requisitos'
+  implementador:
+    nome: 'Implementador'
+    cor: '#1ABC9C'
+    descricao: 'Implementa código funcional seguindo tarefas aprovadas'
+  juiz:
+    nome: 'Juiz'
+    cor: '#9B59B6'
+    descricao: 'Avalia e seleciona melhor versão entre candidatos'
+  meta:
+    nome: 'Meta'
+    cor: '#34495E'
+    descricao: 'Meta-agente para otimização automática'
+  analista:
+    nome: 'Analista'
+    cor: '#E74C3C'
+    descricao: 'Cria e refina documentos de requisitos usando EARS'
+  avaliador-riscos:
+    nome: 'Avaliador de Riscos'
+    cor: '#E74C3C'
+    descricao: 'Análise de riscos técnicos, arquiteturais e de negócio'
+  planejador:
+    nome: 'Planejador'
+    cor: '#F39C12'
+    descricao: 'Decompõe design em tarefas de implementação'
+  testador-specs:
+    nome: 'Testador de Especificações'
+    cor: '#E67E22'
+    descricao: 'Cria documentos de teste e código executável'
+
+# Configurações de Workflow
+workflow:
+  fases:
+    - requisitos
+    - design
+    - tarefas
+    - implementacao
+    - testes
+    - compliance
+
+  subfolders:
+    - relatorios
+    - decisoes
+    - artefatos
+
+  especificacoes:
+    agentes_paralelos_padrao: 1
+    max_agentes_paralelos: 128
+    aprovacao_automatica: false
+    requer_aprovacao_explicita: true
+
+    fases_documentos:
+      requisitos:
+        habilitado: true
+        template: 'requisitos.md'
+        arquivo_saida: 'requisitos.md'
+      design:
+        habilitado: true
+        template: 'design.md'
+        arquivo_saida: 'design.md'
+      tarefas:
+        habilitado: true
+        template: 'tarefas.md'
+        arquivo_saida: 'tarefas.md'
+
+# Configurações de Linguagem
+linguagem:
+  principal: 'pt-BR'
+  fallback: 'en-US'
+  formato_data: 'DD/MM/YYYY'
+  formato_hora: 'HH:mm:ss'
+  separador_decimal: ','
+  separador_milhares: '.'
+
+  mensagens_sistema:
+    carregando: 'Carregando...'
+    sucesso: 'Sucesso!'
+    erro: 'Erro:'
+    aviso: 'Aviso:'
+    info: 'Informação:'
+    concluido: 'Concluído'
+    em_progresso: 'Em progresso'
+    pendente: 'Pendente'
+    bloqueado: 'Bloqueado'
+
+  # Termos técnicos que permanecem em inglês
+  termos_tecnicos_ingles:
+    - API
+    - REST
+    - GraphQL
+    - JWT
+    - OAuth
+    - CRUD
+    - CI/CD
+    - Docker
+    - Kubernetes
+    - Git
+    - GitHub
+    - TypeScript
+    - JavaScript
+    - React
+    - Next.js
+    - Mock
+    - TDD
+    - AAA pattern
+
+# Configurações de Qualidade
+qualidade:
+  revisao_codigo:
+    habilitado: true
+    agente: 'revisor'
+    requer_aprovacao: true
+    pontuacao_minima: 7
+    problemas_seguranca: 0
+
+  conformidade:
+    habilitado: true
+    agente: 'conformista'
+    requer_aprovacao: true
+    percentual_minimo: 95
+    threshold_bloqueio: 70
+
+  testes:
+    habilitado: true
+    agente: 'testador-specs'
+    requer_cobertura: true
+    cobertura_linha_minima: 80
+    cobertura_branch_minima: 75
+
+# Configurações de Implementação
+implementacao:
+  modo_padrao: 'sequencial'
+  permitir_execucao_paralela: true
+  modo_automatico:
+    habilitado: true
+    analisar_dependencias: true
+
+# Configurações de Padrões
+padroes:
+  codigo: '.prisma/projeto/padroes/coding-standards.md'
+  testes: '.prisma/projeto/padroes/testing-standards.yaml'
+  documentacao: '.prisma/projeto/padroes/documentation-standards.md'
+  arquitetura: '.prisma/projeto/arquitetura/architecture-patterns.md'
+
+# Stack Tecnológica
+stack:
+  orm: 'drizzle'
+  database: 'postgresql'
+  auth: 'nextauth-v5'
+  frontend: 'nextjs-14'
+  gerenciamento_estado: 'react-context'
+  cache: 'redis'
+  ai: 'openai-gpt4-turbo'
+
+# Histórico de Migrações
+migracoes:
+  concluidas:
+    - 'prisma-to-drizzle'
+    - 'nextauth-removal'
+    - 'payload-cms-abandoned'
+    - 'nextauth-v5-reintroduction'
+    - 'kfc-to-prisma'
+
+  pendentes: []
+
+  notas:
+    kfc-to-prisma:
+      data: '2025-10-03'
+      descricao: 'Migração completa de KFC para Prisma'
+      mudancas:
+        - 'Renomeação de agentes para português'
+        - 'Criação de sistema de apontadores'
+        - 'Reorganização de estrutura de pastas'
+        - 'Centralização de configurações'
+
+# Integrações
+integracoes:
+  git:
+    habilitado: true
+    commits_convencionais: true
+    nomenclatura_branch: 'feature/{nome-feature}'
+
+  cicd:
+    habilitado: false
+    provedor: 'github-actions'
+
+# Features Avançadas
+features:
+  julgamento_arvore:
+    habilitado: true
+    max_docs_por_juiz: 4
+    min_docs_paralelo: 2
+
+  renomeacao_automatica:
+    habilitado: true
+    preservar_historico_versoes: true
+
+  versionamento:
+    habilitado: true
+    estrategia: 'archive-on-major-change'
+    caminho_arquivo: '.prisma/especificacoes/{nome-feature}/arquivo/'
+    manter_versoes: 3
+    triggers_arquivo_auto:
+      - 'mudanca-stack'
+      - 'mudanca-arquitetura'
+      - 'remocao-feature'
+
+# Configurações de Conflitos
+resolucao_conflitos:
+  habilitado: true
+  precedencia:
+    - 'prisma.yaml'
+    - '.prisma/projeto/*.md'
+    - '.prisma/especificacoes/*/decisoes/*.md'
+  estrategia: 'config-first'
+  ao_conflitar: 'avisar-e-usar-precedencia'
+
+# Configurações de Templates
+templates:
+  requisitos: '.prisma/templates/requisitos.md'
+  design: '.prisma/templates/design.md'
+  tarefas: '.prisma/templates/tarefas.md'
+
+# Comandos Disponíveis
+comandos:
+  analisar-riscos: 'Análise profunda de riscos técnicos e de negócio'
+  atualizar-especificacao: 'Atualiza documentos de especificação existentes'
+  auditar-especificacao: 'Auditoria meta-analítica profunda'
+  executar-tarefas: 'Executa tarefas do plano de implementação'
+  executar-testes: 'Executa testes automatizados'
+  implementacao-paralela: 'Execução paralela de múltiplas tarefas'
+  listar-especificacoes: 'Dashboard de todas as especificações'
+  nova-especificacao: 'Cria nova especificação de feature'
+  revisar-implementacao: 'Revisão profissional de código'
+  status-especificacao: 'Status detalhado das especificações'
+  tomar-decisao: 'Cria ADR para decisões arquiteturais'
+  validar-especificacao: 'Valida conformidade com padrões'
+
+# Metadados
+metadata:
+  versao_config: '1.0.0'
+  ultima_atualizacao: '2025-10-03'
+  responsavel: 'Claude Code'
+  status: 'Ativo'

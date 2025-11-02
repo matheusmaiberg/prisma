@@ -1,0 +1,257 @@
+{
+  "syncedAt": "2025-11-02T03:28:21.309Z",
+  "files": [
+    {
+      "source": ".prisma\\agentes\\analista.md",
+      "target": ".claude\\agentes\\analista.md",
+      "size": 17426
+    },
+    {
+      "source": ".prisma\\agentes\\arquiteto.md",
+      "target": ".claude\\agentes\\arquiteto.md",
+      "size": 10993
+    },
+    {
+      "source": ".prisma\\agentes\\auditor.md",
+      "target": ".claude\\agentes\\auditor.md",
+      "size": 27833
+    },
+    {
+      "source": ".prisma\\agentes\\avaliador-riscos.md",
+      "target": ".claude\\agentes\\avaliador-riscos.md",
+      "size": 19006
+    },
+    {
+      "source": ".prisma\\agentes\\configurador.md",
+      "target": ".claude\\agentes\\configurador.md",
+      "size": 26186
+    },
+    {
+      "source": ".prisma\\agentes\\conformista.md",
+      "target": ".claude\\agentes\\conformista.md",
+      "size": 18081
+    },
+    {
+      "source": ".prisma\\agentes\\decisor.md",
+      "target": ".claude\\agentes\\decisor.md",
+      "size": 10190
+    },
+    {
+      "source": ".prisma\\agentes\\designer.md",
+      "target": ".claude\\agentes\\designer.md",
+      "size": 22264
+    },
+    {
+      "source": ".prisma\\agentes\\documentador.md",
+      "target": ".claude\\agentes\\documentador.md",
+      "size": 30436
+    },
+    {
+      "source": ".prisma\\agentes\\elicitador.md",
+      "target": ".claude\\agentes\\elicitador.md",
+      "size": 14688
+    },
+    {
+      "source": ".prisma\\agentes\\idealizador.md",
+      "target": ".claude\\agentes\\idealizador.md",
+      "size": 19388
+    },
+    {
+      "source": ".prisma\\agentes\\implementador.md",
+      "target": ".claude\\agentes\\implementador.md",
+      "size": 6535
+    },
+    {
+      "source": ".prisma\\agentes\\juiz.md",
+      "target": ".claude\\agentes\\juiz.md",
+      "size": 11389
+    },
+    {
+      "source": ".prisma\\agentes\\meta.md",
+      "target": ".claude\\agentes\\meta.md",
+      "size": 6292
+    },
+    {
+      "source": ".prisma\\agentes\\planejador.md",
+      "target": ".claude\\agentes\\planejador.md",
+      "size": 15057
+    },
+    {
+      "source": ".prisma\\agentes\\prisma.md",
+      "target": ".claude\\agentes\\prisma.md",
+      "size": 14083
+    },
+    {
+      "source": ".prisma\\agentes\\regulador.md",
+      "target": ".claude\\agentes\\regulador.md",
+      "size": 24328
+    },
+    {
+      "source": ".prisma\\agentes\\revisor.md",
+      "target": ".claude\\agentes\\revisor.md",
+      "size": 19313
+    },
+    {
+      "source": ".prisma\\agentes\\testador-specs.md",
+      "target": ".claude\\agentes\\testador-specs.md",
+      "size": 9593
+    },
+    {
+      "source": ".prisma\\agentes\\testador.md",
+      "target": ".claude\\agentes\\testador.md",
+      "size": 14988
+    },
+    {
+      "source": ".prisma\\CLAUDE.md",
+      "target": ".claude\\CLAUDE.md",
+      "size": 993
+    },
+    {
+      "source": ".prisma\\comandos\\analisar\\riscos.md",
+      "target": ".claude\\comandos\\analisar\\riscos.md",
+      "size": 5161
+    },
+    {
+      "source": ".prisma\\comandos\\decidir.md",
+      "target": ".claude\\comandos\\decidir.md",
+      "size": 10979
+    },
+    {
+      "source": ".prisma\\comandos\\especificacao\\atualizar.md",
+      "target": ".claude\\comandos\\especificacao\\atualizar.md",
+      "size": 1262
+    },
+    {
+      "source": ".prisma\\comandos\\especificacao\\auditar.md",
+      "target": ".claude\\comandos\\especificacao\\auditar.md",
+      "size": 16840
+    },
+    {
+      "source": ".prisma\\comandos\\especificacao\\listar.md",
+      "target": ".claude\\comandos\\especificacao\\listar.md",
+      "size": 6200
+    },
+    {
+      "source": ".prisma\\comandos\\especificacao\\nova.md",
+      "target": ".claude\\comandos\\especificacao\\nova.md",
+      "size": 2857
+    },
+    {
+      "source": ".prisma\\comandos\\especificacao\\status.md",
+      "target": ".claude\\comandos\\especificacao\\status.md",
+      "size": 8399
+    },
+    {
+      "source": ".prisma\\comandos\\especificacao\\validar.md",
+      "target": ".claude\\comandos\\especificacao\\validar.md",
+      "size": 3568
+    },
+    {
+      "source": ".prisma\\comandos\\implementacao\\paralela.md",
+      "target": ".claude\\comandos\\implementacao\\paralela.md",
+      "size": 9133
+    },
+    {
+      "source": ".prisma\\comandos\\implementacao\\revisar.md",
+      "target": ".claude\\comandos\\implementacao\\revisar.md",
+      "size": 2504
+    },
+    {
+      "source": ".prisma\\comandos\\iniciar.md",
+      "target": ".claude\\comandos\\iniciar.md",
+      "size": 8428
+    },
+    {
+      "source": ".prisma\\comandos\\onboarding.md",
+      "target": ".claude\\comandos\\onboarding.md",
+      "size": 7933
+    },
+    {
+      "source": ".prisma\\comandos\\organizar\\documentacao.md",
+      "target": ".claude\\comandos\\organizar\\documentacao.md",
+      "size": 9665
+    },
+    {
+      "source": ".prisma\\comandos\\organizar\\relatorios.md",
+      "target": ".claude\\comandos\\organizar\\relatorios.md",
+      "size": 8539
+    },
+    {
+      "source": ".prisma\\comandos\\README.md",
+      "target": ".claude\\comandos\\README.md",
+      "size": 13561
+    },
+    {
+      "source": ".prisma\\comandos\\setup-structure.sh",
+      "target": ".claude\\comandos\\setup-structure.sh",
+      "size": 11563
+    },
+    {
+      "source": ".prisma\\comandos\\tarefa\\executar.md",
+      "target": ".claude\\comandos\\tarefa\\executar.md",
+      "size": 2085
+    },
+    {
+      "source": ".prisma\\comandos\\testes\\executar.md",
+      "target": ".claude\\comandos\\testes\\executar.md",
+      "size": 6907
+    },
+    {
+      "source": ".prisma\\configuracoes\\language-config.yaml",
+      "target": ".claude\\configuracoes\\language-config.yaml",
+      "size": 2707
+    },
+    {
+      "source": ".prisma\\configuracoes\\prisma.yaml",
+      "target": ".claude\\configuracoes\\prisma.yaml",
+      "size": 8882
+    },
+    {
+      "source": ".prisma\\prompts\\elicitacoes.md",
+      "target": ".claude\\prompts\\elicitacoes.md",
+      "size": 5099
+    },
+    {
+      "source": ".prisma\\prompts\\prisma-prompt.md",
+      "target": ".claude\\prompts\\prisma-prompt.md",
+      "size": 29858
+    },
+    {
+      "source": ".prisma\\prompts\\prisma-system.md",
+      "target": ".claude\\prompts\\prisma-system.md",
+      "size": 7351
+    },
+    {
+      "source": ".prisma\\templates\\design.md",
+      "target": ".claude\\templates\\design.md",
+      "size": 8099
+    },
+    {
+      "source": ".prisma\\templates\\requisitos.md",
+      "target": ".claude\\templates\\requisitos.md",
+      "size": 3514
+    },
+    {
+      "source": ".prisma\\templates\\tarefas.md",
+      "target": ".claude\\templates\\tarefas.md",
+      "size": 14177
+    }
+  ],
+  "directories": [
+    ".claude\\agentes",
+    ".claude\\comandos\\analisar",
+    ".claude\\comandos\\especificacao",
+    ".claude\\comandos\\implementacao",
+    ".claude\\comandos\\organizar",
+    ".claude\\comandos\\tarefa",
+    ".claude\\comandos\\testes",
+    ".claude\\configuracoes",
+    ".claude\\prompts",
+    ".claude\\templates"
+  ],
+  "stats": {
+    "totalFiles": 47,
+    "totalDirectories": 10,
+    "totalSize": 554333
+  }
+}
