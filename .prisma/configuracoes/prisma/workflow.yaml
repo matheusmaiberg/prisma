@@ -1,0 +1,55 @@
+# Configurações de Workflow - Sistema Prisma
+# Define fases, versionamento e comportamento do workflow
+
+metadata:
+  versao: '1.0.0'
+  ultima_atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+# Fases do Workflow
+fases:
+  - requisitos
+  - design
+  - tarefas
+  - implementacao
+  - testes
+  - compliance
+  - documentacao
+
+# Subpastas padrão de cada especificação
+subfolders:
+  - artifacts
+  - decisions
+  - reports
+
+# Configurações de Implementação
+implementacao:
+  modo_padrao: 'sequencial'
+  permitir_execucao_paralela: true
+
+  modo_automatico:
+    habilitado: true
+    analisar_dependencias: true
+
+# Versionamento de especificações
+versionamento:
+  habilitado: true
+  estrategia: 'archive-on-major-change'
+  subpasta_arquivo: 'archive'
+  manter_versoes: 3
+
+  triggers_arquivo_auto:
+    - 'mudanca-stack'
+    - 'mudanca-arquitetura'
+    - 'remocao-feature'
+
+# Features Avançadas
+features:
+  julgamento_arvore:
+    habilitado: true
+    max_docs_por_juiz: 4
+    min_docs_paralelo: 2
+
+  renomeacao_automatica:
+    habilitado: true
+    preservar_historico_versoes: true

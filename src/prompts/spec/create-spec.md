@@ -360,7 +360,16 @@ Spec base path: {{specBasePath}}
 Please:
 
 1. Choose an appropriate kebab-case name for this spec based on the description
-2. Create the directory structure: {{specBasePath}}/{your-chosen-name}/
+2. Create the directory structure with Prisma standard folders:
+   ```
+   {{specBasePath}}/{your-chosen-name}/
+   ├── requirements.md (pendente)
+   ├── design.md (pendente)
+   ├── tasks.md (pendente)
+   ├── artifacts/
+   ├── decisions/
+   └── reports/
+   ```
 3. Create the requirements.md file in that directory
 4. Write the requirements document following the spec workflow in EARS format
 

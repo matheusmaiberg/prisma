@@ -1,0 +1,60 @@
+# Configurações de Templates - Sistema Prisma
+# Define templates de documentação disponíveis
+
+metadata:
+  versao: '1.0.0'
+  ultima_atualizacao: '2025-11-02'
+  total_templates: 3
+  status: 'Ativo'
+
+# Templates Disponíveis
+templates:
+  requisitos:
+    arquivo: 'requisitos.md'
+    descricao: 'Template para documentos de requisitos em formato EARS'
+    fase: 'requisitos'
+    obrigatorio: true
+    variaveis:
+      - feature_name
+      - description
+
+  design:
+    arquivo: 'design.md'
+    descricao: 'Template para documentos de design técnico'
+    fase: 'design'
+    obrigatorio: true
+    variaveis:
+      - feature_name
+      - requirements_path
+
+  tarefas:
+    arquivo: 'tarefas.md'
+    descricao: 'Template para planos de implementação'
+    fase: 'tarefas'
+    obrigatorio: true
+    variaveis:
+      - feature_name
+      - design_path
+      - requirements_path
+
+# Configurações de Renderização
+renderizacao:
+  # Engine de templates (handlebars, mustache, etc)
+  engine: 'handlebars'
+
+  # Preservar formatação original
+  preservar_formatacao: true
+
+  # Compilar templates ao carregar
+  pre_compilar: true
+
+# Validação de Templates
+validacao:
+  # Validar sintaxe do template
+  validar_sintaxe: true
+
+  # Validar presença de variáveis obrigatórias
+  validar_variaveis: true
+
+  # Validar estrutura markdown
+  validar_markdown: true

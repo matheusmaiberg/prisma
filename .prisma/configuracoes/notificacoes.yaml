@@ -1,0 +1,329 @@
+# Configurações de Notificações - Sistema Prisma
+# Define canais e regras para notificações do sistema
+
+metadata:
+  versao: '1.0.0'
+  ultima_atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+# Canais de Notificação
+canais:
+  slack:
+    habilitado: false
+
+    # Configuração
+    webhook_url: 'https://hooks.slack.com/services/YOUR/WEBHOOK/URL'
+    canal_padrao: '#prisma-notifications'
+
+    # Canais específicos por tipo
+    canais_especificos:
+      erro: '#prisma-errors'
+      sucesso: '#prisma-success'
+      quality_gate: '#prisma-quality'
+      deploy: '#prisma-deploys'
+
+    # Formatação
+    formatacao:
+      usar_blocos: true
+      usar_emojis: true
+      mencionar_usuario: true
+
+    # Prioridade
+    enviar_para:
+      - fase_concluida
+      - quality_gate_falhou
+      - erro_critico
+
+  discord:
+    habilitado: false
+
+    # Configuração
+    webhook_url: 'https://discord.com/api/webhooks/YOUR/WEBHOOK'
+    servidor: 'Prisma Dev Team'
+
+    # Canais específicos
+    canais_especificos:
+      geral: 'prisma-general'
+      alertas: 'prisma-alerts'
+      sucesso: 'prisma-success'
+
+    # Formatação
+    formatacao:
+      usar_embeds: true
+      cor_sucesso: '#00ff00'
+      cor_erro: '#ff0000'
+      cor_aviso: '#ffff00'
+
+    # Prioridade
+    enviar_para:
+      - fase_concluida
+      - implementacao_concluida
+      - testes_falharam
+
+  email:
+    habilitado: false
+
+    # SMTP Config
+    smtp:
+      host: 'smtp.gmail.com'
+      port: 587
+      secure: true
+      auth:
+        # Usar variáveis de ambiente
+        user: 'EMAIL_USER'
+        pass: 'EMAIL_PASSWORD'
+
+    # Destinatários
+    destinatarios:
+      admin: ['admin@example.com']
+      equipe: ['team@example.com']
+      stakeholders: ['stakeholder@example.com']
+
+    # Templates
+    templates:
+      usar_html: true
+      incluir_logo: true
+      incluir_links: true
+
+    # Prioridade
+    enviar_para:
+      - erro_critico
+      - quality_gate_falhou
+      - deploy_producao
+
+  telegram:
+    habilitado: false
+
+    # Bot Config
+    bot_token: 'TELEGRAM_BOT_TOKEN'
+    chat_ids:
+      equipe: '-1001234567890'
+      alertas: '-1001234567891'
+
+    # Formatação
+    formatacao:
+      parse_mode: 'Markdown'
+      disable_notification: false
+
+  in_app:
+    habilitado: true
+
+    # Notificações no VSCode
+    vscode:
+      usar_notifications: true
+      usar_status_bar: true
+      duração_ms: 5000
+
+    # Tipos de notificação
+    tipos:
+      info: true
+      warning: true
+      error: true
+      success: true
+
+# Eventos que Geram Notificações
+eventos:
+  fase_iniciada:
+    habilitado: true
+    prioridade: 'baixa'
+    canais: ['in_app']
+    template: |
+      📋 Fase iniciada: {fase}
+      Feature: {feature_name}
+
+  fase_concluida:
+    habilitado: true
+    prioridade: 'media'
+    canais: ['in_app', 'slack', 'discord']
+    template: |
+      ✅ Fase concluída: {fase}
+      Feature: {feature_name}
+      Quality Score: {quality_score}/10
+
+  quality_gate_passou:
+    habilitado: true
+    prioridade: 'media'
+    canais: ['in_app']
+    template: |
+      ✅ Quality Gate aprovado
+      Gate: {gate_name}
+      Score: {score}
+
+  quality_gate_falhou:
+    habilitado: true
+    prioridade: 'alta'
+    canais: ['in_app', 'slack', 'discord', 'email']
+    template: |
+      ❌ Quality Gate falhou
+      Gate: {gate_name}
+      Feature: {feature_name}
+      Detalhes: {detalhes}
+
+  implementacao_iniciada:
+    habilitado: true
+    prioridade: 'baixa'
+    canais: ['in_app']
+    template: |
+      🔨 Implementação iniciada
+      Task: {task_name}
+
+  implementacao_concluida:
+    habilitado: true
+    prioridade: 'media'
+    canais: ['in_app', 'slack', 'discord']
+    template: |
+      ✅ Implementação concluída
+      Task: {task_name}
+      Files changed: {files_changed}
+
+  testes_executados:
+    habilitado: true
+    prioridade: 'media'
+    canais: ['in_app']
+    template: |
+      🧪 Testes executados
+      Passou: {passou}
+      Cobertura: {cobertura}%
+      Falhas: {falhas}
+
+  testes_falharam:
+    habilitado: true
+    prioridade: 'alta'
+    canais: ['in_app', 'slack', 'discord']
+    template: |
+      ❌ Testes falharam
+      Feature: {feature_name}
+      Falhas: {total_falhas}
+      Detalhes: {detalhes}
+
+  risco_identificado:
+    habilitado: true
+    prioridade: 'alta'
+    canais: ['in_app', 'slack', 'email']
+    condicoes:
+      nivel_minimo: 'alto'
+    template: |
+      ⚠️ Risco identificado
+      Nível: {nivel}
+      Categoria: {categoria}
+      Descrição: {descricao}
+
+  erro_critico:
+    habilitado: true
+    prioridade: 'critica'
+    canais: ['in_app', 'slack', 'discord', 'email', 'telegram']
+    template: |
+      🚨 ERRO CRÍTICO
+      Agente: {agente}
+      Erro: {mensagem}
+      Stack: {stack_trace}
+
+  deploy_producao:
+    habilitado: true
+    prioridade: 'alta'
+    canais: ['slack', 'discord', 'email']
+    template: |
+      🚀 Deploy em produção
+      Feature: {feature_name}
+      Versão: {versao}
+      Ambiente: {ambiente}
+
+# Regras de Agrupamento
+agrupamento:
+  habilitado: true
+
+  # Agrupar notificações similares
+  janela_tempo_segundos: 60
+
+  # Máximo de notificações antes de agrupar
+  max_antes_agrupar: 3
+
+  # Template de agrupamento
+  template_agrupado: |
+    📦 {count} notificações agrupadas
+    Tipo: {tipo}
+    Última: {ultima_notificacao}
+
+# Silenciamento
+silenciamento:
+  habilitado: true
+
+  # Horários de silêncio
+  horarios:
+    noturno:
+      habilitado: true
+      inicio: '22:00'
+      fim: '08:00'
+      timezone: 'America/Sao_Paulo'
+      exceções: ['erro_critico']
+
+    fim_de_semana:
+      habilitado: true
+      dias: ['sabado', 'domingo']
+      exceções: ['erro_critico', 'deploy_producao']
+
+  # Silenciar por tipo
+  tipos_silenciados: []
+
+  # Silenciar por feature
+  features_silenciadas: []
+
+# Prioridades
+prioridades:
+  critica:
+    cor: '#FF0000'
+    som: true
+    persistente: true
+    enviar_todos_canais: true
+
+  alta:
+    cor: '#FF6600'
+    som: true
+    persistente: false
+    enviar_todos_canais: false
+
+  media:
+    cor: '#FFFF00'
+    som: false
+    persistente: false
+
+  baixa:
+    cor: '#00FF00'
+    som: false
+    persistente: false
+
+# Rate Limiting
+rate_limiting:
+  habilitado: true
+
+  # Máximo de notificações por minuto
+  max_por_minuto: 10
+
+  # Máximo de notificações por hora
+  max_por_hora: 50
+
+  # Ação ao atingir limite
+  acao: 'agrupar'  # ou 'descartar', 'enfileirar'
+
+# Retry Policy
+retry:
+  habilitado: true
+  max_tentativas: 3
+  delay_ms: 1000
+  backoff: 'exponential'
+
+# Analytics
+analytics:
+  habilitado: true
+
+  # Métricas coletadas
+  metricas:
+    - total_notificacoes
+    - notificacoes_por_canal
+    - notificacoes_por_prioridade
+    - taxa_entrega
+    - taxa_erro
+
+  # Armazenamento
+  armazenar_historico: true
+  dias_retencao: 30

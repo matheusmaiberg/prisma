@@ -40,12 +40,20 @@ export class ClaudeCodeProvider {
 
 
     /**
+     * Detect if the default shell is WSL
+     */
+    private isWSLShell(): boolean {
+        const defaultShell = vscode.workspace.getConfiguration('terminal.integrated').get<string>('defaultProfile.windows');
+        return defaultShell?.toLowerCase().includes('wsl') || defaultShell?.toLowerCase().includes('bash') || false;
+    }
+
+    /**
      * Convert Windows path to WSL path if needed
      * Example: C:\Users\username\file.txt -> /mnt/c/Users/username/file.txt
      */
     private convertPathIfWSL(filePath: string): string {
-        // Check if running on Windows and path is a Windows path
-        if (process.platform === 'win32' && filePath.match(/^[A-Za-z]:\\/)) {
+        // Only convert if we're on Windows AND the shell is WSL
+        if (process.platform === 'win32' && this.isWSLShell() && filePath.match(/^[A-Za-z]:\\/)) {
             // Replace backslashes with forward slashes
             let wslPath = filePath.replace(/\\/g, '/');
             // Convert drive letter to WSL format (C: -> /mnt/c)
@@ -53,8 +61,21 @@ export class ClaudeCodeProvider {
             return wslPath;
         }
 
-        // Return original path if not on Windows or not a Windows path
+        // Return original path for PowerShell/CMD or non-Windows
         return filePath;
+    }
+
+    /**
+     * Get the appropriate file read command for the current shell
+     */
+    private getFileReadCommand(filePath: string): string {
+        if (process.platform === 'win32' && !this.isWSLShell()) {
+            // PowerShell or CMD on Windows
+            return `Get-Content "${filePath}"`;
+        } else {
+            // WSL, Git Bash, or Unix-like
+            return `cat "${filePath}"`;
+        }
     }
 
     /**
@@ -78,8 +99,9 @@ export class ClaudeCodeProvider {
             // Create temp file with the prompt
             const promptFilePath = await this.createTempFile(prompt, 'prompt');
 
-            // Build the command - use command substitution instead of input redirection
-            let command = `${this.configManager.getClaudeCLIPath()} --permission-mode bypassPermissions "$(cat "${promptFilePath}")"`;
+            // Build the command - use appropriate file read command for the shell
+            const fileReadCmd = this.getFileReadCommand(promptFilePath);
+            let command = `${this.configManager.getClaudeCLIPath()} --permission-mode bypassPermissions "$(${ fileReadCmd })"`;
 
             // Create a new terminal in the editor area (right side)
             const terminal = vscode.window.createTerminal({
@@ -169,8 +191,9 @@ export class ClaudeCodeProvider {
         // Create temp file with the prompt
         const promptFilePath = await this.createTempFile(prompt, 'background-prompt');
 
-        // Build command using command substitution instead of file redirection
-        let commandLine = `${this.configManager.getClaudeCLIPath()} --permission-mode bypassPermissions "$(cat "${promptFilePath}")"`;
+        // Build command using appropriate file read command for the shell
+        const fileReadCmd = this.getFileReadCommand(promptFilePath);
+        let commandLine = `${this.configManager.getClaudeCLIPath()} --permission-mode bypassPermissions "$(${ fileReadCmd })"`;
 
         // Create hidden terminal for background execution
         const terminal = vscode.window.createTerminal({

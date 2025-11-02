@@ -1,0 +1,47 @@
+# Configurações de Paths - Sistema Prisma
+# Define todos os caminhos utilizados pelo sistema
+
+metadata:
+  versao: '1.0.0'
+  ultima_atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+# Paths Principais (.prisma/)
+paths:
+  raiz: '.prisma'
+  agentes: '.prisma/agentes'
+  comandos: '.prisma/comandos'
+  prompts: '.prisma/prompts'
+  templates: '.prisma/templates'
+  configuracoes: '.prisma/configuracoes'
+  checkpoints: '.prisma/checkpoints'
+  workflows: '.prisma/workflows'
+
+# Paths do Projeto (.prisma/projeto/)
+projeto:
+  raiz: '.prisma/projeto'
+  especificacoes: '.prisma/projeto/especificacoes'
+  mapa: '.prisma/projeto/mapa'
+  arquitetura: '.prisma/projeto/arquitetura'
+  analises: '.prisma/projeto/analises'
+  checklists: '.prisma/projeto/checklists'
+  auditoria: '.prisma/projeto/auditoria'
+  relatorios: '.prisma/projeto/relatorios'
+  revisoes: '.prisma/projeto/revisoes'
+  sumarios: '.prisma/projeto/sumarios'
+  padroes: '.prisma/projeto/padroes'
+
+# Subpastas Padrão de Especificações
+especificacoes_subfolders:
+  - 'artifacts'
+  - 'decisions'
+  - 'reports'
+
+# Paths de Integração (.claude/)
+claude:
+  raiz: '.claude'
+  agents: '.claude/agents'
+  commands: '.claude/commands'
+  system_prompts: '.claude/system-prompts'
+  templates: '.claude/templates'
+  settings: '.claude/settings'

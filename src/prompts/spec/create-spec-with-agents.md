@@ -27,5 +27,19 @@ Feature Description: {{description}}
 Workspace path: {{workspacePath}}
 Spec base path: {{specBasePath}}
 
+Please:
+1. Choose an appropriate kebab-case name for this spec based on the description
+2. Create the directory structure with Prisma standard folders:
+   ```
+   {{specBasePath}}/{your-chosen-name}/
+   ├── requirements.md (pendente)
+   ├── design.md (pendente)
+   ├── tasks.md (pendente)
+   ├── artifacts/
+   ├── decisions/
+   └── reports/
+   ```
+3. Follow the spec development workflow
+
 You have full control over the naming and file creation.
 </user_input>

@@ -1,1 +1,13 @@
 node_modules
+dist
+
+# Claude Code (gerado pela extensão)
+.claude/
+
+# Arquivos temporários
+nul
+*.log
+*.tmp
+
+# VSCode settings locais
+.vscode/settings.local.json
