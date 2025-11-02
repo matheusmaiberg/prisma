@@ -6,8 +6,9 @@ metadata:
   ultima_atualizacao: '2025-11-02'
   status: 'Ativo'
 
-# Caminhos Principais (.prisma/)
-caminhos:
+# Todos os recursos do sistema
+recursos:
+  # Recursos principais (.prisma/)
   agentes:
     caminho: '.prisma/agentes'
     subpastas: []
@@ -30,23 +31,7 @@ caminhos:
     caminho: '.prisma/workflows'
     subpastas: []
 
-# Caminhos de Recursos (src/resources/)
-recursos:
-  agentes:
-    caminho: 'src/resources/agentes'
-    subpastas: []
-  comandos:
-    caminho: 'src/resources/comandos'
-    subpastas: ['prisma']
-  prompts:
-    caminho: 'src/resources/prompts'
-    subpastas: []
-  templates:
-    caminho: 'src/resources/templates'
-    subpastas: []
-
-# Caminhos do Projeto (.prisma/projeto/)
-projeto:
+  # Recursos do projeto (.prisma/projeto/)
   especificacoes:
     caminho: '.prisma/projeto/especificacoes'
     subpastas: ['artifacts', 'decisions', 'reports']
@@ -78,20 +63,35 @@ projeto:
     caminho: '.prisma/projeto/padroes'
     subpastas: []
 
-# Caminhos de Integração (.claude/)
-claude:
-  agents:
-    caminho: '.claude/agents'
+  # Recursos fonte (src/resources/)
+  recursos_agentes:
+    caminho: 'src/resources/agentes'
+    subpastas: []
+  recursos_comandos:
+    caminho: 'src/resources/comandos'
     subpastas: ['prisma']
-  commands:
-    caminho: '.claude/commands/'
-    subpastas: ['prisma']
-  system_prompts:
-    caminho: '.claude/system-prompts'
+  recursos_prompts:
+    caminho: 'src/resources/prompts'
     subpastas: []
-  templates:
-    caminho: '.claude/templates'
+  recursos_templates:
+    caminho: 'src/resources/templates'
     subpastas: []
-  settings:
-    caminho: '.claude/settings'
-    subpastas: []
+
+# Integrações
+integracoes:
+  claude:
+    agents:
+      caminho: '.claude/agents'
+      subpastas: ['prisma']
+    commands:
+      caminho: '.claude/commands/'
+      subpastas: ['prisma']
+    system_prompts:
+      caminho: '.claude/system-prompts'
+      subpastas: []
+    templates:
+      caminho: '.claude/templates'
+      subpastas: []
+    settings:
+      caminho: '.claude/settings'
+      subpastas: []
