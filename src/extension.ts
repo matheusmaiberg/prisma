@@ -15,6 +15,7 @@ import { CONFIG_FILE_NAME, VSC_CONFIG_NAMESPACE } from './constants';
 import { PromptLoader } from './services/promptLoader';
 import { UpdateChecker } from './utils/updateChecker';
 import { PermissionManager } from './features/permission/permissionManager';
+import { NotificationManager } from './features/notification/notificationManager';
 import { NotificationUtils } from './utils/notificationUtils';
 import { SpecTaskCodeLensProvider } from './providers/specTaskCodeLensProvider';
 import { getTranslations } from './i18n/translations';
@@ -23,6 +24,7 @@ let claudeCodeProvider: ClaudeCodeProvider;
 let specManager: SpecManager;
 let steeringManager: SteeringManager;
 let permissionManager: PermissionManager;
+let notificationManager: NotificationManager;
 let agentManager: AgentManager;
 export let outputChannel: vscode.OutputChannel;
 
@@ -60,6 +62,10 @@ export async function activate(context: vscode.ExtensionContext) {
 
     // 初始化权限系统（包含重试逻辑）
     await permissionManager.initializePermissions();
+
+    // Initialize NotificationManager
+    notificationManager = NotificationManager.getInstance();
+    notificationManager.initialize(outputChannel, context);
 
     // Initialize feature managers with output channel
     specManager = new SpecManager(claudeCodeProvider, outputChannel);
@@ -235,6 +241,13 @@ async function toggleViews() {
 
 
 function registerCommands(context: vscode.ExtensionContext, specExplorer: SpecExplorerProvider, steeringExplorer: SteeringExplorerProvider, hooksExplorer: HooksExplorerProvider, mcpExplorer: MCPExplorerProvider, agentsExplorer: AgentsExplorerProvider, updateChecker: UpdateChecker) {
+
+    // Notification commands
+    context.subscriptions.push(
+        vscode.commands.registerCommand('prisma.notification.configure', async () => {
+            await NotificationManager.getInstance().openConfig();
+        })
+    );
 
     // Permission commands
     context.subscriptions.push(

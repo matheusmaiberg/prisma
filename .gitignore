@@ -11,3 +11,4 @@ nul
 
 # VSCode settings locais
 .vscode/settings.local.json
+# .prisma

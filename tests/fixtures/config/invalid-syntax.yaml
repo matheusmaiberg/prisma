@@ -1,0 +1,6 @@
+# Invalid YAML syntax for testing
+
+paths:
+  agents: .claude/agents
+  prompts: [unclosed array
+  commands: .claude/commands

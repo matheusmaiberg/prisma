@@ -1,0 +1,11 @@
+# Configuração de Paths - Prisma for Claude Code (TESTE)
+# Paths são relativos ao workspace root
+
+paths:
+  agents: .custom/agents
+  prompts: .custom/prompts
+  commands: .custom/commands
+  templates: .custom/templates
+  specs: .custom/specs
+  steering: .custom/steering
+  settings: .custom/settings

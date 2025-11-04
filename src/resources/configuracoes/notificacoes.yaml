@@ -1,0 +1,71 @@
+metadata:
+  versao: '1.0.0'
+  atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+canais:
+  inApp:
+    habilitado: true
+    vscode:
+      notifications: true
+      statusBar: true
+      duracaoMs: 5000
+    tipos: [info, warning, error, success]
+
+eventos:
+  faseIniciada:
+    prioridade: 'baixa'
+    canais: [inApp]
+  faseConcluida:
+    prioridade: 'media'
+    canais: [inApp]
+  qualidadePassou:
+    prioridade: 'media'
+    canais: [inApp]
+  qualidadeFalhou:
+    prioridade: 'alta'
+    canais: [inApp]
+  implementacaoIniciada:
+    prioridade: 'baixa'
+    canais: [inApp]
+  implementacaoConcluida:
+    prioridade: 'media'
+    canais: [inApp]
+  testesExecutados:
+    prioridade: 'media'
+    canais: [inApp]
+  testesFalharam:
+    prioridade: 'alta'
+    canais: [inApp]
+  riscoIdentificado:
+    prioridade: 'alta'
+    canais: [inApp]
+  erroCritico:
+    prioridade: 'critica'
+    canais: [inApp]
+
+prioridades:
+  critica:
+    cor: '#FF0000'
+    som: true
+    persistente: true
+  alta:
+    cor: '#FF6600'
+    som: true
+  media:
+    cor: '#FFFF00'
+  baixa:
+    cor: '#00FF00'
+
+agrupamento:
+  habilitado: true
+  janelaSegundos: 60
+  maxAntes: 3
+
+rateLimit:
+  maxPorMinuto: 10
+  maxPorHora: 50
+
+analytics:
+  habilitado: true
+  diasRetencao: 30

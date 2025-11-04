@@ -1,0 +1,14 @@
+# Configuração de Validação - Prisma for Claude Code
+
+validation:
+  # Ativar validação de schemas
+  enabled: true
+
+  # Modo estrito: falhas bloqueiam startup (não recomendado)
+  strictMode: false
+
+  # Nível de log: error | warn | info | debug
+  logLevel: warn
+
+  # Mostrar notificações no VSCode para erros
+  showNotifications: true

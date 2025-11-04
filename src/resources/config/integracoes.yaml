@@ -1,0 +1,13 @@
+# Configuração de Integrações - Prisma for Claude Code
+
+claude:
+  # Modo de invocação: 'cli' (Claude CLI) ou 'extension' (API futura)
+  invocationMode: cli
+
+  # Path para executável do Claude CLI
+  cliPath: claude
+
+  # Configurações de terminal
+  terminal:
+    # Delay para aguardar ativação de venv (ms)
+    activationDelay: 800

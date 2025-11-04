@@ -1,0 +1,12 @@
+# Configurações de Especificações - Sistema Prisma
+# Define comportamento do workflow de especificações
+
+metadata:
+  versao: '1.0.0'
+  ultima_atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+# Features do Workflow de Especificações
+features:
+  worflows: true
+  documentacao: true

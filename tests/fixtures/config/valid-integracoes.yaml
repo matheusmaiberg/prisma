@@ -1,0 +1,7 @@
+# Configuração de Integrações - Prisma for Claude Code (TESTE)
+
+claude:
+  invocationMode: cli
+  cliPath: claude
+  terminal:
+    activationDelay: 800

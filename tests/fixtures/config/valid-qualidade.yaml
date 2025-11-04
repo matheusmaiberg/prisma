@@ -1,0 +1,7 @@
+# Configuração de Validação - Prisma for Claude Code (TESTE)
+
+validation:
+  enabled: true
+  strictMode: false
+  logLevel: warn
+  showNotifications: true

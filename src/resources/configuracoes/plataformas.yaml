@@ -1,0 +1,309 @@
+# Configurações de Plataformas - Sistema Prisma
+# Define plataformas e contextos para geração de código pela IA
+
+metadata:
+  versao: '1.0.0'
+  ultima_atualizacao: '2025-11-02'
+  status: 'Ativo'
+
+# Plataformas Disponíveis
+plataformas:
+  nodejs:
+    nome: 'Node.js'
+    habilitado: true
+    tipo: 'backend'
+
+    # Contexto para IA
+    contexto:
+      linguagem: 'javascript/typescript'
+      runtime: 'node.js'
+      paradigma: 'event-driven, async'
+
+    # Padrões comuns
+    padroes:
+      arquitetura: ['mvc', 'clean-architecture', 'hexagonal']
+      estrutura_pastas: 'src/{controllers,services,repositories,models}'
+      testes: 'jest'
+
+    # Frameworks populares
+    frameworks:
+      - express
+      - fastify
+      - nestjs
+      - koa
+
+    # Bibliotecas comuns
+    bibliotecas:
+      orm: ['prisma', 'typeorm', 'sequelize']
+      validacao: ['zod', 'joi', 'yup']
+      testes: ['jest', 'vitest', 'mocha']
+
+    # Templates de código
+    templates:
+      api_rest: true
+      graphql: true
+      websocket: true
+
+  n8n:
+    nome: 'n8n Workflow Automation'
+    habilitado: true
+    tipo: 'automation'
+
+    # Contexto para IA
+    contexto:
+      linguagem: 'json/javascript'
+      tipo: 'workflow visual'
+      paradigma: 'node-based, event-driven'
+
+    # Padrões n8n
+    padroes:
+      nodes:
+        - 'HTTP Request'
+        - 'Webhook'
+        - 'Set'
+        - 'IF'
+        - 'Switch'
+        - 'Function'
+        - 'Code'
+
+      workflow_patterns:
+        - 'webhook-trigger'
+        - 'scheduled-execution'
+        - 'event-processing'
+        - 'data-transformation'
+
+    # Estrutura de workflow
+    estrutura:
+      nodes: []
+      connections: {}
+      settings:
+        executionOrder: 'v1'
+
+    # Custom nodes comuns
+    custom_nodes:
+      - '@n8n/n8n-nodes-langchain'
+      - 'n8n-nodes-prisma'
+
+    # Templates de workflows
+    templates:
+      webhook_to_api:
+        descricao: 'Recebe webhook e chama API externa'
+        nodes: ['Webhook', 'HTTP Request', 'Set']
+
+      scheduled_backup:
+        descricao: 'Backup agendado de dados'
+        nodes: ['Schedule', 'HTTP Request', 'Write File']
+
+      data_sync:
+        descricao: 'Sincronização de dados entre sistemas'
+        nodes: ['Webhook', 'IF', 'HTTP Request', 'Database']
+
+  react:
+    nome: 'React'
+    habilitado: true
+    tipo: 'frontend'
+
+    # Contexto para IA
+    contexto:
+      linguagem: 'javascript/typescript'
+      tipo: 'biblioteca UI'
+      paradigma: 'component-based, declarative'
+
+    # Padrões React
+    padroes:
+      arquitetura: ['atomic-design', 'feature-based', 'container-presenter']
+      estado: ['hooks', 'context', 'redux', 'zustand']
+      estilo: ['css-modules', 'styled-components', 'tailwind']
+
+    # Frameworks/Meta-frameworks
+    frameworks:
+      - nextjs
+      - remix
+      - gatsby
+
+    # Bibliotecas essenciais
+    bibliotecas:
+      routing: ['react-router', 'tanstack-router']
+      forms: ['react-hook-form', 'formik']
+      data_fetching: ['tanstack-query', 'swr', 'apollo']
+      ui: ['material-ui', 'chakra-ui', 'shadcn-ui']
+
+    # Templates de componentes
+    templates:
+      functional_component: true
+      custom_hook: true
+      context_provider: true
+
+  vue:
+    nome: 'Vue.js'
+    habilitado: true
+    tipo: 'frontend'
+
+    # Contexto para IA
+    contexto:
+      linguagem: 'javascript/typescript'
+      tipo: 'framework UI'
+      paradigma: 'component-based, reactive'
+
+    # Padrões Vue
+    padroes:
+      arquitetura: ['composition-api', 'options-api']
+      estado: ['pinia', 'vuex']
+      estilo: ['scoped-css', 'css-modules']
+
+    # Frameworks
+    frameworks:
+      - nuxt
+      - quasar
+      - vitepress
+
+    # Bibliotecas
+    bibliotecas:
+      routing: ['vue-router']
+      forms: ['vee-validate']
+      ui: ['vuetify', 'element-plus', 'primevue']
+
+  python:
+    nome: 'Python'
+    habilitado: true
+    tipo: 'backend/scripting'
+
+    # Contexto para IA
+    contexto:
+      linguagem: 'python'
+      tipo: 'general-purpose'
+      paradigma: 'multi-paradigm'
+
+    # Padrões Python
+    padroes:
+      arquitetura: ['mvc', 'clean-architecture']
+      estrutura: 'src/{api,services,models,utils}'
+      testes: 'pytest'
+
+    # Frameworks
+    frameworks:
+      web: ['fastapi', 'django', 'flask']
+      async: ['asyncio', 'aiohttp']
+      data: ['pandas', 'numpy']
+
+    # Bibliotecas comuns
+    bibliotecas:
+      orm: ['sqlalchemy', 'tortoise-orm']
+      validacao: ['pydantic', 'marshmallow']
+      testes: ['pytest', 'unittest']
+
+  docker:
+    nome: 'Docker'
+    habilitado: true
+    tipo: 'infrastructure'
+
+    # Contexto para IA
+    contexto:
+      tipo: 'containerization'
+      arquivos: ['Dockerfile', 'docker-compose.yml']
+
+    # Padrões Docker
+    padroes:
+      multi_stage_builds: true
+      alpine_linux: true
+      health_checks: true
+
+    # Templates
+    templates:
+      nodejs_dockerfile: true
+      python_dockerfile: true
+      multi_container: true
+
+# Detecção Automática de Plataforma
+deteccao_automatica:
+  habilitado: true
+
+  # Arquivos que indicam plataforma
+  indicadores:
+    nodejs:
+      arquivos: ['package.json', 'node_modules']
+      campos_package: ['dependencies', 'scripts']
+
+    n8n:
+      arquivos: ['.n8n', 'n8n/credentials.json']
+      pastas: ['n8n/workflows']
+
+    react:
+      package_dependencies: ['react', 'react-dom']
+      arquivos: ['src/App.jsx', 'src/App.tsx']
+
+    vue:
+      package_dependencies: ['vue']
+      arquivos: ['src/App.vue']
+
+    python:
+      arquivos: ['requirements.txt', 'pyproject.toml', 'setup.py']
+      extensoes: ['.py']
+
+    docker:
+      arquivos: ['Dockerfile', 'docker-compose.yml']
+
+# Contexto para Geração de Código
+geracao_codigo:
+  # Usar contexto da plataforma detectada
+  usar_contexto_automatico: true
+
+  # Priorizar padrões da plataforma
+  seguir_padroes: true
+
+  # Incluir imports/dependencies corretos
+  incluir_dependencias: true
+
+  # Gerar testes apropriados
+  gerar_testes: true
+
+  # Exemplo de uso
+  exemplo_prompt: |
+    Ao gerar código, a IA deve:
+    1. Detectar plataforma atual (package.json → Node.js)
+    2. Carregar contexto da plataforma
+    3. Usar padrões e bibliotecas comuns
+    4. Gerar código idiomático
+    5. Incluir testes apropriados
+
+# Combinações Comuns
+stacks:
+  fullstack_js:
+    nome: 'Full Stack JavaScript'
+    plataformas: ['nodejs', 'react', 'docker']
+    descricao: 'Node.js backend + React frontend + Docker'
+
+  automation_stack:
+    nome: 'Automation Stack'
+    plataformas: ['n8n', 'nodejs', 'docker']
+    descricao: 'n8n workflows + Node.js APIs + Docker'
+
+  python_data:
+    nome: 'Python Data Stack'
+    plataformas: ['python', 'docker']
+    descricao: 'Python para análise de dados e APIs'
+
+# Sugestões Contextuais
+sugestoes:
+  habilitado: true
+
+  # Quando detectar Node.js, sugerir:
+  nodejs:
+    - 'Usar TypeScript para type safety'
+    - 'Adicionar ESLint e Prettier'
+    - 'Configurar Prisma para ORM'
+    - 'Usar Jest para testes'
+
+  # Quando detectar n8n, sugerir:
+  n8n:
+    - 'Criar workflow modular e reutilizável'
+    - 'Usar Set nodes para transformação de dados'
+    - 'Adicionar error handling com Error Trigger'
+    - 'Documentar workflow com Notes'
+
+  # Quando detectar React, sugerir:
+  react:
+    - 'Usar TypeScript para props typing'
+    - 'Implementar Composition API com hooks'
+    - 'Adicionar React Query para data fetching'
+    - 'Usar Tailwind para styling'

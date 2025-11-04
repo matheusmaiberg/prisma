@@ -1,0 +1,25 @@
+# Configuração de Paths - Prisma for Claude Code
+# Paths são relativos ao workspace root
+# Documentação: https://github.com/matheusmaiberg/prisma/wiki/yaml-configs
+
+paths:
+  # Diretório onde agentes built-in são instalados
+  agents: .claude/agents/prisma
+
+  # Diretório de system prompts globais
+  prompts: .claude/system-prompts
+
+  # Diretório de slash commands
+  commands: .claude/commands/prisma
+
+  # Diretório de templates de especificações
+  templates: .claude/templates
+
+  # Diretório de especificações de features
+  specs: .prisma/projeto/especificacoes
+
+  # Diretório de steering documents
+  steering: .claude/steering
+
+  # Diretório de configurações JSON (legacy)
+  settings: .claude/settings
