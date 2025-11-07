@@ -1,3 +1,8 @@
+---
+description: Listar todas especificações com status e progresso
+argument-hint: [filter] [sort-by]
+---
+
 # Command: /listar-especificacoes
 
 ## Description

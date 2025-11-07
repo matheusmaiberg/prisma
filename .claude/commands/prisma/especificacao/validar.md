@@ -1,3 +1,8 @@
+---
+description: Validar conformidade de especificações com padrões
+argument-hint: [nome-feature] [tipo-validacao]
+---
+
 # Command: /validar-especificacao
 
 ## Description

@@ -1,3 +1,8 @@
+---
+description: Exibir status detalhado de especificação
+argument-hint: [feature-name] [detail-level]
+---
+
 # Command: /status-especificacao
 
 ## Description

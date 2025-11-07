@@ -1,3 +1,8 @@
+---
+description: Criar nova especificação usando workflow Prisma completo
+model: sonnet
+---
+
 # Command: /nova-especificacao
 
 ## Description
