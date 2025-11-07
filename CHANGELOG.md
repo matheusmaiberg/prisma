@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.1] - 2025-11-07
+
+### 🔧 Correções e Melhorias
+
+#### Fixed
+- 🐛 Corrigido caminho de especificações para `.prisma/projeto/especificacoes`
+- 🐛 Ajustado namespace de comandos para funcionar corretamente no Claude Code
+
+#### Added
+- 📦 Script `sync-resources` para sincronização automática de recursos
+- 📝 Frontmatter YAML nos comandos (description, model, argument-hint)
+- 🔄 Sincronização seletiva: comandos e agentes apenas em `.claude/`
+
+#### Changed
+- 📁 Otimizada estrutura de diretórios, removendo duplicações desnecessárias
+- 🎯 Comandos agora ficam em `.claude/commands/prisma/` com namespace correto
+- ⚡ Build process melhorado com sincronização automática de recursos
+
 ## [1.0.0] - 2025-11-02
 
 ### 🎉 First Official Release
