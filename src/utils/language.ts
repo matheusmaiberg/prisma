@@ -25,17 +25,11 @@ export function getDirectoryNames(lang: Language) {
         settings: 'settings'
     };
 
-    // Apenas specs é traduzido
-    if (lang === 'pt') {
-        return {
-            ...claudeDefaults,
-            specs: 'especificacoes'
-        };
-    }
-
+    // Para specs, usamos o padrão do Prisma
+    // Não importa o idioma, sempre usa o mesmo caminho
     return {
         ...claudeDefaults,
-        specs: 'specs'
+        specs: 'projeto/especificacoes'
     };
 }
 

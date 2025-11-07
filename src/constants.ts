@@ -15,7 +15,7 @@ export function getDefaultConfig() {
 
     return {
         paths: {
-            specs: `.claude/${dirs.specs}`,
+            specs: `.prisma/${dirs.specs}`,  // Prisma usa .prisma para specs
             steering: `.claude/${dirs.steering}`,
             settings: `.claude/${dirs.settings}`
         },

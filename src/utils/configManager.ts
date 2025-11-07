@@ -141,7 +141,7 @@ export class ConfigManager {
 
     private getDefaultSettings(): PrismaSettings {
         return {
-            paths: { ...DEFAULT_PATHS },
+            paths: { ...DEFAULT_PATHS },  // Usa todos os padrões configurados
             views: {
                 specs: { visible: DEFAULT_VIEW_VISIBILITY.specs },
                 steering: { visible: DEFAULT_VIEW_VISIBILITY.steering },
