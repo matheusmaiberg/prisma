@@ -1,4 +1,9 @@
-# Command: /validar-especificacao
+---
+description: Validar conformidade de especificações com padrões
+argument-hint: [nome-feature] [tipo-validacao]
+---
+
+# Command: /prisma:validar-especificacao
 
 ## Description
 

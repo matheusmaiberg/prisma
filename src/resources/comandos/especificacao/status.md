@@ -1,4 +1,9 @@
-# Command: /status-especificacao
+---
+description: Exibir status detalhado de especificação
+argument-hint: [feature-name] [detail-level]
+---
+
+# Command: /prisma:status-especificacao
 
 ## Description
 

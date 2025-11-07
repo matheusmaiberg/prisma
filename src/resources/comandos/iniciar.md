@@ -1,3 +1,9 @@
+---
+description: Inicializar sistema Prisma e workflow de especificações
+argument-hint: [feature-name]
+model: sonnet
+---
+
 # Comando: /prisma:iniciar
 
 ## Descrição

@@ -1,4 +1,9 @@
-# Command: /listar-especificacoes
+---
+description: Listar todas especificações com status e progresso
+argument-hint: [filter] [sort-by]
+---
+
+# Command: /prisma:listar-especificacoes
 
 ## Description
 
