@@ -294,6 +294,21 @@ function registerCommands(context: vscode.ExtensionContext, specExplorer: SpecEx
             await specManager.navigateToDocument(specName, 'tasks');
         }),
 
+        vscode.commands.registerCommand('prisma.spec.navigate.task', async (specName: string, filePath: string, lineNumber: number) => {
+            // Open the tasks file and navigate to specific line
+            try {
+                const document = await vscode.workspace.openTextDocument(filePath);
+                const editor = await vscode.window.showTextDocument(document);
+
+                // Navigate to the specific line
+                const position = new vscode.Position(lineNumber - 1, 0); // Line numbers are 0-based in VS Code
+                editor.selection = new vscode.Selection(position, position);
+                editor.revealRange(new vscode.Range(position, position), vscode.TextEditorRevealType.InCenter);
+            } catch (error) {
+                vscode.window.showErrorMessage(`Failed to open task: ${error}`);
+            }
+        }),
+
         vscode.commands.registerCommand('prisma.spec.implTask', async (documentUri: vscode.Uri, lineNumber: number, taskDescription: string) => {
             outputChannel.appendLine(`[Task Execute] Line ${lineNumber + 1}: ${taskDescription}`);
 
