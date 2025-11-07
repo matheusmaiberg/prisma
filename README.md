@@ -30,6 +30,7 @@ Desenvolvida com foco em produtividade e organização, a extensão inclui 20 ag
 - 🎯 **Steering Avançado**: Configure direcionamento personalizado para o Claude
 - ⚡ **Sync Automático**: File watchers mantêm tudo sincronizado
 - 🎨 **Interface Moderna**: Views dedicadas para cada funcionalidade
+- 📐 **Tasks Expansíveis**: Visualize e navegue para tarefas individuais diretamente na árvore
 
 ---
 
@@ -77,33 +78,44 @@ A extensão inclui 20 agentes especializados que são automaticamente copiados p
 - **testador**: Geração automática de testes
 - **testador-specs**: Cria documentos e código de teste
 
-### Comandos Disponíveis
+### 📋 Especificações com Tasks Expansíveis
 
-Acesse via Command Palette (Ctrl/Cmd + Shift + P):
+A partir da versão 1.0.1, você pode expandir o item "tasks" na árvore de especificações para visualizar tarefas individuais:
 
-#### Especificações
+```
+📦 yaml-config-loader
+├── 🔲 requirements     # Clique para abrir o arquivo completo
+├── 🔗 design          # Clique para abrir o arquivo completo
+└── 📋 tasks ▼         # Clique na seta para expandir
+    ├── 📐 Task 1: Configurar estrutura base (line 3)
+    ├── 📐 Task 2: Implementar parser (line 8)
+    ├── 📐 Task 3: Integrar sistema (line 13)
+    └── 📐 Task 4: Documentação (line 18)
+```
 
-- `Prisma: Create New Spec` - Criar nova especificação
-- `Prisma: New Spec with Agents` - Criar spec com agentes
-- `Prisma: Delete Spec` - Excluir especificação
-- `Prisma: Refresh Specs` - Atualizar lista
+**Como usar:**
+- Clique na seta ao lado de "tasks" para expandir e ver todas as tarefas
+- Clique em uma tarefa individual para navegar diretamente para sua linha no arquivo
+- O formato esperado no arquivo tasks.md é: `## Task N: Descrição`
 
-#### Steering
+### 📚 Comandos Disponíveis
 
-- `Prisma: Create Custom Steering` - Criar direcionamento personalizado
-- `Prisma: Init Steering` - Inicializar direcionamento
-- `Prisma: Refine Steering` - Refinar direcionamento
-- `Prisma: Delete Steering` - Excluir direcionamento
+Acesse via Command Palette (`Ctrl/Cmd + Shift + P`):
 
-#### Agentes
-
-- `Prisma: Refresh Agents` - Atualizar lista de agentes
-
-#### Configurações
-
-- `Prisma: Prisma Settings` - Abrir configurações
-- `Prisma: Check for Updates` - Verificar atualizações
-- `Prisma: Prisma Help` - Abrir documentação
+| Comando | Descrição | Categoria |
+|---------|-----------|-----------|
+| `Prisma: Create New Spec` | Criar nova especificação | 📋 Especificações |
+| `Prisma: New Spec with Agents` | Criar spec com agentes Prisma | 📋 Especificações |
+| `Prisma: Delete Spec` | Excluir especificação existente | 📋 Especificações |
+| `Prisma: Refresh Specs` | Atualizar lista de specs | 📋 Especificações |
+| `Prisma: Create Custom Steering` | Criar direcionamento personalizado | 🎯 Steering |
+| `Prisma: Init Steering` | Inicializar direcionamento | 🎯 Steering |
+| `Prisma: Refine Steering` | Refinar direcionamento existente | 🎯 Steering |
+| `Prisma: Delete Steering` | Excluir arquivo de steering | 🎯 Steering |
+| `Prisma: Refresh Agents` | Atualizar lista de agentes | 🤖 Agentes |
+| `Prisma: Prisma Settings` | Abrir configurações do Prisma | ⚙️ Configurações |
+| `Prisma: Check for Updates` | Verificar atualizações | ⚙️ Configurações |
+| `Prisma: Prisma Help` | Abrir documentação | ⚙️ Configurações |
 
 ### Views na Sidebar
 
