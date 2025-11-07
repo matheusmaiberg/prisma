@@ -9,12 +9,11 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
     readonly onDidChangeTreeData: vscode.Event<SpecItem | undefined | null | void> = this._onDidChangeTreeData.event;
     
     private specManager!: SpecManager;
-    private outputChannel: vscode.OutputChannel;
     private isLoading: boolean = false;
-    
+
     constructor(private context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) {
         // We'll set the spec manager later from extension.ts
-        this.outputChannel = outputChannel;
+        // outputChannel is available if needed in the future
     }
     
     setSpecManager(specManager: SpecManager) {
@@ -113,7 +112,7 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
                     `${specPath}/tasks.md`
                 )
             ];
-        } else if (element.contextValue === 'spec-document' && element.documentType === 'tasks') {
+        } else if (element.contextValue === 'spec-document-tasks') {
             // Parse tasks from tasks.md file and show individual tasks
             const specsPath = await this.specManager.getSpecBasePath();
             const tasksFilePath = path.join(specsPath, element.specName!, 'tasks.md');
