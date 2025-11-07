@@ -25,7 +25,7 @@ export const frontmatter = {
   }
 };
 
-export const content = "<user_input>\nLAUNCH A SPEC DEVELOPMENT WORKFLOW\n\nCreate a requirements document for a new feature\n\nFeature Description: {{description}}\n\nWorkspace path: {{workspacePath}}\nSpec base path: {{specBasePath}}\n\nYou have full control over the naming and file creation.\n</user_input>\n";
+export const content = "<user_input>\r\nLAUNCH A SPEC DEVELOPMENT WORKFLOW\r\n\r\nCreate a requirements document for a new feature\r\n\r\nFeature Description: {{description}}\r\n\r\nWorkspace path: {{workspacePath}}\r\nSpec base path: {{specBasePath}}\r\n\r\nYou have full control over the naming and file creation.\r\n</user_input>\r\n";
 
 export default {
   frontmatter,

@@ -13,7 +13,10 @@
       "Bash(git commit:*)",
       "Bash(npm run compile:*)",
       "Bash(npx vsce:*)",
-      "Bash(code --install-extension prisma-for-cc-1.0.1.vsix --force)"
+      "Bash(code --install-extension prisma-for-cc-1.0.1.vsix --force)",
+      "Bash(mkdir:*)",
+      "Bash(npm run package:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
