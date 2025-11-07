@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import * as fs from 'fs';
 import { SpecManager } from '../features/spec/specManager';
 import { getTranslations } from '../i18n/translations';
 
@@ -103,22 +104,66 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
                 ),
                 new SpecItem(
                     'tasks',
-                    vscode.TreeItemCollapsibleState.None,
+                    vscode.TreeItemCollapsibleState.Collapsed,
                     'spec-document',
                     this.context,
                     element.specName!,
                     'tasks',
-                    {
-                        command: 'prisma.spec.navigate.tasks',
-                        title: getTranslations().titles.openTasks,
-                        arguments: [element.specName]
-                    },
+                    undefined, // Remove command to allow expansion
                     `${specPath}/tasks.md`
                 )
             ];
+        } else if (element.contextValue === 'spec-document' && element.documentType === 'tasks') {
+            // Parse tasks from tasks.md file and show individual tasks
+            const specsPath = await this.specManager.getSpecBasePath();
+            const tasksFilePath = path.join(specsPath, element.specName!, 'tasks.md');
+
+            try {
+                if (fs.existsSync(tasksFilePath)) {
+                    const content = fs.readFileSync(tasksFilePath, 'utf-8');
+                    const tasks = this.parseTasksFromMarkdown(content);
+
+                    return tasks.map(task => new SpecItem(
+                        task.title,
+                        vscode.TreeItemCollapsibleState.None,
+                        'spec-task',
+                        this.context,
+                        element.specName,
+                        'task',
+                        {
+                            command: 'prisma.spec.navigate.task',
+                            title: 'Open Task',
+                            arguments: [element.specName, tasksFilePath, task.line]
+                        },
+                        tasksFilePath,
+                        task.line
+                    ));
+                }
+            } catch (error) {
+                console.error('Error reading tasks file:', error);
+            }
         }
-        
+
         return [];
+    }
+
+    private parseTasksFromMarkdown(content: string): { title: string; line: number }[] {
+        const tasks: { title: string; line: number }[] = [];
+        const lines = content.split('\n');
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            // Match headers with "Task" or numbered tasks (## Task 1:, ## Task 2:, etc.)
+            const taskMatch = line.match(/^##\s+(Task\s+\d+:?\s*.+|.+)/);
+            if (taskMatch) {
+                tasks.push({
+                    title: taskMatch[1].trim(),
+                    line: i + 1 // Line numbers start at 1
+                });
+            }
+        }
+
+        return tasks;
     }
 }
 
@@ -131,7 +176,8 @@ class SpecItem extends vscode.TreeItem {
         public readonly specName?: string,
         public readonly documentType?: string,
         public readonly command?: vscode.Command,
-        private readonly filePath?: string
+        private readonly filePath?: string,
+        public readonly taskLine?: number
     ) {
         super(label, collapsibleState);
         
@@ -166,6 +212,11 @@ class SpecItem extends vscode.TreeItem {
             if (documentType === 'requirements' || documentType === 'design' || documentType === 'tasks') {
                 this.contextValue = `spec-document-${documentType}`;
             }
+        } else if (contextValue === 'spec-task') {
+            // Individual task item
+            this.iconPath = new vscode.ThemeIcon('symbol-method');
+            this.tooltip = `${label} (line ${taskLine})`;
+            this.description = `line ${taskLine}`;
         }
     }
 }
