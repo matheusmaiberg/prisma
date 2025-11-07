@@ -11,9 +11,8 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
     private specManager!: SpecManager;
     private isLoading: boolean = false;
 
-    constructor(private context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) {
+    constructor(private context: vscode.ExtensionContext, _outputChannel: vscode.OutputChannel) {
         // We'll set the spec manager later from extension.ts
-        // outputChannel is available if needed in the future
     }
     
     setSpecManager(specManager: SpecManager) {
@@ -36,11 +35,10 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
     }
     
     async getChildren(element?: SpecItem): Promise<SpecItem[]> {
-        
         if (!vscode.workspace.workspaceFolders || !this.specManager) {
             return [];
         }
-        
+
         if (!element) {
             // Root level - show loading state or specs
             const items: SpecItem[] = [];
@@ -104,11 +102,11 @@ export class SpecExplorerProvider implements vscode.TreeDataProvider<SpecItem> {
                 new SpecItem(
                     'tasks',
                     vscode.TreeItemCollapsibleState.Collapsed,
-                    'spec-document',
+                    'spec-document-tasks', // Use a specific contextValue
                     this.context,
                     element.specName!,
                     'tasks',
-                    undefined, // Remove command to allow expansion
+                    undefined, // No command to allow expansion
                     `${specPath}/tasks.md`
                 )
             ];
@@ -171,11 +169,11 @@ class SpecItem extends vscode.TreeItem {
         public readonly label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly contextValue: string,
-        private readonly context: vscode.ExtensionContext,
+        private readonly _context: vscode.ExtensionContext,
         public readonly specName?: string,
         public readonly documentType?: string,
         public readonly command?: vscode.Command,
-        private readonly filePath?: string,
+        private readonly _filePath?: string,
         public readonly taskLine?: number
     ) {
         super(label, collapsibleState);
@@ -203,14 +201,15 @@ class SpecItem extends vscode.TreeItem {
             }
             
             // Set description to file path
-            if (filePath) {
-                this.description = filePath;
+            if (_filePath) {
+                this.description = _filePath;
             }
             
-            // Add context menu items
-            if (documentType === 'requirements' || documentType === 'design' || documentType === 'tasks') {
+            // Add context menu items only for regular documents
+            if (documentType === 'requirements' || documentType === 'design') {
                 this.contextValue = `spec-document-${documentType}`;
             }
+            // Note: 'tasks' already has contextValue set to 'spec-document-tasks'
         } else if (contextValue === 'spec-task') {
             // Individual task item
             this.iconPath = new vscode.ThemeIcon('symbol-method');
