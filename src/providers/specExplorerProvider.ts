@@ -192,24 +192,29 @@ class SpecItem extends vscode.TreeItem {
             } else if (documentType === 'design') {
                 this.iconPath = new vscode.ThemeIcon('layers');
                 this.tooltip = `Design: ${specName}/${label}`;
-            } else if (documentType === 'tasks') {
-                this.iconPath = new vscode.ThemeIcon('tasklist');
-                this.tooltip = `Tasks: ${specName}/${label}`;
             } else {
                 this.iconPath = new vscode.ThemeIcon('file');
                 this.tooltip = `${documentType}: ${specName}/${label}`;
             }
-            
+
             // Set description to file path
             if (_filePath) {
                 this.description = _filePath;
             }
-            
+
             // Add context menu items only for regular documents
             if (documentType === 'requirements' || documentType === 'design') {
                 this.contextValue = `spec-document-${documentType}`;
             }
-            // Note: 'tasks' already has contextValue set to 'spec-document-tasks'
+        } else if (contextValue === 'spec-document-tasks') {
+            // Tasks document with expandable task list
+            this.iconPath = new vscode.ThemeIcon('tasklist');
+            this.tooltip = `Tasks: ${specName}/${label}`;
+
+            // Set description to file path
+            if (_filePath) {
+                this.description = _filePath;
+            }
         } else if (contextValue === 'spec-task') {
             // Individual task item
             this.iconPath = new vscode.ThemeIcon('symbol-method');

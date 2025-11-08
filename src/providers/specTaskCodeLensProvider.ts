@@ -32,14 +32,14 @@ export class SpecTaskCodeLensProvider implements vscode.CodeLensProvider {
 
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
-            // 匹配任务列表格式: - [ ] 任务描述
-            const taskMatch = line.match(/^(\s*)- \[ \] (.+)$/);
+            // Match task headers format: ## Task 1:, ## Task 2:, etc.
+            const taskMatch = line.match(/^##\s+(Task\s+\d+:?\s*.+|.+)/);
 
             if (taskMatch) {
                 const range = new vscode.Range(i, 0, i, line.length);
-                const taskDescription = taskMatch[2];
+                const taskDescription = taskMatch[1].trim();
 
-                // 创建 CodeLens
+                // Create CodeLens
                 const codeLens = new vscode.CodeLens(range, {
                     title: "▶ Start Task",
                     tooltip: "Click to implement this task with Claude Code",
