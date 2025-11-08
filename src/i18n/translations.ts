@@ -30,6 +30,7 @@ export interface Translations {
         refreshHooks: string;
         openSettings: string;
         checkUpdates: string;
+        setupInitialize: string;
     };
     notifications: {
         specCreated: string;
@@ -120,7 +121,8 @@ const pt: Translations = {
         refreshMcpServers: 'Atualizar Servidores MCP',
         refreshHooks: 'Atualizar Hooks',
         openSettings: 'Abrir Configurações',
-        checkUpdates: 'Verificar Atualizações'
+        checkUpdates: 'Verificar Atualizações',
+        setupInitialize: 'Inicializar Estrutura Prisma'
     },
     notifications: {
         specCreated: 'Especificação criada com sucesso',
@@ -211,7 +213,8 @@ const en: Translations = {
         refreshMcpServers: 'Refresh MCP Servers',
         refreshHooks: 'Refresh Hooks',
         openSettings: 'Open Settings',
-        checkUpdates: 'Check for Updates'
+        checkUpdates: 'Check for Updates',
+        setupInitialize: 'Initialize Prisma Structure'
     },
     notifications: {
         specCreated: 'Specification created successfully',

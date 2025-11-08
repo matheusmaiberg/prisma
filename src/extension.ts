@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as os from 'os';
+import * as path from 'path';
 import { ClaudeCodeProvider } from './providers/claudeCodeProvider';
 import { SpecManager } from './features/spec/specManager';
 import { SteeringManager } from './features/steering/steeringManager';
@@ -11,19 +12,21 @@ import { OverviewProvider } from './providers/overviewProvider';
 import { AgentsExplorerProvider } from './providers/agentsExplorerProvider';
 import { AgentManager } from './features/agents/agentManager';
 import { ConfigManager } from './utils/configManager';
-import { CONFIG_FILE_NAME, VSC_CONFIG_NAMESPACE } from './constants';
+import { CONFIG_FILE_NAME, VSC_CONFIG_NAMESPACE, CLAUDE_DIR, CLAUDE_SETTINGS_DIR, CLAUDE_CONFIG_FILE, DEFAULT_CONFIG } from './constants';
 import { PromptLoader } from './services/promptLoader';
 import { UpdateChecker } from './utils/updateChecker';
 import { PermissionManager } from './features/permission/permissionManager';
 import { NotificationUtils } from './utils/notificationUtils';
 import { SpecTaskCodeLensProvider } from './providers/specTaskCodeLensProvider';
 import { getTranslations } from './i18n/translations';
+import { SetupManager } from './features/setup/setupManager';
 
 let claudeCodeProvider: ClaudeCodeProvider;
 let specManager: SpecManager;
 let steeringManager: SteeringManager;
 let permissionManager: PermissionManager;
 let agentManager: AgentManager;
+let setupManager: SetupManager;
 export let outputChannel: vscode.OutputChannel;
 
 // 导出 getter 函数供其他模块使用
@@ -49,8 +52,22 @@ export async function activate(context: vscode.ExtensionContext) {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders || workspaceFolders.length === 0) {
         outputChannel.appendLine('WARNING: No workspace folder found!');
+        return; // Cannot proceed without workspace
     }
 
+    // Initialize Prisma workspace structure
+    setupManager = new SetupManager(outputChannel);
+    if (!setupManager.isInitialized()) {
+        outputChannel.appendLine('[Setup] .prisma not found, initializing...');
+        try {
+            await setupManager.initialize();
+        } catch (error) {
+            outputChannel.appendLine(`[Setup] Failed to initialize: ${error}`);
+            // Continue anyway - user can manually initialize later
+        }
+    } else {
+        outputChannel.appendLine('[Setup] ✅ .prisma already initialized');
+    }
 
     // Initialize Claude Code SDK provider with output channel
     claudeCodeProvider = new ClaudeCodeProvider(context, outputChannel);
@@ -112,7 +129,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     const specTaskCodeLensProvider = new SpecTaskCodeLensProvider();
 
-    let specDir = '.claude/especificacoes';
+    let specDir = DEFAULT_CONFIG.paths.specs;
     try {
         const configuredSpecDir = configManager.getPath('specs');
         specDir = configuredSpecDir || specDir;
@@ -151,8 +168,8 @@ async function initializeDefaultSettings() {
     }
 
     // Create .claude/settings directory if it doesn't exist
-    const claudeDir = vscode.Uri.joinPath(workspaceFolder.uri, '.claude');
-    const settingsDir = vscode.Uri.joinPath(claudeDir, 'settings');
+    const claudeDir = vscode.Uri.joinPath(workspaceFolder.uri, CLAUDE_DIR);
+    const settingsDir = vscode.Uri.joinPath(claudeDir, CLAUDE_SETTINGS_DIR);
 
     try {
         await vscode.workspace.fs.createDirectory(claudeDir);
@@ -312,16 +329,7 @@ function registerCommands(context: vscode.ExtensionContext, specExplorer: SpecEx
         vscode.commands.registerCommand('prisma.spec.implTask', async (documentUri: vscode.Uri, lineNumber: number, taskDescription: string) => {
             outputChannel.appendLine(`[Task Execute] Line ${lineNumber + 1}: ${taskDescription}`);
 
-            // 更新任务状态为已完成
-            const document = await vscode.workspace.openTextDocument(documentUri);
-            const edit = new vscode.WorkspaceEdit();
-            const line = document.lineAt(lineNumber);
-            const newLine = line.text.replace('- [ ]', '- [x]');
-            const range = new vscode.Range(lineNumber, 0, lineNumber, line.text.length);
-            edit.replace(documentUri, range, newLine);
-            await vscode.workspace.applyEdit(edit);
-
-            // 使用 Claude Code 执行任务
+            // Execute task with Claude Code
             await specManager.implTask(documentUri.fsPath, taskDescription);
         }),
         vscode.commands.registerCommand('prisma.spec.refresh', async () => {
@@ -435,6 +443,18 @@ function registerCommands(context: vscode.ExtensionContext, specExplorer: SpecEx
             await updateChecker.checkForUpdates(true); // Force check
         }),
 
+        // Setup command
+        vscode.commands.registerCommand('prisma.setup.initialize', async () => {
+            outputChannel.appendLine('[Setup] Manual initialization requested');
+            try {
+                await setupManager.initialize();
+                vscode.window.showInformationMessage('Prisma workspace structure initialized successfully!');
+            } catch (error) {
+                outputChannel.appendLine(`[Setup] Failed: ${error}`);
+                vscode.window.showErrorMessage(`Failed to initialize Prisma structure: ${error}`);
+            }
+        }),
+
         // Overview and settings commands
         vscode.commands.registerCommand('prisma.settings.open', async () => {
             outputChannel.appendLine('Opening Prisma settings...');
@@ -446,8 +466,8 @@ function registerCommands(context: vscode.ExtensionContext, specExplorer: SpecEx
             }
 
             // Create .claude/settings directory if it doesn't exist
-            const claudeDir = vscode.Uri.joinPath(workspaceFolder.uri, '.claude');
-            const settingsDir = vscode.Uri.joinPath(claudeDir, 'settings');
+            const claudeDir = vscode.Uri.joinPath(workspaceFolder.uri, CLAUDE_DIR);
+            const settingsDir = vscode.Uri.joinPath(claudeDir, CLAUDE_SETTINGS_DIR);
 
             try {
                 await vscode.workspace.fs.createDirectory(claudeDir);
@@ -493,7 +513,7 @@ function registerCommands(context: vscode.ExtensionContext, specExplorer: SpecEx
         vscode.commands.registerCommand('prisma.permission.check', async () => {
             // 使用新的 PermissionManager 检查真实的权限状态
             const hasPermission = await permissionManager.checkPermission();
-            const configPath = require('os').homedir() + '/.claude.json';
+            const configPath = path.join(os.homedir(), CLAUDE_CONFIG_FILE);
 
             vscode.window.showInformationMessage(
                 `Claude Code Permission Status: ${hasPermission ? '✅ Granted' : '❌ Not Granted'}`
