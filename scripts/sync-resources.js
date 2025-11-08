@@ -12,18 +12,18 @@ const resourcesPath = path.join(workspaceRoot, 'src', 'resources');
 
 // Mapping of resources to target directories
 const syncMap = [
-    // Prisma workflow files go to .prisma (sem comandos e agentes)
+    // Prisma workflow files go to .prisma (all resources except agentes and comandos)
     { source: 'configuracoes', target: '.prisma/configuracoes' },
     { source: 'prompts', target: '.prisma/prompts' },
     { source: 'templates', target: '.prisma/templates' },
     { source: 'projeto', target: '.prisma/projeto' },
+    { source: 'workflows', target: '.prisma/workflows' },
+    { source: 'checkpoints', target: '.prisma/checkpoints' },
     { source: 'CLAUDE.md', target: '.prisma/CLAUDE.md' },
 
-    // Claude-specific files go to .claude for VSCode extension
+    // Claude-specific files go to .claude (only agentes and comandos)
     { source: 'comandos', target: '.claude/commands/prisma' },  // Commands under prisma namespace
-    { source: 'agentes', target: '.claude/agents/prisma' },     // Agents under prisma namespace
-    { source: 'prompts', target: '.claude/system-prompts' },
-    { source: 'templates', target: '.claude/templates' }
+    { source: 'agentes', target: '.claude/agents/prisma' }      // Agents under prisma namespace
 ];
 
 // Helper to ensure directory exists

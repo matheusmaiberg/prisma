@@ -28,6 +28,7 @@
   "cmd.permission.check": "Check Permission Status",
   "cmd.permission.reset": "Reset Permissions",
   "cmd.spec.implTask": "Implement Task",
+  "cmd.setup.initialize": "Initialize Prisma Structure",
   "config.claudePath": "Path to Claude Code CLI executable",
   "config.autoRefreshSpecs": "Automatically refresh specs when requirements are saved",
   "config.showWelcomeMessage": "Show welcome message on startup",

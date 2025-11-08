@@ -216,6 +216,12 @@
         "command": "prisma.spec.implTask",
         "title": "%cmd.spec.implTask%",
         "category": "Prisma"
+      },
+      {
+        "command": "prisma.setup.initialize",
+        "title": "%cmd.setup.initialize%",
+        "category": "Prisma",
+        "icon": "$(folder-library)"
       }
     ],
     "menus": {
@@ -298,6 +304,10 @@
         },
         {
           "command": "prisma.checkForUpdates"
+        },
+        {
+          "command": "prisma.setup.initialize",
+          "when": "workspaceFolderCount > 0"
         }
       ]
     },
