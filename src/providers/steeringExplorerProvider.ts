@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as os from 'os';
 import { SteeringManager } from '../features/steering/steeringManager';
+import { CLAUDE_DIR, CLAUDE_MD_FILE } from '../constants';
 import { getTranslations } from '../i18n/translations';
 
 export class SteeringExplorerProvider implements vscode.TreeDataProvider<SteeringItem> {
@@ -53,7 +54,7 @@ export class SteeringExplorerProvider implements vscode.TreeDataProvider<Steerin
             }
 
             // Check existence of files
-            const globalClaudeMd = path.join(os.homedir(), '.claude', 'CLAUDE.md');
+            const globalClaudeMd = path.join(os.homedir(), CLAUDE_DIR, CLAUDE_MD_FILE);
             const globalExists = fs.existsSync(globalClaudeMd);
 
             let projectClaudeMd = '';

@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as os from 'os';
+import { CLAUDE_DIR, CLAUDE_SETTINGS_FILE } from '../constants';
 import { getTranslations } from '../i18n/translations';
 
 export class HooksExplorerProvider implements vscode.TreeDataProvider<HookItem> {
@@ -156,8 +157,8 @@ export class HooksExplorerProvider implements vscode.TreeDataProvider<HookItem> 
         if (vscode.workspace.workspaceFolders) {
             const workspaceConfigPath = path.join(
                 vscode.workspace.workspaceFolders[0].uri.fsPath,
-                '.claude',
-                'settings.json'
+                CLAUDE_DIR,
+                CLAUDE_SETTINGS_FILE
             );
             if (fs.existsSync(workspaceConfigPath)) {
                 try {
@@ -180,7 +181,7 @@ export class HooksExplorerProvider implements vscode.TreeDataProvider<HookItem> 
         
         // Then check global ~/.claude/settings.json
         try {
-            const claudeConfigPath = path.join(os.homedir(), '.claude', 'settings.json');
+            const claudeConfigPath = path.join(os.homedir(), CLAUDE_DIR, CLAUDE_SETTINGS_FILE);
             if (fs.existsSync(claudeConfigPath)) {
                 const config = JSON.parse(fs.readFileSync(claudeConfigPath, 'utf8'));
                 if (config.hooks) {

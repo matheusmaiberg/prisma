@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import { PRISMA_DIR, CLAUDE_MD_FILE } from '../../constants';
 
 /**
  * SetupManager handles automatic initialization of Prisma workspace structure
@@ -19,7 +20,7 @@ export class SetupManager {
         }
 
         this.workspaceRoot = workspaceFolder.uri.fsPath;
-        this.prismaDir = path.join(this.workspaceRoot, '.prisma');
+        this.prismaDir = path.join(this.workspaceRoot, PRISMA_DIR);
         this.resourcesPath = path.join(__dirname, '..', '..', 'resources');
     }
 
@@ -146,7 +147,7 @@ export class SetupManager {
             { source: 'projeto', target: 'projeto' },
             { source: 'workflows', target: 'workflows' },
             { source: 'checkpoints', target: 'checkpoints' },
-            { source: 'CLAUDE.md', target: 'CLAUDE.md' }
+            { source: CLAUDE_MD_FILE, target: CLAUDE_MD_FILE }
         ];
 
         for (const { source, target } of resourceMap) {

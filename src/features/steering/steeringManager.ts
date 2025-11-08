@@ -5,6 +5,7 @@ import { ClaudeCodeProvider } from '../../providers/claudeCodeProvider';
 import { ConfigManager } from '../../utils/configManager';
 import { NotificationUtils } from '../../utils/notificationUtils';
 import { PromptLoader } from '../../services/promptLoader';
+import { CLAUDE_DIR, CLAUDE_MD_FILE } from '../../constants';
 
 export class SteeringManager {
     private configManager: ConfigManager;
@@ -205,8 +206,8 @@ export class SteeringManager {
      * Create global CLAUDE.md file in user's home directory
      */
     async createUserClaudeMd() {
-        const claudeDir = path.join(os.homedir(), '.claude');
-        const filePath = path.join(claudeDir, 'CLAUDE.md');
+        const claudeDir = path.join(os.homedir(), CLAUDE_DIR);
+        const filePath = path.join(claudeDir, CLAUDE_MD_FILE);
 
         // Ensure directory exists
         try {
